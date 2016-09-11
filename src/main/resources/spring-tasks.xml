@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:c="http://www.springframework.org/schema/c" xmlns:cache="http://www.springframework.org/schema/cache" xmlns:context="http://www.springframework.org/schema/context" xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p" xmlns:task="http://www.springframework.org/schema/task" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- 每隔指定时间间隔执行一次work方法 -->
+ 	<bean id="ticketTask" class="com.surpass.system.task.TicketTask"></bean>
+	<task:scheduled-tasks>
+		<!-- 执行ticketTask里面的work方法，执行频率是cron表达式 -->
+		<task:scheduled ref="ticketTask" method="work" cron="0 0/2 * * * ?" />
+	</task:scheduled-tasks>
+
+	<!-- 每月最后一天23:59:59执行 由于Spring的定时器对每月最后一天的“L”参数支持有异常，因此每月最后一天的定时器通过quartz执行出发 -->
+	<bean id="monthTask" class="com.jtsec.task.CountAnalyzeTask" init-method="initMonths"></bean>
+	<bean id="monthDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	    <property name="group" value="job_work"/>
+	    <property name="name" value="job_work_name"/>
+	    <!--false表示等上一个任务执行完后再开启新的任务-->
+	    <property name="concurrent" value="false"/>
+	    <property name="targetObject" ref="monthTask"/>
+	    <property name="targetMethod" value="work"/>
+	</bean>
+	
+	<!--  调度触发器 -->
+	<bean id="monthTriggers" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	    <property name="name" value="work_default_name"/>
+	    <property name="group" value="work_default"/>
+	    <property name="jobDetail" ref="monthDetail"/>
+	    <property name="cronExpression" value="59 59 23 L * ?" />
+	</bean>
+	
+	<!-- 调度工厂 -->
+	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	    <property name="triggers">
+	        <list>
+	            <ref bean="monthTriggers"/>
+	        </list>
+	    </property>
+	</bean>
+</beans>
