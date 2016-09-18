@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 引入外部配置文件 resource和url有且只有一个
+		resource：从项目根路径开始查找 eg:com/sirding/db.properties
+		url：file://C:/db.properties
+	 -->
+	<!-- <properties resource="db.properties"/> -->
+	
+	<!-- 数据库驱动包的绝对路径 -->
+	<!-- <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" /> -->
+
+	<!-- 可以有多个context用于连接不同的数据源 -->
+	<context id="MySQLTables" targetRuntime="MyBatis3">
+
+		<plugin type=""></plugin>
+		
+		<!-- 用于配置生成pojo时是否添加注释信息 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="false" />
+			<property name="addRemarkComments" value="false" />
+		</commentGenerator>
+		
+		<!-- 配置数据库连接，同jdbcConnection等价，两个配置方式二选一 -->
+		<!-- <connectionFactory> <property name="driverClass" value="com.mysql.jdbc.Driver"/> 
+			<property name="connectionURL" value="jdbc:mysql://localhost/java-stu"/> 
+			<property name="userId" value="root"/> <property name="password" value="root"/> 
+			</connectionFactory> -->
+			
+		<!-- 配置数据库的连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost/java-stu" userId="root"
+			password="root">
+		</jdbcConnection>
+
+		<!-- 指定mapper infrastructure xml生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.sirding.model.mapper" targetProject="\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<!-- java实体类生成配置 
+			property:
+				constructorBased:true[生成所有参数的构造方法，查询时通过构造方法封装对象]
+				enableSubPackages：true[tableName为user_info，那么pojo为com.sirding.model.UserInfo]
+								  false[tableName为user_info，那么pojo为com.sirding.model]
+				immutable:true[不生成getter、setter方法，对象封装依靠构造方法]，默认为false
+				rootClass：所有pojo都要继承的父类
+				trimStrings：属性收尾去空格
+		-->
+		<javaModelGenerator targetPackage="com.sirding.model"
+			targetProject="\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		
+		<!-- 指定SQL Map XML 文件的位置，如果 javaClientGenerator指定type="XMLMAPPER"那么
+			此属性是必须的，如果context的targetRuntime="iBATIS2"那么此属性是必须的
+		 -->
+		<sqlMapGenerator targetPackage="test.xml"
+			targetProject="\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		
+		<!-- 定义数据库中类型与java中类型的对应转换 -->
+		<javaTypeResolver>
+			<!-- 对于数据库中DECIMAL and NUMERIC的列，pojo中用java.math.BigDecimal来表示 -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		
+
+		<table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="ID" sqlStatement="DB2" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<!-- 忽略指定名称的属性  delimitedColumnName是非必须的属性，用于区分大小写 -->
+			<ignoreColumn column="FRED" />
+			<ignoreColumnsByRegex pattern="^TEST_">
+				<!-- 过滤属性的白名单  delimitedColumnName 用于设置是否区分大小写 -->
+				<except column="TEST_USER_NAME"/>
+			</ignoreColumnsByRegex>
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+			<!-- eg：列名称为CUST_USER_NAME 那么通过下面配置生成的pojo的属性名称的为USER_NAME或userName， 优先级低于 
+				columnOverride，同时依赖useActualColumnNames <columnRenamingRule searchString="^CUST_" 
+				replaceString=""/> -->
+		</table>
+
+		
+
+	</context>
+</generatorConfiguration>

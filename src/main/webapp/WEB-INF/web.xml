@@ -28,20 +28,12 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	<filter>
-		<description>延长hibernate的session作用的范围（仅用于hibernate，在延迟加载情况下）</description>
-		<filter-name>openSessionInViewFilter</filter-name>
-		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
-		<init-param>
-			<param-name>singleSession</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>openSessionInViewFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
+
+	<!-- <filter> <description>延长hibernate的session作用的范围（仅用于hibernate，在延迟加载情况下）</description> 
+		<filter-name>openSessionInViewFilter</filter-name> <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class> 
+		<init-param> <param-name>singleSession</param-name> <param-value>true</param-value> 
+		</init-param> </filter> <filter-mapping> <filter-name>openSessionInViewFilter</filter-name> 
+		<url-pattern>*.do</url-pattern> </filter-mapping> -->
 
 	<listener>
 		<description>初始化Spring框架</description>
@@ -49,7 +41,7 @@
 	</listener>
 	<listener>
 		<description>初始化项目运行需要的参数</description>
-		<listener-class>com.sirding.listeners.InitListener</listener-class>
+		<listener-class>com.sirding.listener.InitListener</listener-class>
 	</listener>
 
 	<servlet>
@@ -65,7 +57,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springMvc</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.htm</url-pattern>
 	</servlet-mapping>
 
 	<!-- HttpSession的失效时间 -->
@@ -73,16 +65,10 @@
 		<session-timeout>20</session-timeout>
 	</session-config>
 
-	<error-page>
-		<error-code>404</error-code>
-		<location>/error/404.jsp</location>
-	</error-page>
-	<error-page>
-		<error-code>500</error-code>
-		<location>/error/500.jsp</location>
-	</error-page>
+	<!-- <error-page> <error-code>404</error-code> <location>/error/404.jsp</location> 
+		</error-page> <error-page> <error-code>500</error-code> <location>/error/500.jsp</location> 
+		</error-page> -->
 	<welcome-file-list>
 		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
-	
 </web-app>

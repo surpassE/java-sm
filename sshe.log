@@ -1,0 +1,323 @@
+[ERROR][2016-09-14 15:15:43,682][org.springframework.web.servlet.DispatcherServlet]Context initialization failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController': Unsatisfied dependency expressed through field 'userService': Cannot find class [org.springframework.http.converter.json.MappingJacksonHttpMessageConverter] for bean with name 'mappingJacksonHttpMessageConverter' defined in class path resource [spring-mvc.xml]; nested exception is java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter; nested exception is org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.springframework.http.converter.json.MappingJacksonHttpMessageConverter] for bean with name 'mappingJacksonHttpMessageConverter' defined in class path resource [spring-mvc.xml]; nested exception is java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:569)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:349)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1214)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:776)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:861)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:668)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:682)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:553)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:494)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:136)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:244)
+	at org.eclipse.jetty.servlet.ServletHolder.initServlet(ServletHolder.java:532)
+	at org.eclipse.jetty.servlet.ServletHolder.doStart(ServletHolder.java:344)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:791)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:265)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1242)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:717)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:494)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:282)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedAdapter.start(JettyEmbeddedAdapter.java:67)
+	at net.sourceforge.eclipsejetty.starter.common.AbstractJettyLauncherMain.launch(AbstractJettyLauncherMain.java:84)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedLauncherMain.main(JettyEmbeddedLauncherMain.java:42)
+Caused by: org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.springframework.http.converter.json.MappingJacksonHttpMessageConverter] for bean with name 'mappingJacksonHttpMessageConverter' defined in class path resource [spring-mvc.xml]; nested exception is java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:597)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1450)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:447)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:425)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:220)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1054)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1019)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:566)
+	... 34 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:430)
+	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:383)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:250)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:394)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doResolveBeanClass(AbstractBeanFactory.java:1402)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1349)
+	... 44 more
+[DEBUG][2016-09-14 15:17:04,029][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:17:04,032][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:17:04,032][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[ERROR][2016-09-14 15:17:04,320][org.springframework.web.servlet.DispatcherServlet]Context initialization failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController': Unsatisfied dependency expressed through field 'userService': Cannot find class [org.springframework.http.converter.json.MappingJacksonHttpMessageConverter] for bean with name 'mappingJacksonHttpMessageConverter' defined in class path resource [spring-mvc.xml]; nested exception is java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter; nested exception is org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.springframework.http.converter.json.MappingJacksonHttpMessageConverter] for bean with name 'mappingJacksonHttpMessageConverter' defined in class path resource [spring-mvc.xml]; nested exception is java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:569)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:349)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1214)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:776)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:861)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:668)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:682)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:553)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:494)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:136)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:244)
+	at org.eclipse.jetty.servlet.ServletHolder.initServlet(ServletHolder.java:532)
+	at org.eclipse.jetty.servlet.ServletHolder.doStart(ServletHolder.java:344)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:791)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:265)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1242)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:717)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:494)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:282)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedAdapter.start(JettyEmbeddedAdapter.java:67)
+	at net.sourceforge.eclipsejetty.starter.common.AbstractJettyLauncherMain.launch(AbstractJettyLauncherMain.java:84)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedLauncherMain.main(JettyEmbeddedLauncherMain.java:42)
+Caused by: org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.springframework.http.converter.json.MappingJacksonHttpMessageConverter] for bean with name 'mappingJacksonHttpMessageConverter' defined in class path resource [spring-mvc.xml]; nested exception is java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:597)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1450)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:447)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:425)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:220)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1054)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1019)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:566)
+	... 34 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:430)
+	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:383)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:250)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:394)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doResolveBeanClass(AbstractBeanFactory.java:1402)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1349)
+	... 44 more
+[DEBUG][2016-09-14 15:18:27,294][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:18:27,298][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:18:27,298][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[ERROR][2016-09-14 15:18:27,616][org.springframework.web.servlet.DispatcherServlet]Context initialization failed
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.springframework.http.converter.json.MappingJacksonHttpMessageConverter] for bean with name 'mappingJacksonHttpMessageConverter' defined in class path resource [spring-mvc.xml]; nested exception is java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1357)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:597)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1450)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:980)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:756)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:861)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:668)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:682)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:553)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:494)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:136)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:244)
+	at org.eclipse.jetty.servlet.ServletHolder.initServlet(ServletHolder.java:532)
+	at org.eclipse.jetty.servlet.ServletHolder.doStart(ServletHolder.java:344)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:791)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:265)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1242)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:717)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:494)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:282)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedAdapter.start(JettyEmbeddedAdapter.java:67)
+	at net.sourceforge.eclipsejetty.starter.common.AbstractJettyLauncherMain.launch(AbstractJettyLauncherMain.java:84)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedLauncherMain.main(JettyEmbeddedLauncherMain.java:42)
+Caused by: java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:430)
+	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:383)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:250)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:394)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doResolveBeanClass(AbstractBeanFactory.java:1402)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1349)
+	... 29 more
+[DEBUG][2016-09-14 15:25:42,000][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:25:42,003][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:25:42,003][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[ERROR][2016-09-14 15:25:42,220][org.springframework.web.servlet.DispatcherServlet]Context initialization failed
+org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 62 in XML document from class path resource [spring-mvc.xml] is invalid; nested exception is org.xml.sax.SAXParseException; lineNumber: 62; columnNumber: 31; 注释中不允许出现字符串 "--"。
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:399)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:336)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:304)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:181)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:217)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:188)
+	at org.springframework.web.context.support.XmlWebApplicationContext.loadBeanDefinitions(XmlWebApplicationContext.java:125)
+	at org.springframework.web.context.support.XmlWebApplicationContext.loadBeanDefinitions(XmlWebApplicationContext.java:94)
+	at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory(AbstractApplicationContext.java:612)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:513)
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:668)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:682)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:553)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:494)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:136)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:244)
+	at org.eclipse.jetty.servlet.ServletHolder.initServlet(ServletHolder.java:532)
+	at org.eclipse.jetty.servlet.ServletHolder.doStart(ServletHolder.java:344)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:791)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:265)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1242)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:717)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:494)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:282)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedAdapter.start(JettyEmbeddedAdapter.java:67)
+	at net.sourceforge.eclipsejetty.starter.common.AbstractJettyLauncherMain.launch(AbstractJettyLauncherMain.java:84)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedLauncherMain.main(JettyEmbeddedLauncherMain.java:42)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 62; columnNumber: 31; 注释中不允许出现字符串 "--"。
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(XMLScanner.java:1437)
+	at com.sun.org.apache.xerces.internal.impl.XMLScanner.scanComment(XMLScanner.java:796)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanComment(XMLDocumentFragmentScannerImpl.java:1039)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2985)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:606)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:118)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:848)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:777)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:76)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadDocument(XmlBeanDefinitionReader.java:429)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:391)
+	... 32 more
+[DEBUG][2016-09-14 15:26:29,117][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:26:29,125][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:26:29,126][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[ERROR][2016-09-14 15:26:29,901][org.springframework.web.servlet.DispatcherServlet]Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0' defined in class path resource [spring-mvc.xml]: Cannot resolve reference to bean 'mappingJacksonHttpMessageConverter' while setting bean property 'messageConverters' with key [0]; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'mappingJacksonHttpMessageConverter' is defined
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:359)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveManagedList(BeanDefinitionValueResolver.java:382)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:157)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1226)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:776)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:861)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:668)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:682)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:553)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:494)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:136)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:244)
+	at org.eclipse.jetty.servlet.ServletHolder.initServlet(ServletHolder.java:532)
+	at org.eclipse.jetty.servlet.ServletHolder.doStart(ServletHolder.java:344)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:791)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:265)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1242)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:717)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:494)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:282)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedAdapter.start(JettyEmbeddedAdapter.java:67)
+	at net.sourceforge.eclipsejetty.starter.common.AbstractJettyLauncherMain.launch(AbstractJettyLauncherMain.java:84)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedLauncherMain.main(JettyEmbeddedLauncherMain.java:42)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'mappingJacksonHttpMessageConverter' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:702)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedLocalBeanDefinition(AbstractBeanFactory.java:1180)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:284)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:275)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:351)
+	... 36 more
+[DEBUG][2016-09-14 15:27:48,475][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:27:48,478][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:27:48,478][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[DEBUG][2016-09-14 15:32:46,023][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:32:46,025][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:32:46,025][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[DEBUG][2016-09-14 15:35:12,780][com.sirding.controller.UserController]进入findUser接口...
+[DEBUG][2016-09-14 15:36:10,158][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:36:10,161][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:36:10,161][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[DEBUG][2016-09-14 15:36:18,952][com.sirding.controller.UserController]进入findUser接口...
+[DEBUG][2016-09-14 15:38:43,624][com.sirding.controller.UserController]进入findUser接口...
+[DEBUG][2016-09-14 15:39:40,586][com.sirding.controller.UserController]进入findUser接口...
+[DEBUG][2016-09-14 15:41:12,872][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:41:12,875][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:41:12,875][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[DEBUG][2016-09-14 15:41:17,559][com.sirding.controller.UserController]进入findUser接口...
+[DEBUG][2016-09-14 15:41:58,159][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:41:58,163][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:41:58,163][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[DEBUG][2016-09-14 15:42:05,598][com.sirding.controller.UserController]进入findUser接口...
+[DEBUG][2016-09-14 15:42:34,628][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:42:34,631][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:42:34,631][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[DEBUG][2016-09-14 15:42:37,696][com.sirding.controller.UserController]进入findUser接口...
+[DEBUG][2016-09-14 15:42:39,934][com.sirding.controller.UserController]进入findUser接口...
+[DEBUG][2016-09-14 15:57:01,217][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:57:01,220][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:57:01,221][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[DEBUG][2016-09-14 15:57:53,490][com.sirding.controller.UserController]进入findUser接口...
+[DEBUG][2016-09-14 15:58:31,909][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 15:58:31,912][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 15:58:31,912][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[DEBUG][2016-09-14 15:58:44,016][com.sirding.controller.UserController]进入findUser接口...
+[DEBUG][2016-09-14 16:00:17,296][com.sirding.listener.InitListener]服务器启动
+[INFO][2016-09-14 16:00:17,299][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webapp
+[INFO][2016-09-14 16:00:17,299][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
+[DEBUG][2016-09-14 16:00:31,500][com.sirding.controller.UserController]进入findUser接口...
+[DEBUG][2016-09-14 16:00:31,501][com.sirding.service.impl.UserServiceImpl]查找用户ID:0

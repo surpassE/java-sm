@@ -25,7 +25,14 @@
 	  	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
   	</context:component-scan>
 
-	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+
+	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 
 	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 		<property name="supportedMediaTypes">
 			<list>
@@ -33,8 +40,9 @@
 			</list>
 		</property>
 	</bean>
+	-->
 	
-	 <!-- 保证interceptor中通过handler获得请求的method对象  -->
+	<!-- 保证interceptor中通过handler获得请求的method对象 
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" p:ignoreDefaultModelOnRedirect="true">
 		<property name="messageConverters">
@@ -43,26 +51,27 @@
 			</list>
 		</property>
 	</bean>  
-	
+	 -->
 
-	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/" p:suffix=".jsp" />
-
-	<!-- 配置Spring自带文件上传操作类 -->
+	<!-- 配置Spring自带文件上传操作类 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding">
 			<value>UTF-8</value>
 		</property>
 		<property name="maxUploadSize">
-			<value>32505856</value><!-- 上传文件大小限制为31M，31*1024*1024 -->
+			<value>32505856</value>
 		</property>
 		<property name="maxInMemorySize">
 			<value>4096</value>
 		</property>
 	</bean>
+	-->
 	
-	<!-- 导出pdf操作依赖类 -->
-	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="10"/>
+	<!-- 导出pdf操作依赖类 
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="10"></property>
+	</bean>
+	-->
 	
 	<!-- 拦截器 -->
 	<!-- <mvc:interceptors>
