@@ -321,3 +321,68 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No b
 [INFO][2016-09-14 16:00:17,299][com.sirding.listener.InitListener]项目绝对路径:C:\yrtz\project4ecplise\java-sm\src\main\webappuploads/download_err.txt
 [DEBUG][2016-09-14 16:00:31,500][com.sirding.controller.UserController]进入findUser接口...
 [DEBUG][2016-09-14 16:00:31,501][com.sirding.service.impl.UserServiceImpl]查找用户ID:0
+[DEBUG][2016-09-19 15:02:39,663][com.sirding.sqlsession.MySqlSession]C:\yrtz\project4ecplise\java-sm
+[DEBUG][2016-09-19 15:03:41,059][com.sirding.sqlsession.MySqlSession]C:\yrtz\project4ecplise\java-sm
+[DEBUG][2016-09-19 15:05:27,660][com.sirding.sqlsession.MySqlSession]C:\yrtz\project4ecplise\java-sm
+[DEBUG][2016-09-19 15:05:27,846][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[DEBUG][2016-09-19 15:05:28,142][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:05:28,142][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:05:28,143][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:05:28,143][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:05:28,327][com.sirding.mybatis.mapper.UserInfoMapper]Cache Hit Ratio [com.sirding.mybatis.mapper.UserInfoMapper]: 0.0
+[DEBUG][2016-09-19 15:05:28,337][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][2016-09-19 15:06:43,922][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[DEBUG][2016-09-19 15:06:44,137][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:06:44,138][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:06:44,138][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:06:44,139][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:06:44,314][com.sirding.mybatis.mapper.UserInfoMapper]Cache Hit Ratio [com.sirding.mybatis.mapper.UserInfoMapper]: 0.0
+[DEBUG][2016-09-19 15:06:44,322][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][2016-09-19 15:06:44,599][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 1902260856.
+[DEBUG][2016-09-19 15:06:44,599][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@71623278]
+[DEBUG][2016-09-19 15:06:44,603][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]==>  Preparing: select id, name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb from user_info where id = ? 
+[DEBUG][2016-09-19 15:06:44,644][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]==> Parameters: 1(Integer)
+[DEBUG][2016-09-19 15:06:44,715][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]<==      Total: 0
+[DEBUG][2016-09-19 15:07:40,391][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[DEBUG][2016-09-19 15:07:40,600][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:07:40,601][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:07:40,602][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:07:40,602][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:07:40,773][com.sirding.mybatis.mapper.UserInfoMapper]Cache Hit Ratio [com.sirding.mybatis.mapper.UserInfoMapper]: 0.0
+[DEBUG][2016-09-19 15:07:40,782][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][2016-09-19 15:07:41,050][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 1902260856.
+[DEBUG][2016-09-19 15:07:41,050][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@71623278]
+[DEBUG][2016-09-19 15:07:41,054][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]==>  Preparing: select id, name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb from user_info where id = ? 
+[DEBUG][2016-09-19 15:07:41,097][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]==> Parameters: 1(Integer)
+[DEBUG][2016-09-19 15:07:41,119][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]<==      Total: 0
+[DEBUG][2016-09-19 15:10:40,363][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[DEBUG][2016-09-19 15:10:40,612][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:10:40,614][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:10:40,616][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:10:40,618][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:10:40,886][com.sirding.mybatis.mapper.UserInfoMapper]Cache Hit Ratio [com.sirding.mybatis.mapper.UserInfoMapper]: 0.0
+[DEBUG][2016-09-19 15:10:40,895][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][2016-09-19 15:10:41,202][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 1902260856.
+[DEBUG][2016-09-19 15:10:41,203][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@71623278]
+[DEBUG][2016-09-19 15:10:41,206][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]==>  Preparing: select id, name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb from user_info where id = ? 
+[DEBUG][2016-09-19 15:10:41,253][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]==> Parameters: 1(Integer)
+[DEBUG][2016-09-19 15:10:41,302][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]<==      Total: 0
+[DEBUG][2016-09-19 15:10:41,310][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@71623278]
+[DEBUG][2016-09-19 15:10:41,311][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@71623278]
+[DEBUG][2016-09-19 15:10:41,311][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 1902260856 to pool.
+[DEBUG][2016-09-19 15:11:58,404][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[DEBUG][2016-09-19 15:11:58,605][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:11:58,606][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:11:58,606][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:11:58,607][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][2016-09-19 15:11:58,792][com.sirding.mybatis.mapper.UserInfoMapper]Cache Hit Ratio [com.sirding.mybatis.mapper.UserInfoMapper]: 0.0
+[DEBUG][2016-09-19 15:11:58,802][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][2016-09-19 15:11:59,067][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 1902260856.
+[DEBUG][2016-09-19 15:11:59,067][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@71623278]
+[DEBUG][2016-09-19 15:11:59,071][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]==>  Preparing: select id, name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb from user_info where id = ? 
+[DEBUG][2016-09-19 15:11:59,110][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]==> Parameters: 1(Integer)
+[DEBUG][2016-09-19 15:11:59,141][com.sirding.mybatis.mapper.UserInfoMapper.selectByPrimaryKey]<==      Total: 1
+[DEBUG][2016-09-19 15:11:59,158][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@71623278]
+[DEBUG][2016-09-19 15:11:59,159][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@71623278]
+[DEBUG][2016-09-19 15:11:59,160][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 1902260856 to pool.
+[INFO][2016-09-19 15:11:59,161][com.sirding.sqlsession.MySqlSession]sirding
