@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
 import org.junit.Test;
 
 import com.sirding.mybatis.model.UserInfo;
@@ -18,7 +17,7 @@ public class MySqlSession {
 	@Test
 	public void initSqlSession(){
 		try {
-			String resource = "MapperConfig.xml";
+			String resource = "test/MapperConfig.xml";
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			SqlSession session = sqlSessionFactory.openSession();

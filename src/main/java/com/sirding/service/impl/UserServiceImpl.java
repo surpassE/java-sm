@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.sirding.mybatis.mapper.UserInfoMapper;
 import com.sirding.mybatis.model.UserInfo;
 import com.sirding.service.UserService;
@@ -25,18 +26,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int updateUser(UserInfo user) {
 		logger.debug("更新用户信息...");
-		return 0;
+		return this.userInfoMapper.updateByPrimaryKeySelective(user);
 	}
 
 	@Override
-	public void delUser(UserInfo user) {
-
+	public int delUser(UserInfo user) {
+		return this.userInfoMapper.deleteByPrimaryKey(user.getId());
 	}
 
 	@Override
 	public UserInfo findUser(int id) {
 		logger.debug("查找用户ID:" + id);
-		return new UserInfo();
+		logger.debug(this.userInfoMapper.getClass().toString());
+		PageHelper.offsetPage(2, 15);
+		UserInfo user = this.userInfoMapper.selectByPrimaryKey(id);
+		return user;
 	}
 
 }

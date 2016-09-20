@@ -86,7 +86,8 @@
 		<table schema="java_stu" tableName="user_info" domainObjectName="UserInfo">
 			<!-- 直接使用列名称作为属性名 default：false -->
 			<property name="useActualColumnNames" value="false" />
-			<!-- <generatedKey column="ID" sqlStatement="DB2" identity="true" /> -->
+			<!-- 执行添加的操作时，主键的值会绑定到插入的对象中 -->
+			<generatedKey column="ID" sqlStatement="mysql" identity="true" />
 			<!-- 忽略指定名称的属性  delimitedColumnName是非必须的属性，用于区分大小写 -->
 			<!-- eg：列名称为CUST_USER_NAME 那么通过下面配置生成的pojo的属性名称的为USER_NAME或userName， 优先级低于 
 				columnOverride，同时依赖useActualColumnNames -->
@@ -98,7 +99,7 @@
 			</ignoreColumnsByRegex> -->
 			<!-- 列指定对应属性名及属性类型 -->
 			<columnOverride column="TEST_A" property="testa" />
-			<!-- <columnOverride column="age" javaType="Integer" /> -->
+			<columnOverride column="age" javaType="Integer" />
 		</table>
 	</context>
 	

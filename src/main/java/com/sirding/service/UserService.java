@@ -8,7 +8,7 @@ public interface UserService {
 	
 	int updateUser(UserInfo user);
 	
-	void delUser(UserInfo user);
+	int delUser(UserInfo user);
 	
 	UserInfo findUser(int id);
 }
