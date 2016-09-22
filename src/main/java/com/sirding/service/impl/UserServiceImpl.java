@@ -8,6 +8,7 @@ import com.github.pagehelper.PageHelper;
 import com.sirding.mybatis.mapper.UserInfoMapper;
 import com.sirding.mybatis.model.UserInfo;
 import com.sirding.service.UserService;
+import com.sirding.threads.UserMultiThread;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -18,8 +19,29 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public int addUser(UserInfo user) {
+		int i = -1;
+		i = this.userInfoMapper.insert(user);
+//		this.addUserNest(user);
 		logger.debug("用户名称:" + user.getName());
-		int i = this.userInfoMapper.insert(user);
+		for(int j = 0; j < 2; j++){
+//			Thread thread = new Thread(new UserMultiThread(userInfoMapper, j));
+			Thread thread = new Thread(new UserMultiThread(this, j));
+			thread.setDaemon(false);
+			thread.start();
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//		String tmp = null;
+//		System.out.println(tmp.length());
+		return i;
+	}
+	
+	public int addUserNest(UserInfo user){
+		int i = -1;
+		i = this.userInfoMapper.insert(user);
 		return i;
 	}
 

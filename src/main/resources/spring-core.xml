@@ -27,4 +27,6 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" /> 
 	</context:component-scan> 
 	
+	<!-- 初始化ApplicationContext工具类 -->
+	<bean id="SpringContextUtils" class="com.sirding.utils.ACUtils"/>
 </beans>

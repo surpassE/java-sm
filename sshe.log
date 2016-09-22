@@ -5166,3 +5166,979 @@ Caused by: org.springframework.beans.NotWritablePropertyException: Invalid prope
 [DEBUG][2016-09-20 17:53:09,540][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53dbe163]
 [DEBUG][2016-09-20 17:53:09,541][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53dbe163]
 [INFO][2016-09-20 17:53:09,583][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[ERROR][2016-09-21 08:54:03,055][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} init error
+java.sql.SQLException: unkow jdbc driver : ${jdbc_url}
+	at com.alibaba.druid.util.JdbcUtils.getDriverClassName(JdbcUtils.java:446)
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:636)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1706)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1574)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:351)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1226)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:351)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1226)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:120)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:681)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:523)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:444)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:326)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
+	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:782)
+	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:424)
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:774)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:249)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1242)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:717)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:494)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:282)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedAdapter.start(JettyEmbeddedAdapter.java:67)
+	at net.sourceforge.eclipsejetty.starter.common.AbstractJettyLauncherMain.launch(AbstractJettyLauncherMain.java:84)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedLauncherMain.main(JettyEmbeddedLauncherMain.java:42)
+[ERROR][2016-09-21 08:54:03,080][org.springframework.web.context.ContextLoader]Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.mybatis.spring.mapper.MapperScannerConfigurer#0' defined in class path resource [spring-mybatis.xml]: Cannot resolve reference to bean 'sqlSessionFactory' while setting bean property 'sqlSessionFactoryBeanName'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [spring-mybatis.xml]: Cannot resolve reference to bean 'dataSource' while setting bean property 'dataSource'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [spring-mybatis.xml]: Invocation of init method failed; nested exception is java.sql.SQLException: unkow jdbc driver : ${jdbc_url}
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:359)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1226)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:120)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:681)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:523)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:444)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:326)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
+	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:782)
+	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:424)
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:774)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:249)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1242)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:717)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:494)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:282)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedAdapter.start(JettyEmbeddedAdapter.java:67)
+	at net.sourceforge.eclipsejetty.starter.common.AbstractJettyLauncherMain.launch(AbstractJettyLauncherMain.java:84)
+	at net.sourceforge.eclipsejetty.starter.embedded.JettyEmbeddedLauncherMain.main(JettyEmbeddedLauncherMain.java:42)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [spring-mybatis.xml]: Cannot resolve reference to bean 'dataSource' while setting bean property 'dataSource'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [spring-mybatis.xml]: Invocation of init method failed; nested exception is java.sql.SQLException: unkow jdbc driver : ${jdbc_url}
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:359)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1226)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:351)
+	... 29 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [spring-mybatis.xml]: Invocation of init method failed; nested exception is java.sql.SQLException: unkow jdbc driver : ${jdbc_url}
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1578)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:351)
+	... 39 more
+Caused by: java.sql.SQLException: unkow jdbc driver : ${jdbc_url}
+	at com.alibaba.druid.util.JdbcUtils.getDriverClassName(JdbcUtils.java:446)
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:636)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1706)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1574)
+	... 46 more
+[DEBUG][2016-09-22 15:54:35,847][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[ERROR][2016-09-22 15:54:36,372][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} init error
+java.sql.SQLException: unkow jdbc driver : ${jdbc_url}
+	at com.alibaba.druid.util.JdbcUtils.getDriverClassName(JdbcUtils.java:446)
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:636)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1706)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1574)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:351)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1226)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:351)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1226)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:120)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:681)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:523)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+[ERROR][2016-09-22 15:54:36,398][org.springframework.test.context.TestContextManager]Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@623a8092] to prepare test instance [com.sirding.testuser.TestUser@a1cdc6d]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.mybatis.spring.mapper.MapperScannerConfigurer#0' defined in class path resource [spring-mybatis.xml]: Cannot resolve reference to bean 'sqlSessionFactory' while setting bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [spring-mybatis.xml]: Cannot resolve reference to bean 'dataSource' while setting bean property 'dataSource'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [spring-mybatis.xml]: Invocation of init method failed; nested exception is java.sql.SQLException: unkow jdbc driver : ${jdbc_url}
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:359)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1226)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:120)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:681)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:523)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 25 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [spring-mybatis.xml]: Cannot resolve reference to bean 'dataSource' while setting bean property 'dataSource'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [spring-mybatis.xml]: Invocation of init method failed; nested exception is java.sql.SQLException: unkow jdbc driver : ${jdbc_url}
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:359)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1226)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:351)
+	... 43 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [spring-mybatis.xml]: Invocation of init method failed; nested exception is java.sql.SQLException: unkow jdbc driver : ${jdbc_url}
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1578)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:351)
+	... 53 more
+Caused by: java.sql.SQLException: unkow jdbc driver : ${jdbc_url}
+	at com.alibaba.druid.util.JdbcUtils.getDriverClassName(JdbcUtils.java:446)
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:636)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1706)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1574)
+	... 60 more
+[DEBUG][2016-09-22 15:55:27,797][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 15:55:27,801][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 15:55:27,802][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 15:55:28,122][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 15:55:28,621][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 15:55:29,196][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 15:55:29,287][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 15:55:29,287][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 15:55:29,289][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 15:55:29,290][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 15:55:29,292][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 15:55:29,293][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 15:55:29,294][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 15:55:29,844][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 15:55:30,802][com.sirding.service.impl.UserServiceImpl]用户名称:test1474530930210
+[DEBUG][2016-09-22 15:55:30,805][com.sirding.testuser.TestUser]用户ID：null
+[DEBUG][2016-09-22 15:55:30,822][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 15:55:30,822][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 15:55:30,825][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 15:55:30,830][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 15:55:30,822][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[INFO][2016-09-22 15:55:30,850][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 15:58:40,081][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 15:58:40,102][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 15:58:40,103][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 15:58:40,244][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 15:58:40,634][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 15:58:41,111][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 15:58:41,166][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 15:58:41,167][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 15:58:41,168][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 15:58:41,168][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 15:58:41,169][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 15:58:41,170][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 15:58:41,170][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 15:58:41,467][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 15:58:42,256][com.sirding.service.impl.UserServiceImpl]用户名称:test1474531121796
+[DEBUG][2016-09-22 15:58:42,287][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 15:58:42,288][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 15:58:42,287][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 15:58:42,287][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 15:58:42,287][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 15:58:42,305][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26a078ff] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 15:58:42,306][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@603487b7] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 15:58:42,305][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37f8765b] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 15:58:42,305][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26a5f197] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 15:58:42,305][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@499f6978] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 15:58:42,349][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@7d61ee26] will not be managed by Spring
+[DEBUG][2016-09-22 15:58:42,379][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 15:58:42,404][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5231360f] will not be managed by Spring
+[DEBUG][2016-09-22 15:58:42,405][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 15:58:42,438][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2c5d9ae7] will not be managed by Spring
+[DEBUG][2016-09-22 15:58:42,438][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 15:58:42,466][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531122282(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 15:58:42,467][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531122282(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 15:58:42,468][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531122282(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 15:58:42,509][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 15:58:42,510][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 15:58:42,529][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@39d860cb] will not be managed by Spring
+[DEBUG][2016-09-22 15:58:42,530][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 15:58:42,534][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531122282(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 15:58:42,545][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2c35048b] will not be managed by Spring
+[DEBUG][2016-09-22 15:58:42,545][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 15:58:42,546][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531122282(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 15:58:42,549][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 15:58:42,549][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 15:58:42,582][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 15:58:42,582][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 15:58:42,582][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 15:58:42,583][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 15:58:42,582][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 15:58:42,584][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 15:58:42,632][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 15:58:42,632][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 15:58:42,632][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 15:58:42,636][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@603487b7]
+[DEBUG][2016-09-22 15:58:42,638][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37f8765b]
+[DEBUG][2016-09-22 15:58:42,639][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 15:58:42,638][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26a5f197]
+[DEBUG][2016-09-22 15:58:42,639][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 15:58:42,640][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@499f6978]
+[DEBUG][2016-09-22 15:58:42,643][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26a078ff]
+[DEBUG][2016-09-22 15:58:52,283][com.sirding.testuser.TestUser]用户ID：null
+[INFO][2016-09-22 15:58:52,300][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 16:02:03,051][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 16:02:03,060][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 16:02:03,061][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 16:02:03,261][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 16:02:03,702][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 16:02:04,193][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 16:02:04,296][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 16:02:04,297][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 16:02:04,299][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 16:02:04,300][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 16:02:04,301][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 16:02:04,302][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 16:02:04,303][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 16:02:04,688][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 16:02:05,556][com.sirding.service.impl.UserServiceImpl]用户名称:test1474531325086
+[DEBUG][2016-09-22 16:02:05,560][com.sirding.testuser.TestUser]用户ID：null
+[DEBUG][2016-09-22 16:02:05,564][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:02:05,572][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:02:05,574][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:02:05,575][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:02:05,597][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@faee02a] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:02:05,608][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:02:05,608][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15e04578] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:02:05,609][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fce5be2] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:02:05,612][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53d7560a] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:02:05,612][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7954d7c7] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:02:05,637][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@13f4127] will not be managed by Spring
+[DEBUG][2016-09-22 16:02:05,647][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[INFO][2016-09-22 16:02:05,670][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 16:02:42,167][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 16:02:42,170][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 16:02:42,171][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 16:02:42,309][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 16:02:42,714][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 16:02:43,184][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 16:02:43,262][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 16:02:43,263][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 16:02:43,265][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 16:02:43,266][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 16:02:43,267][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 16:02:43,268][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 16:02:43,269][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 16:02:43,602][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 16:02:44,491][com.sirding.service.impl.UserServiceImpl]用户名称:test1474531363969
+[DEBUG][2016-09-22 16:02:44,495][com.sirding.testuser.TestUser]用户ID：null
+[DEBUG][2016-09-22 16:02:44,501][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:02:44,501][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:02:44,501][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:02:44,501][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:02:44,501][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:02:44,524][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@55f85f13] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:02:44,537][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@18426c43] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:02:44,538][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6d420a7a] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:02:44,539][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26a5f197] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:02:44,538][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@12d5052a] was not registered for synchronization because synchronization is not active
+[INFO][2016-09-22 16:02:44,576][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 16:07:20,441][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 16:07:20,444][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 16:07:20,444][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 16:07:20,640][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 16:07:21,018][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 16:07:21,539][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 16:07:21,604][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 16:07:21,604][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 16:07:21,605][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 16:07:21,606][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 16:07:21,607][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 16:07:21,608][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 16:07:21,608][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 16:07:21,930][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 16:07:22,795][com.sirding.service.impl.UserServiceImpl]用户名称:test1474531642296
+[DEBUG][2016-09-22 16:07:22,804][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:07:22,805][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:07:22,806][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:07:22,806][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:07:22,807][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:07:22,821][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1602fd83] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:07:22,822][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@721f0d58] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:07:22,823][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6eb9865b] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:07:22,824][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60dc4cdd] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:07:22,822][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@12ba0733] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:07:22,847][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@3fafc259] will not be managed by Spring
+[DEBUG][2016-09-22 16:07:22,864][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@14a79bf3] will not be managed by Spring
+[DEBUG][2016-09-22 16:07:22,870][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:07:22,875][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:07:22,884][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@6441ed2b] will not be managed by Spring
+[DEBUG][2016-09-22 16:07:22,885][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:07:22,896][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@4a80b893] will not be managed by Spring
+[DEBUG][2016-09-22 16:07:22,900][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:07:22,911][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5c13d5c0] will not be managed by Spring
+[DEBUG][2016-09-22 16:07:22,911][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:07:22,983][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531642797(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:07:22,989][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531642798(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:07:22,996][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531642797(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:07:23,002][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531642798(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:07:23,021][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:07:23,026][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:07:23,058][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:07:23,060][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@721f0d58]
+[DEBUG][2016-09-22 16:07:23,067][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531642798(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:07:23,090][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:07:23,091][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:07:23,091][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:07:23,094][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:07:23,095][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60dc4cdd]
+[DEBUG][2016-09-22 16:07:23,097][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:07:23,099][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:07:23,100][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6eb9865b]
+[DEBUG][2016-09-22 16:07:23,103][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:07:23,104][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:07:23,106][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:07:23,107][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1602fd83]
+[DEBUG][2016-09-22 16:07:23,133][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:07:23,135][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:07:23,136][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:07:23,137][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@12ba0733]
+[DEBUG][2016-09-22 16:07:32,800][com.sirding.testuser.TestUser]用户ID：null
+[INFO][2016-09-22 16:07:32,828][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 16:08:33,718][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 16:08:33,723][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 16:08:33,724][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 16:08:33,942][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 16:08:34,423][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 16:08:34,940][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 16:08:35,035][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 16:08:35,035][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 16:08:35,036][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 16:08:35,038][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 16:08:35,046][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 16:08:35,050][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 16:08:35,051][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 16:08:35,373][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 16:08:36,290][com.sirding.service.impl.UserServiceImpl]用户名称:test1474531715756
+[DEBUG][2016-09-22 16:08:36,301][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:08:36,301][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:08:36,317][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20ff397e] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:08:36,317][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@620e5eb6] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:08:36,347][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@72477d3c] will not be managed by Spring
+[DEBUG][2016-09-22 16:08:36,362][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:08:36,375][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@71c71b24] will not be managed by Spring
+[DEBUG][2016-09-22 16:08:36,377][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:08:36,480][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531716291(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:08:36,484][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531716291(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:08:36,562][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:08:36,563][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:08:36,593][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:08:36,596][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@620e5eb6]
+[DEBUG][2016-09-22 16:08:36,600][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:08:36,601][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:08:36,602][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:08:36,603][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20ff397e]
+[DEBUG][2016-09-22 16:08:46,294][com.sirding.testuser.TestUser]用户ID：null
+[INFO][2016-09-22 16:08:46,320][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 16:09:39,037][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 16:09:39,041][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 16:09:39,042][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 16:09:39,215][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 16:09:39,600][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 16:09:40,117][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 16:09:40,214][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 16:09:40,215][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 16:09:40,217][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 16:09:40,218][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 16:09:40,221][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 16:09:40,223][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 16:09:40,223][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 16:09:40,648][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 16:09:41,645][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:09:41,660][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:09:41,678][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2c1156a7] will be managed by Spring
+[DEBUG][2016-09-22 16:09:41,686][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:09:41,751][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: test1474531781059(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:09:41,759][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:09:41,771][com.sirding.service.impl.UserServiceImpl]用户名称:test1474531781059
+[DEBUG][2016-09-22 16:09:41,784][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:09:41,785][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a8af762] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:09:41,784][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:09:41,786][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6329adfc] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:09:41,805][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@70729c12] will not be managed by Spring
+[DEBUG][2016-09-22 16:09:41,806][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:09:41,824][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531781783(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:09:41,827][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@69d1c68c] will not be managed by Spring
+[DEBUG][2016-09-22 16:09:41,828][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:09:41,841][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531781783(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:09:41,871][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:09:41,872][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:09:41,899][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:09:41,900][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a8af762]
+[DEBUG][2016-09-22 16:09:41,905][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:09:41,906][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:09:41,907][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:09:41,908][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6329adfc]
+[DEBUG][2016-09-22 16:09:51,776][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:09:51,778][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:09:51,778][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:09:51,780][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:09:51,780][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:09:51,781][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:09:51,821][com.sirding.testuser.TestUser]用户ID：21
+[INFO][2016-09-22 16:09:51,849][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 16:11:02,173][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 16:11:02,177][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 16:11:02,177][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 16:11:02,329][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 16:11:02,709][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 16:11:03,199][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 16:11:03,279][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 16:11:03,279][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 16:11:03,280][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 16:11:03,281][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 16:11:03,282][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 16:11:03,282][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 16:11:03,283][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 16:11:03,614][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 16:11:04,463][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:11:04,476][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:11:04,491][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2c1156a7] will be managed by Spring
+[DEBUG][2016-09-22 16:11:04,499][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:11:04,556][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: test1474531863989(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:11:04,559][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:11:04,560][com.sirding.service.impl.UserServiceImpl]用户名称:test1474531863989
+[DEBUG][2016-09-22 16:11:04,562][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:11:04,581][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@77006ac6] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:11:04,625][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@7df801b6] will not be managed by Spring
+[DEBUG][2016-09-22 16:11:04,630][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:11:04,642][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531864562(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:11:04,645][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:11:04,646][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a8af762] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:11:04,673][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@70729c12] will not be managed by Spring
+[DEBUG][2016-09-22 16:11:04,679][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:11:04,684][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474531864645(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:11:04,718][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:11:04,719][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:11:04,744][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:11:04,746][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:11:04,746][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@77006ac6]
+[DEBUG][2016-09-22 16:11:04,747][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:11:04,749][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:11:04,750][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a8af762]
+[DEBUG][2016-09-22 16:11:14,562][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:11:14,563][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[INFO][2016-09-22 16:11:14,586][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[ERROR][2016-09-22 16:18:46,549][org.springframework.test.context.TestContextManager]Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@12d3a4e9] to prepare test instance [com.sirding.testuser.TestUser@240237d2]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 127 in XML document from class path resource [spring-mybatis.xml] is invalid; nested exception is org.xml.sax.SAXParseException; lineNumber: 127; columnNumber: 65; cvc-enumeration-valid: 对于枚举 '[REQUIRED, SUPPORTS, MANDATORY, REQUIRES_NEW, NOT_SUPPORTED, NEVER, NESTED]', 值 'PROPAGATION_NESTED' 不具有面有效性。它必须是来自枚举的值。
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:399)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:336)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:304)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:181)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:217)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:188)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:252)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadBeanDefinitions(AbstractGenericContextLoader.java:257)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:124)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 25 more
+Caused by: org.xml.sax.SAXParseException; lineNumber: 127; columnNumber: 65; cvc-enumeration-valid: 对于枚举 '[REQUIRED, SUPPORTS, MANDATORY, REQUIRES_NEW, NOT_SUPPORTED, NEVER, NESTED]', 值 'PROPAGATION_NESTED' 不具有面有效性。它必须是来自枚举的值。
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:134)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:452)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3230)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.processOneAttribute(XMLSchemaValidator.java:2825)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.processAttributes(XMLSchemaValidator.java:2762)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:2050)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.emptyElement(XMLSchemaValidator.java:760)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:357)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2787)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:606)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:118)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:848)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:777)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:76)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadDocument(XmlBeanDefinitionReader.java:429)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:391)
+	... 38 more
+[DEBUG][2016-09-22 16:19:34,534][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 16:19:34,538][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 16:19:34,539][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 16:19:34,677][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 16:19:35,053][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 16:19:35,552][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 16:19:35,619][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 16:19:35,620][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 16:19:35,622][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 16:19:35,623][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 16:19:35,625][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 16:19:35,626][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 16:19:35,627][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 16:19:35,920][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 16:19:36,683][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:19:36,696][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:19:36,708][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2c1156a7] will be managed by Spring
+[DEBUG][2016-09-22 16:19:36,715][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:19:36,767][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: test1474532376238(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:19:36,768][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:19:36,769][com.sirding.service.impl.UserServiceImpl]用户名称:test1474532376238
+[DEBUG][2016-09-22 16:19:36,780][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:19:36,781][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:19:36,782][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a4cb7dd] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:19:36,782][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@30836169] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:19:36,794][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@60b4dcad] will not be managed by Spring
+[DEBUG][2016-09-22 16:19:36,794][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:19:36,796][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474532376778(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:19:36,805][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@3a7b0a19] will not be managed by Spring
+[DEBUG][2016-09-22 16:19:36,805][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:19:36,809][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474532376779(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:19:36,868][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:19:36,869][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:19:36,893][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:19:36,896][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a4cb7dd]
+[DEBUG][2016-09-22 16:19:36,902][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:19:36,903][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:19:36,905][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:19:36,906][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@30836169]
+[DEBUG][2016-09-22 16:19:46,777][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:19:46,781][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:19:46,783][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:19:46,784][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:19:46,786][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:19:46,788][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:19:46,820][com.sirding.testuser.TestUser]用户ID：26
+[INFO][2016-09-22 16:19:46,849][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 16:20:44,264][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 16:20:44,268][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 16:20:44,268][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 16:20:44,433][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 16:20:44,804][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 16:20:45,311][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 16:20:45,406][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 16:20:45,407][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 16:20:45,408][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 16:20:45,410][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 16:20:45,414][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 16:20:45,415][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 16:20:45,415][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 16:20:45,753][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 16:20:46,567][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:20:46,582][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:20:46,595][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2c1156a7] will be managed by Spring
+[DEBUG][2016-09-22 16:20:46,601][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:20:46,673][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: test1474532446087(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:20:46,681][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:20:46,702][com.sirding.service.impl.UserServiceImpl]用户名称:test1474532446087
+[DEBUG][2016-09-22 16:20:46,760][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:20:46,761][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78faa5e6] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:20:46,812][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@7202ce96] will not be managed by Spring
+[DEBUG][2016-09-22 16:20:46,813][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:20:46,816][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474532446758(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:20:46,830][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:20:46,834][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@346f1a64] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:20:46,853][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@3e977114] will not be managed by Spring
+[DEBUG][2016-09-22 16:20:46,853][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:20:46,857][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474532446830(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:20:46,860][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:20:46,861][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:20:46,887][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:20:46,889][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78faa5e6]
+[DEBUG][2016-09-22 16:20:46,895][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:20:46,896][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:20:46,898][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:20:46,899][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@346f1a64]
+[DEBUG][2016-09-22 16:20:56,741][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:20:56,743][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:20:56,744][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:20:56,746][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:20:56,747][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:20:56,748][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:20:56,783][com.sirding.testuser.TestUser]用户ID：29
+[INFO][2016-09-22 16:20:56,805][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 16:52:50,314][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 16:52:50,318][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 16:52:50,318][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 16:52:50,473][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 16:52:50,856][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 16:52:51,393][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 16:52:51,552][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 16:52:51,552][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 16:52:51,554][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 16:52:51,556][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 16:52:51,561][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 16:52:51,568][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 16:52:51,570][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 16:52:52,037][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 16:52:52,918][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:52:52,933][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:52:52,944][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2c1156a7] will be managed by Spring
+[DEBUG][2016-09-22 16:52:52,950][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:52:53,000][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: test1474534372332(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:52:53,006][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:52:53,007][com.sirding.service.impl.UserServiceImpl]用户名称:test1474534372332
+[DEBUG][2016-09-22 16:52:53,053][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:52:53,054][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6abd06ac] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:52:53,100][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@60456ddc] will not be managed by Spring
+[DEBUG][2016-09-22 16:52:53,105][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:52:53,118][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474534373052(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:52:53,126][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 16:52:53,161][org.mybatis.spring.SqlSessionUtils]SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6329adfc] was not registered for synchronization because synchronization is not active
+[DEBUG][2016-09-22 16:52:53,186][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@69d1c68c] will not be managed by Spring
+[DEBUG][2016-09-22 16:52:53,188][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 16:52:53,193][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474534373050(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 16:52:53,206][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:52:53,207][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:52:53,233][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:52:53,235][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6abd06ac]
+[DEBUG][2016-09-22 16:52:53,245][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:52:53,245][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:52:53,247][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:52:53,248][org.mybatis.spring.SqlSessionUtils]Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6329adfc]
+[DEBUG][2016-09-22 16:53:03,009][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:53:03,011][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 16:53:03,012][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 16:53:03,013][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 16:53:03,014][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:53:03,015][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 16:53:03,072][com.sirding.testuser.TestUser]用户ID：32
+[INFO][2016-09-22 16:53:03,101][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 17:01:32,239][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 17:01:32,243][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 17:01:32,244][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 17:01:32,415][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 17:01:32,785][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 17:01:33,267][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 17:01:33,362][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][2016-09-22 17:01:33,363][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][2016-09-22 17:01:33,364][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][2016-09-22 17:01:33,381][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][2016-09-22 17:01:33,385][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][2016-09-22 17:01:33,387][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 17:01:33,388][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 17:01:33,815][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 17:01:34,671][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 17:01:34,685][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:01:34,699][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2c1156a7] will be managed by Spring
+[DEBUG][2016-09-22 17:01:34,710][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 17:01:34,793][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: test1474534894180(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 17:01:34,794][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:01:34,795][org.mybatis.spring.SqlSessionUtils]Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3] from current transaction
+[DEBUG][2016-09-22 17:01:34,797][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: test1474534894180(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 17:01:34,810][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:01:34,812][com.sirding.service.impl.UserServiceImpl]用户名称:test1474534894180
+[DEBUG][2016-09-22 17:01:34,815][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:01:34,872][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 17:01:34,873][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 17:01:34,899][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 17:01:34,907][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 17:01:34,909][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 17:01:34,913][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 17:01:34,919][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:01:34,920][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:01:34,958][com.sirding.testuser.TestUser]用户ID：34
+[INFO][2016-09-22 17:01:35,063][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 17:02:50,258][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 17:02:50,261][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 17:02:50,262][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 17:02:50,417][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 17:02:50,795][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 17:02:51,306][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 17:02:51,362][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 17:02:51,363][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@6736fa8d'
+[DEBUG][2016-09-22 17:02:51,673][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 17:02:52,418][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 17:02:52,431][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:02:52,445][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1941a8ff] will be managed by Spring
+[DEBUG][2016-09-22 17:02:52,455][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 17:02:52,541][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: test1474534971971(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 17:02:52,543][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:02:52,545][org.mybatis.spring.SqlSessionUtils]Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3] from current transaction
+[DEBUG][2016-09-22 17:02:52,573][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: test1474534971971(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 17:02:52,576][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:02:52,578][com.sirding.service.impl.UserServiceImpl]用户名称:test1474534971971
+[DEBUG][2016-09-22 17:02:52,579][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:02:52,588][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 17:02:52,596][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 17:02:52,642][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 17:02:52,645][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 17:02:52,646][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 17:02:52,648][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 17:02:52,649][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:02:52,650][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46dffdc3]
+[DEBUG][2016-09-22 17:02:52,719][com.sirding.testuser.TestUser]用户ID：36
+[INFO][2016-09-22 17:02:52,743][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 17:36:10,288][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 17:36:10,294][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 17:36:10,294][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 17:36:10,488][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 17:36:10,896][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 17:36:11,571][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 17:36:11,680][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 17:36:11,681][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@50313382'
+[DEBUG][2016-09-22 17:36:12,100][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 17:36:13,065][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 17:36:13,080][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78383390]
+[DEBUG][2016-09-22 17:36:13,095][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@149dd36b] will be managed by Spring
+[DEBUG][2016-09-22 17:36:13,102][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 17:36:13,157][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: test1474536972565(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 17:36:13,161][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78383390]
+[DEBUG][2016-09-22 17:36:13,161][com.sirding.service.impl.UserServiceImpl]用户名称:test1474536972565
+[DEBUG][2016-09-22 17:36:13,254][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 17:36:13,258][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1cebb9b3]
+[DEBUG][2016-09-22 17:36:13,259][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5dd6b388] will be managed by Spring
+[DEBUG][2016-09-22 17:36:13,290][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 17:36:13,309][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474536973254(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 17:36:13,310][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1cebb9b3]
+[DEBUG][2016-09-22 17:36:13,311][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1cebb9b3]
+[DEBUG][2016-09-22 17:36:13,321][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 17:36:13,322][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 17:36:13,327][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 17:36:13,342][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33d936d6]
+[DEBUG][2016-09-22 17:36:13,343][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@72e43ced] will be managed by Spring
+[DEBUG][2016-09-22 17:36:13,346][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 17:36:13,355][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474536973327(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 17:36:13,362][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33d936d6]
+[DEBUG][2016-09-22 17:36:13,363][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33d936d6]
+[DEBUG][2016-09-22 17:36:13,369][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 17:36:13,371][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 17:36:13,429][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 17:36:13,429][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 17:36:13,431][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1cebb9b3]
+[DEBUG][2016-09-22 17:36:13,431][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1cebb9b3]
+[DEBUG][2016-09-22 17:36:13,431][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33d936d6]
+[DEBUG][2016-09-22 17:36:13,432][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33d936d6]
+[DEBUG][2016-09-22 17:36:18,179][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78383390]
+[DEBUG][2016-09-22 17:36:18,181][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 17:36:18,182][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 17:36:18,183][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 17:36:18,184][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78383390]
+[DEBUG][2016-09-22 17:36:18,185][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78383390]
+[DEBUG][2016-09-22 17:36:18,234][com.sirding.testuser.TestUser]用户ID：39
+[INFO][2016-09-22 17:36:18,249][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+[DEBUG][2016-09-22 17:40:31,467][org.mybatis.spring.mapper.ClassPathMapperScanner]Identified candidate component class: file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.class]
+[DEBUG][2016-09-22 17:40:31,471][org.mybatis.spring.mapper.ClassPathMapperScanner]Creating MapperFactoryBean with name 'userInfoMapper' and 'com.sirding.mybatis.mapper.UserInfoMapper' mapperInterface
+[WARN][2016-09-22 17:40:31,472][org.mybatis.spring.mapper.ClassPathMapperScanner]Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.
+[DEBUG][2016-09-22 17:40:31,629][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+[INFO][2016-09-22 17:40:32,006][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[DEBUG][2016-09-22 17:40:32,474][org.mybatis.spring.SqlSessionFactoryBean]Property `configuration` or 'configLocation' not specified, using default MyBatis Configuration
+[DEBUG][2016-09-22 17:40:32,569][org.mybatis.spring.SqlSessionFactoryBean]Scanned package: 'com.sirding.model' for aliases
+[DEBUG][2016-09-22 17:40:32,570][org.mybatis.spring.SqlSessionFactoryBean]Registered plugin: 'com.github.pagehelper.PageHelper@50313382'
+[DEBUG][2016-09-22 17:40:32,892][org.mybatis.spring.SqlSessionFactoryBean]Parsed mapper file: 'file [C:\yrtz\project4ecplise\java-sm\target\classes\com\sirding\mybatis\mapper\UserInfoMapper.xml]'
+[DEBUG][2016-09-22 17:40:33,654][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 17:40:33,667][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78383390]
+[DEBUG][2016-09-22 17:40:33,681][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@149dd36b] will be managed by Spring
+[DEBUG][2016-09-22 17:40:33,689][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 17:40:33,739][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: test1474537233216(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 17:40:33,741][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78383390]
+[DEBUG][2016-09-22 17:40:33,742][com.sirding.service.impl.UserServiceImpl]用户名称:test1474537233216
+[DEBUG][2016-09-22 17:40:33,770][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 17:40:33,771][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1d40bb5]
+[DEBUG][2016-09-22 17:40:33,771][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@40e9018e] will be managed by Spring
+[DEBUG][2016-09-22 17:40:33,772][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 17:40:33,773][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474537233770(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 17:40:33,774][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1d40bb5]
+[DEBUG][2016-09-22 17:40:33,774][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1d40bb5]
+[DEBUG][2016-09-22 17:40:33,780][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 17:40:33,781][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 17:40:33,825][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 17:40:33,828][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1d40bb5]
+[DEBUG][2016-09-22 17:40:33,832][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1d40bb5]
+[DEBUG][2016-09-22 17:40:33,894][org.mybatis.spring.SqlSessionUtils]Creating a new SqlSession
+[DEBUG][2016-09-22 17:40:33,896][org.mybatis.spring.SqlSessionUtils]Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2dc74087]
+[DEBUG][2016-09-22 17:40:33,897][org.mybatis.spring.transaction.SpringManagedTransaction]JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@6cfa4abc] will be managed by Spring
+[DEBUG][2016-09-22 17:40:33,898][com.sirding.mybatis.mapper.UserInfoMapper.insert]==>  Preparing: insert into user_info (name, age, height, TEST_a, TEST_b, CUST_namea, CUST_nameb) values (?, ?, ?, ?, ?, ?, ?) 
+[DEBUG][2016-09-22 17:40:33,906][com.sirding.mybatis.mapper.UserInfoMapper.insert]==> Parameters: thread_1474537233892(String), 20(Integer), null, null, null, null, null
+[DEBUG][2016-09-22 17:40:33,907][org.mybatis.spring.SqlSessionUtils]Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2dc74087]
+[DEBUG][2016-09-22 17:40:33,907][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2dc74087]
+[DEBUG][2016-09-22 17:40:33,912][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 17:40:33,912][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 17:40:33,915][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 17:40:33,916][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2dc74087]
+[DEBUG][2016-09-22 17:40:33,917][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2dc74087]
+[DEBUG][2016-09-22 17:40:38,747][org.mybatis.spring.SqlSessionUtils]Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78383390]
+[DEBUG][2016-09-22 17:40:38,747][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==>  Preparing: SELECT LAST_INSERT_ID() 
+[DEBUG][2016-09-22 17:40:38,748][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]==> Parameters: 
+[DEBUG][2016-09-22 17:40:38,749][com.sirding.mybatis.mapper.UserInfoMapper.insert!selectKey]<==      Total: 1
+[DEBUG][2016-09-22 17:40:38,750][org.mybatis.spring.SqlSessionUtils]Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78383390]
+[DEBUG][2016-09-22 17:40:38,750][org.mybatis.spring.SqlSessionUtils]Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78383390]
+[DEBUG][2016-09-22 17:40:38,820][com.sirding.testuser.TestUser]用户ID：42
+[INFO][2016-09-22 17:40:38,839][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed

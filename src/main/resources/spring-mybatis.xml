@@ -98,7 +98,7 @@
     <!-- 自动扫描所有的Mapper接口与文件  -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.sirding.mybatis.mapper"></property>
-        <!-- <property name="sqlSessionFactoryBeanName" ref="sqlSessionFactory"/> -->
+        <!-- <property name="sqlSessionFactory" ref="sqlSessionFactory"/> -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/> -->
         <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
@@ -124,7 +124,7 @@
 		<tx:attributes>
 			<tx:method name="save*" propagation="REQUIRED" />
 			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="NESTED" />
 			<tx:method name="saveOrUpdate*" propagation="REQUIRED" />
 			
 			<tx:method name="update*" propagation="REQUIRED" />
