@@ -5,10 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
+import com.sirding.mybatis.mapper.AddresInfoMapper;
 import com.sirding.mybatis.mapper.UserInfoMapper;
 import com.sirding.mybatis.model.UserInfo;
+import com.sirding.service.AddresService;
 import com.sirding.service.UserService;
-import com.sirding.threads.UserMultiThread;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -16,6 +17,10 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserInfoMapper userInfoMapper;
+	@Autowired
+	private AddresInfoMapper addresInfoMapper;
+	@Autowired
+	private AddresService addResService;
 	
 	@Override
 	public int addUser(UserInfo user) {
@@ -24,8 +29,9 @@ public class UserServiceImpl implements UserService {
 //		this.addUserNest(user);
 		logger.debug("用户名称:" + user.getName());
 		for(int j = 0; j < 2; j++){
+			Thread thread = new Thread(new Ut(j));
 //			Thread thread = new Thread(new UserMultiThread(userInfoMapper, j));
-			Thread thread = new Thread(new UserMultiThread(this, j));
+//			Thread thread = new Thread(new UserMultiThread(this, j));
 			thread.setDaemon(false);
 			thread.start();
 		}
@@ -42,6 +48,10 @@ public class UserServiceImpl implements UserService {
 	public int addUserNest(UserInfo user){
 		int i = -1;
 		i = this.userInfoMapper.insert(user);
+		if("NO".equalsIgnoreCase(user.getName())){
+			String tmp = null;
+			System.out.println(tmp.length());
+		}
 		return i;
 	}
 
@@ -64,5 +74,35 @@ public class UserServiceImpl implements UserService {
 		UserInfo user = this.userInfoMapper.selectByPrimaryKey(id);
 		return user;
 	}
+	
+	
+	class Ut implements Runnable {
 
+		private int i;
+
+		public Ut(){}
+		
+		public Ut(int i){
+			this.i = i;
+		}
+
+		@Override
+		public void run() {
+			UserInfo user = new UserInfo();
+			user.setName("thread_" + System.currentTimeMillis());
+			user.setAge(20);
+			if(i == 1){
+				user.setName("NO");
+			}
+//			userInfoMapper.insert(user);
+			addUserNest(user);				
+			
+//			AddresInfo obj = new AddresInfo();
+//			obj.setAddress("aaa");
+//			if(i == 1){
+//				obj.setAddress("error");
+//			}
+//			addResService.insertAddres(obj);
+		}
+	}
 }

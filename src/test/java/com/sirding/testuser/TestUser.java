@@ -37,6 +37,11 @@ public class TestUser {
 		int i = this.userService.addUser(user);
 		logger.debug("用户ID：" + user.getId());
 		assertEquals(1, i);
+//		try {
+//			Thread.sleep(1000*60);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	@Test

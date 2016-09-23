@@ -40,8 +40,13 @@ public class UserMultiThread implements Runnable {
 			user.setName("thread_" + System.currentTimeMillis());
 			user.setAge(20);
 			System.out.println("i:" + i);
-			//					this.userInfoMapper.insert(user);
-			this.userService.addUserNest(user);				
+			this.userInfoMapper.insert(user);
+						
+			if(i == 1){
+				String tmp = null;
+				System.out.println(tmp.length());
+			}
+//			this.userService.addUserNest(user);				
 			transactionManager.commit(status);
 		} catch (Exception e) {
 			transactionManager.rollback(status);
