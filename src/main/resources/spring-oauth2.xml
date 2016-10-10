@@ -1,1 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:oauth2="http://www.springframework.org/schema/security/oauth2"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/security
+                        http://www.springframework.org/schema/security/spring-security-4.0.xsd http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-2.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+
+	<!-- 启用注解TokenEndpoint与AuthorizationEndpoint需要配置如下 
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+-->
+
+	<!-- 获得token的入口地址 -->
+	<http pattern="/oauth/token" create-session="stateless"
+		authentication-manager-ref="oauth2AuthenticationManager"
+		entry-point-ref="oauth2AuthenticationEntryPoint">
+		<intercept-url pattern="/oauth/token" access="IS_AUTHENTICATED_FULLY" />
+		<anonymous enabled="false" />
+		<http-basic entry-point-ref="oauth2AuthenticationEntryPoint" />
+
+		<custom-filter ref="clientCredentialsTokenEndpointFilter" before="BASIC_AUTH_FILTER" />
+		<access-denied-handler ref="oauth2AccessDeniedHandler" />
+	</http>
+
+
+	<!-- 配置TokenStore -->
+	<!-- 方式 1： 将Token存储到内存中 -->
+	<beans:bean id="tokenStore" class="org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore"/>
+	<!-- 方式2：通过JdbcTokenStore将token存储到数据库中 -->
+	<!-- <beans:bean id="tokenStore" class="org.springframework.security.oauth2.provider.token.store.JdbcTokenStore">
+        <beans:constructor-arg index="0" ref="dataSource"/>
+    </beans:bean> -->
+    
+	<!-- 配置tokenService -->
+	<beans:bean id="tokenServices"
+		class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">
+		<beans:property name="tokenStore" ref="tokenStore" />
+		<beans:property name="supportRefreshToken" value="true" />
+		<!-- 刷新token有效时间(s)：default 30 days -->
+		<beans:property name="refreshTokenValiditySeconds" value="3600" />
+		<!-- 交互token有效时间(s):default 12 hours. -->
+		<beans:property name="accessTokenValiditySeconds" value="3600" />
+		<beans:property name="clientDetailsService" ref="clientDetailsService" />
+	</beans:bean>
+
+
+
+	<oauth2:client-details-service id="clientDetailsService" >
+        <oauth2:client client-id="mobile-client"
+            authorized-grant-types="password,authorization_code,refresh_token,implicit"
+            secret="mobile" scope="read,write,trust"/>
+    </oauth2:client-details-service>
+    
+    <!-- <beans:bean id="baseClientDetails" class="org.springframework.security.oauth2.provider.client.BaseClientDetails">
+		<beans:property name="clientId">mobile_1</beans:property>
+		<beans:property name="scope">read,write,trust</beans:property>
+		<beans:property name="secret">secret_1</beans:property>
+		<beans:property name="authorizedGrantTypes">password,authorization_code,refresh_token,implicit</beans:property>
+    </beans:bean>
+    <beans:bean id="clientDetailsService" class="org.springframework.security.oauth2.provider.client.InMemoryClientDetailsService">
+    	<beans:property name="clientDetailsStore">
+    		<beans:map>
+    			<beans:entry key="mobile_1" value-ref="baseClientDetails"/>
+    		</beans:map>
+    	</beans:property>
+    </beans:bean> -->
+    
+	<!-- 配置clientDetailService -->
+	<!-- <beans:bean id="clientDetailsService"
+		class="org.springframework.security.oauth2.provider.client.JdbcClientDetailsService">
+		<beans:constructor-arg index="0" ref="dataSource" />
+	</beans:bean> -->
+	<!-- <beans:bean id="clientDetailsService"
+		class="com.sirding.oauth2.CustomJdbcClientDetailsService">
+		<beans:constructor-arg index="0" ref="dataSource" />
+	</beans:bean> -->
+
+	<beans:bean id="clientDetailsUserService"
+		class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
+		<beans:constructor-arg ref="clientDetailsService" />
+		<!-- <beans:property name="passwordEncoder" ref="passwordEncoder"/> -->
+	</beans:bean>
+
+	<!-- 用于验证、管理token -->
+	<authentication-manager id="oauth2AuthenticationManager">
+		<authentication-provider user-service-ref="clientDetailsUserService" />
+	</authentication-manager>
+	
+	<!-- 用于验证客户端用户权限 -->
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource" 
+			authorities-by-username-query="select username, password, 1 from user where username = ?" 
+			users-by-username-query="select u.username, r.role from user u left join role r on u.role_id=r.id where username = ?"/>
+		</authentication-provider>
+	</authentication-manager>
+
+
+
+	<!--处理认证点-->
+	<beans:bean id="oauth2AuthenticationEntryPoint"
+		class="org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint" >
+			<!-- <property name="realmName" value="test/client" />
+			<property name="typeName" value="Basic" /> -->
+	</beans:bean>
+
+	<!--处理访问拒绝-->
+	<beans:bean id="oauth2AccessDeniedHandler"
+		class="org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler" />
+
+	<!--处理访问成功-->
+	<beans:bean id="oauth2UserApprovalHandler"
+		class="org.springframework.security.oauth2.provider.approval.DefaultUserApprovalHandler" />
+
+	<!-- 访问控制 -->
+	<beans:bean id="oauth2AccessDecisionManager"
+		class="org.springframework.security.access.vote.UnanimousBased">
+		<beans:constructor-arg>
+			<beans:list>
+				<beans:bean class="org.springframework.security.oauth2.provider.vote.ScopeVoter" />
+				<beans:bean class="org.springframework.security.access.vote.RoleVoter" />
+				<beans:bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
+			</beans:list>
+		</beans:constructor-arg>
+	</beans:bean>
+
+	<!-- 配置认证服务  -->
+	<oauth2:authorization-server
+		client-details-service-ref="clientDetailsService" 
+		token-services-ref="tokenServices"
+		user-approval-handler-ref="oauth2UserApprovalHandler"
+		>
+		<oauth2:authorization-code />
+		<oauth2:implicit />
+		<oauth2:refresh-token />
+		<oauth2:client-credentials />
+		<oauth2:password />
+	</oauth2:authorization-server>
+
+	<!-- ClientCredentialsTokenEndpointFilter配置, 该Filter将作用于Spring Security的chain链条中 -->
+	<beans:bean id="clientCredentialsTokenEndpointFilter"
+		class="org.springframework.security.oauth2.provider.client.ClientCredentialsTokenEndpointFilter">
+		<beans:property name="authenticationManager" ref="oauth2AuthenticationManager" />
+	</beans:bean>
+
+
+	<!--unity resource server filter -->
+	<oauth2:resource-server id="unityResourceServer"
+		resource-id="unity-resource" token-services-ref="tokenServices" />
+
+	<!--mobile resource server filter -->
+	<oauth2:resource-server id="mobileResourceServer"
+		resource-id="mobile-resource" token-services-ref="tokenServices" />
+
+	<!--unity http configuration -->
+	<http pattern="/unity/**" create-session="never" use-expressions="false"
+		entry-point-ref="oauth2AuthenticationEntryPoint"
+		access-decision-manager-ref="oauth2AccessDecisionManager">
+		<anonymous enabled="false" />
+
+		<intercept-url pattern="/unity/**" access="ROLE_UNITY,SCOPE_READ" />
+
+		<custom-filter ref="unityResourceServer" before="PRE_AUTH_FILTER" />
+		<access-denied-handler ref="oauth2AccessDeniedHandler" />
+	</http>
+
+	<!--mobile http configuration -->
+	<http pattern="/m/**" create-session="never" use-expressions="false"
+		entry-point-ref="oauth2AuthenticationEntryPoint"
+		access-decision-manager-ref="oauth2AccessDecisionManager">
+		<anonymous enabled="false" />
+
+		<intercept-url pattern="/m/**" access="ROLE_MOBILE,SCOPE_READ" />
+
+		<custom-filter ref="mobileResourceServer" before="PRE_AUTH_FILTER" />
+		<access-denied-handler ref="oauth2AccessDeniedHandler" />
+	</http>
+
+</beans:beans>

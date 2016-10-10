@@ -5,10 +5,10 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<display-name>java-sm</display-name>
-
+<!-- ;classpath:spring-oauth2.xml -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring-core.xml;classpath:spring-mybatis.xml</param-value>
+		<param-value>classpath:spring-core.xml;classpath:spring-mybatis.xml;classpath:spring-oauth2.xml</param-value>
 	</context-param>
 
 	<filter>
@@ -34,6 +34,18 @@
 		<init-param> <param-name>singleSession</param-name> <param-value>true</param-value> 
 		</init-param> </filter> <filter-mapping> <filter-name>openSessionInViewFilter</filter-name> 
 		<url-pattern>*.do</url-pattern> </filter-mapping> -->
+
+	<!-- security filter -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
 
 	<listener>
 		<description>初始化Spring框架</description>

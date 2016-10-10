@@ -9,132 +9,222 @@ import java.math.BigInteger;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 
 import javax.crypto.Cipher;
 
+import org.apache.commons.codec.binary.Base64;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
 /**
- * RSA 工具类-提供加密，解密，生成密钥对等方法，用于用户登录时对用户名、密码进行加密传输
- * 需要到http://www.bouncycastle.org下载bcprov-jdk14-123.jar,也可以到http://www.mvnrepository.com 下载
- * @author surpassE
- * 
+ * RSA 加密、解密、分块加密、分块解密、生成公钥、生成私钥
+ * @author zc.ding
+ * @date 2016年10月10日
  */
 public class RSAUtil {
 
+	//加密快的大小,值越大效率越低
+	static final int KEY_SIZE = 1024;
+	//用于存储公钥、私钥的文件
+	static final String KEY_STORE_PATH = "C:/pri_pub_key.gem";
+
+	//私钥
+	static final String DEFAULT_PRI_KEY = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALKkyX47BqinI4qi6zjDKeCl0enva8WVQPenocNpWMxnE13oeAPD2biIyKjUhE/PCBZfETB/EvSaSSY5QWqd8YisFFpJBrDZOCUdgqeFZYwXdo8PXN4kDl+GPsCJKI5pZvLqs+Og3hwfxTgTh5ZjVNjLp0eGfsgMgX0wnFMFA84ZAgMBAAECgYB+0pnxMXpStQV4YJzZGURbpZzWlRBPntwWdT1T+y/9PJf1LRo2og2pAgJiSSz9c57sMuWDJlOQrw+LQU59oE9dZgz7OZ0SWzZFvFF+A69x3Q89ydxGKn8njwgV9LLEB/FMYCeEa4CqhhJMm5qqCOPWxjtxecwNFcDw53IPzROeuQJBANmbSJ90p9w8vEC0F2yZ/61brGNqcl1BdAt2WkBgx0Dlm1foNTb8FkUtCcmosGTKbIgBvT1J29CNfTzO8r4dPNsCQQDSKacc0eq++ovJsjaUNvSzySZMxJCPigL2YJ7o3w9HSe6i9kQU4J031Pdrj03bsJmGmPEHciLzPA3ncFNJBxkbAkBrk4/ofJRLlZ7/Yci+wLccbdigYUxee/AxhnYBo5Z9p8UPRVWhdChSVHylPAbQHR5gcnOqa+wGgxwpxqlMgUnHAkAHg3O1BRA2abCrslJfNCPFdbCH2BMu/okik8u6mZbrPopoixNeB7W3NEbwMnxfGU4z0K31TTBQr9nzZ0Gi/7z3AkEApWUJ3ofhJBazUJiVwyQZNZEfKUvPuLIGh0ht8A8IW3oY2O64CU7MQISaZkcOL7f8c/y6ESOssCBjk2bMdo71rQ==";
+	//公钥
+	static final String DEFAULT_PUB_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCypMl+OwaopyOKous4wyngpdHp72vFlUD3p6HDaVjMZxNd6HgDw9m4iMio1IRPzwgWXxEwfxL0mkkmOUFqnfGIrBRaSQaw2TglHYKnhWWMF3aPD1zeJA5fhj7AiSiOaWby6rPjoN4cH8U4E4eWY1TYy6dHhn7IDIF9MJxTBQPOGQIDAQAB";
+	
+	
+	
 	/**
-	 * 获得解密后的数据值
+	 * 使用默认的公钥串对对data进行加密操作
+	 * @date 2016年10月10日
+	 * @author zc.ding
 	 * @param data
 	 * @return
-	 */
-	public static String getDecrytValue(String data){
-		StringBuffer sb = new StringBuffer();
-		try{
-			byte[] buf = hexStringToBytes(data);
-			byte[] result = decrypt(getKeyPair().getPrivate(), buf);
-			sb.append(new String(result));
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return sb.reverse().toString();
-	}
-	
-	
-	public static String getRsaKeyStore(){
-//		String rsaKeyStore = "c:/danxiangConf_external/RSAKey.pem";
-		String rsaKeyStore = "shell/RSAKey.pem";
-//		if(SystemCons.OS_IS_LINUX){
-//			rsaKeyStore =  Constants.WEB_PATH + "shell/RSAKey.pem";
-//		}
-		return rsaKeyStore;
-	}
-	
-	
-	/**
-	 * 加密
-	 * @param key 加密的密钥
-	 * @param data 待加密的明文数据
-	 * @return 加密后的数据
 	 * @throws Exception
 	 */
-	public static byte[] encrypt(PublicKey pk, byte[] data) throws Exception {
+	public static String encrypt(String data) throws Exception{
+		return encrypt(data, DEFAULT_PUB_KEY);
+	}
+	
+	/**
+	 * 通过给定的公钥对data进行加密操作
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @param data
+	 * @param pubk
+	 * @return
+	 * @throws Exception
+	 */
+	public static String encrypt(String data, String pubk) throws Exception{
+		String result = null;
+		Cipher cipher= null;
 		try {
-			Cipher cipher = Cipher.getInstance("RSA",
-					new org.bouncycastle.jce.provider.BouncyCastleProvider());
-			cipher.init(Cipher.ENCRYPT_MODE, pk);
-			int blockSize = cipher.getBlockSize();// 获得加密块大小，如：加密前数据为128个byte，而key_size=1024
-			// 加密块大小为127
-			// byte,加密后为128个byte;因此共有2个加密块，第一个127
-			// byte第二个为1个byte
-			int outputSize = cipher.getOutputSize(data.length);// 获得加密块加密后块大小
-			int leavedSize = data.length % blockSize;
-			int blocksSize = leavedSize != 0 ? data.length / blockSize + 1 : data.length / blockSize;
-			byte[] raw = new byte[outputSize * blocksSize];
-			int i = 0;
-			while (data.length - i * blockSize > 0) {
-				if (data.length - i * blockSize > blockSize)
-					cipher.doFinal(data, i * blockSize, blockSize, raw, i * outputSize);
-				else
-					cipher.doFinal(data, i * blockSize, data.length - i * blockSize, raw, i * outputSize);
-				// 这里面doUpdate方法不可用，查看源代码后发现每次doUpdate后并没有什么实际动作除了把byte[]放到
-				// ByteArrayOutputStream中，而最后doFinal的时候才将所有的byte[]进行加密，可是到了此时加密块大小很可能已经超出了
-				// OutputSize所以只好用dofinal方法。
-				i++;
-			}
-			return raw;
+			cipher= Cipher.getInstance("RSA", new BouncyCastleProvider());
+			cipher.init(Cipher.ENCRYPT_MODE, getPublicKey(pubk));
+			byte[] buf = cipher.doFinal(data.getBytes());
+			byte[] buf2 = Base64.encodeBase64(buf);
+			result = new String(buf2, "UTF-8");
 		} catch (Exception e) {
-			throw new Exception(e.getMessage());
+			throw new Exception(e);
 		}
+		return result;
 	}
-
+	
 	/**
-	 * 解密
-	 * @param key 解密的密钥
-	 * @param raw 已经加密的数据
-	 * @return 解密后的明文
+	 * 使用默认的私钥对data数据进行分块加密
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @param data
+	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] decrypt(PrivateKey pk, byte[] raw) throws Exception {
+	public static String encryptBlock(String data) throws Exception{
+		return encryptBlock(data, DEFAULT_PUB_KEY);
+	}
+	
+	/**
+	 * 通过指定的私钥分块加密data数据
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @param data
+	 * @param pubk
+	 * @return
+	 * @throws Exception
+	 */
+	public static String encryptBlock(String data, String pubk) throws Exception{
+		String result = null;
+		byte[] buf = data.getBytes();
+		int length = buf.length;
 		try {
 			Cipher cipher = Cipher.getInstance("RSA", new org.bouncycastle.jce.provider.BouncyCastleProvider());
-			cipher.init(Cipher.DECRYPT_MODE, pk);
+			cipher.init(Cipher.ENCRYPT_MODE, getPublicKey(pubk));
+			//加密块大小，值为127
 			int blockSize = cipher.getBlockSize();
-			ByteArrayOutputStream bout = new ByteArrayOutputStream(64);
-			int j = 0;
-			while (raw.length - j * blockSize > 0) {
-				bout.write(cipher.doFinal(raw, j * blockSize, blockSize));
-				j++;
+			//需要存储每个加密块空间的大小，值128
+			int outputSize = cipher.getOutputSize(length);
+			int blockCount = length % blockSize != 0 ? (length / blockSize + 1) : (length / blockSize);
+			//创建用于存储加密后的字节数组
+			byte[] outputBuf = new byte[outputSize * blockCount];
+			int i = 0;
+			while (length - i * blockSize > 0) {
+				if (length - i * blockSize > blockSize)
+					cipher.doFinal(buf, i * blockSize, blockSize, outputBuf, i * outputSize);
+				else
+					cipher.doFinal(buf, i * blockSize, length - i * blockSize, outputBuf, i * outputSize);
+				i++;
 			}
-			return bout.toByteArray();
+			System.out.println("====加密后=Base64编码前===" + outputBuf.length);
+			byte[] buf2 = Base64.encodeBase64(outputBuf);
+			System.out.println("====加密后=Base64编码后====" + buf2.length);
+			result = new String(buf2, "UTF-8");
 		} catch (Exception e) {
-			throw new Exception(e.getMessage());
+			throw new Exception(e);
 		}
+		return result;
 	}
 	
+	/**
+	 * 使用的默认的私钥对data进行RSA解密操作
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public static String decrypt(String data) throws Exception{
+		return decrypt(data, DEFAULT_PRI_KEY);
+	}
+	
+	/**
+	 * 用给定的私钥对data进行RSA解密
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @param data
+	 * @param prik
+	 * @return
+	 * @throws Exception
+	 */
+	public static String decrypt(String data, String prik) throws Exception{
+		String result = null;
+		Cipher cipher= null;
+		try {
+			cipher= Cipher.getInstance("RSA", new BouncyCastleProvider());
+			cipher.init(Cipher.DECRYPT_MODE, getPrivateKey(prik));
+			byte[] buf = Base64.decodeBase64(data);
+			byte[] buf2= cipher.doFinal(buf);
+			result = new String(buf2, "UTF-8");
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+		return result;
+	}
+	
+	/**
+	 * 使用默认的私钥对data数据进行分块解密操作
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public static String decryptBlock(String data) throws Exception{
+		return decryptBlock(data, DEFAULT_PRI_KEY);
+	}
+	
+	/**
+	 * 通过给定的私钥对data数据分块解密
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @param data
+	 * @param prik
+	 * @return
+	 * @throws Exception
+	 */
+	public static String decryptBlock(String data, String prik) throws Exception{
+		String result = null;
+		System.out.println("====解密前=Base64解码前====" + data.length());
+		byte[] buf = Base64.decodeBase64(data.getBytes("UTF-8"));
+		System.out.println("====解密前=Base64解码后====" + buf.length);
+		int length = buf.length;
+		try {
+			Cipher cipher = Cipher.getInstance("RSA", new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			cipher.init(Cipher.DECRYPT_MODE, getPrivateKey(prik));
+			int blockSize = cipher.getBlockSize();
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			int i = 0;
+			while (length - i * blockSize > 0) {
+				bos.write(cipher.doFinal(buf, i * blockSize, blockSize));
+				i++;
+			}
+			byte[] buf2 = bos.toByteArray();
+			result = new String(buf2, "UTF-8");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception(e.getMessage());
+		}
+		return result;
+	}
+
+
 	/**
 	 * 生成密钥对
 	 * @return KeyPair
 	 * @throws EncryptException
 	 */
-	public static KeyPair generateKeyPair() throws Exception {
+	private static KeyPair generateKeyPair() throws Exception {
 		try {
 			KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA", new org.bouncycastle.jce.provider.BouncyCastleProvider());
-			// 这个值关系到块加密的大小，可以更改，但是不要太大，否则效率会低
-			final int KEY_SIZE = 1024;
 			keyPairGen.initialize(KEY_SIZE, new SecureRandom());
 			KeyPair keyPair = keyPairGen.generateKeyPair();
-
-			System.out.println(keyPair.getPrivate());
-			System.out.println(keyPair.getPublic());
-			//生成秘钥库文件
-			saveKeyPair(keyPair);
+			//将生成的密钥对保存的到文件中
+//			saveKeyPair(keyPair, null);
 			return keyPair;
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
@@ -142,12 +232,18 @@ public class RSAUtil {
 	}
 
 	/**
-	 * 将秘钥库文件转为秘钥对象
+	 * 从指定文件中读取密钥对
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @param keyStortPath
 	 * @return
 	 * @throws Exception
 	 */
-	public static KeyPair getKeyPair() throws Exception {
-		FileInputStream fis = new FileInputStream(getRsaKeyStore());
+	public static KeyPair getKeyPair(String keyStorePath) throws Exception {
+		if(keyStorePath == null || keyStorePath.length() <= 0){
+			keyStorePath = KEY_STORE_PATH;
+		}
+		FileInputStream fis = new FileInputStream(keyStorePath);
 		ObjectInputStream oos = new ObjectInputStream(fis);
 		KeyPair kp = (KeyPair) oos.readObject();
 		oos.close();
@@ -156,12 +252,19 @@ public class RSAUtil {
 	}
 
 	/**
-	 * 将秘钥库对象转为秘钥库文件
+	 * 将密钥对保存指定的文件中
+	 * @date 2016年10月10日
+	 * @author zc.ding
 	 * @param kp
+	 * @param keyStorePath
 	 * @throws Exception
 	 */
-	public static void saveKeyPair(KeyPair kp) throws Exception {
-		FileOutputStream fos = new FileOutputStream(getRsaKeyStore());
+	@Deprecated
+	public static void saveKeyPair(KeyPair kp, String keyStorePath) throws Exception {
+		if(keyStorePath == null || keyStorePath.length() <= 0){
+			keyStorePath = KEY_STORE_PATH;
+		}
+		FileOutputStream fos = new FileOutputStream(keyStorePath);
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		// 生成密钥
 		oos.writeObject(kp);
@@ -170,58 +273,95 @@ public class RSAUtil {
 	}
 
 	/**
-	 * 生成公钥
+	 * 通过指定的参数生成公钥
+	 * @date 2016年10月10日
+	 * @author zc.ding
 	 * @param modulus
 	 * @param publicExponent
-	 * @return RSAPublicKey
+	 * @return
 	 * @throws Exception
 	 */
-	public static RSAPublicKey generateRSAPublicKey(byte[] modulus, byte[] publicExponent) throws Exception {
+	@Deprecated
+	public static String getPubk(byte[] modulus, byte[] publicExponent) throws Exception {
 		KeyFactory keyFac = null;
 		try {
 			keyFac = KeyFactory.getInstance("RSA", new org.bouncycastle.jce.provider.BouncyCastleProvider());
-		} catch (NoSuchAlgorithmException ex) {
-			throw new Exception(ex.getMessage());
-		}
-
-		RSAPublicKeySpec pubKeySpec = new RSAPublicKeySpec(new BigInteger( modulus), new BigInteger(publicExponent));
-		try {
-			return (RSAPublicKey) keyFac.generatePublic(pubKeySpec);
-		} catch (InvalidKeySpecException ex) {
-			throw new Exception(ex.getMessage());
+			RSAPublicKeySpec pubKeySpec = new RSAPublicKeySpec(new BigInteger( modulus), new BigInteger(publicExponent));
+			RSAPublicKey pubk =  (RSAPublicKey) keyFac.generatePublic(pubKeySpec);
+			return Base64.encodeBase64String(pubk.getEncoded());
+		} catch (Exception ex) {
+			throw new Exception("无法生成公钥"); 
 		}
 	}
-
+	
 	/**
-	 * 生成私钥
+	 * 通过指定的参数生成私钥
+	 * @date 2016年10月10日
+	 * @author zc.ding
 	 * @param modulus
 	 * @param privateExponent
-	 * @return RSAPrivateKey
+	 * @return
 	 * @throws Exception
 	 */
-	public static RSAPrivateKey generateRSAPrivateKey(byte[] modulus, byte[] privateExponent) throws Exception {
+	public static String getPrik(byte[] modulus, byte[] privateExponent) throws Exception {
 		KeyFactory keyFac = null;
 		try {
 			keyFac = KeyFactory.getInstance("RSA", new org.bouncycastle.jce.provider.BouncyCastleProvider());
-		} catch (NoSuchAlgorithmException ex) {
-			throw new Exception(ex.getMessage());
-		}
-
-		RSAPrivateKeySpec priKeySpec = new RSAPrivateKeySpec(new BigInteger( modulus), new BigInteger(privateExponent));
-		try {
-			return (RSAPrivateKey) keyFac.generatePrivate(priKeySpec);
-		} catch (InvalidKeySpecException ex) {
-			throw new Exception(ex.getMessage());
+			RSAPrivateKeySpec priKeySpec = new RSAPrivateKeySpec(new BigInteger( modulus), new BigInteger(privateExponent));
+			RSAPrivateKey prik = (RSAPrivateKey) keyFac.generatePrivate(priKeySpec);
+			return Base64.encodeBase64String(prik.getEncoded());
+		} catch (Exception e) {
+			throw new Exception("无法生成私钥"); 
 		}
 	}
 
 	
+	/**
+	 * 将pubk转为公钥
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @param pubk
+	 * @return
+	 * @throws Exception
+	 */
+	public static RSAPublicKey getPublicKey(String pubk) throws Exception{
+		try {
+			byte[] buffer= Base64.decodeBase64(pubk);
+			KeyFactory keyFactory= KeyFactory.getInstance("RSA");
+			X509EncodedKeySpec keySpec= new X509EncodedKeySpec(buffer);
+			return (RSAPublicKey) keyFactory.generatePublic(keySpec);
+		} catch (Exception e) {
+			throw new Exception("公钥数据为空");
+		}
+	}
+	
+	/**
+	 * 将prik转为私钥
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @param prik
+	 * @return
+	 * @throws Exception
+	 */
+	public static RSAPrivateKey getPrivateKey(String prik) throws Exception{
+		try {
+			byte[] buffer= Base64.decodeBase64(prik);
+			PKCS8EncodedKeySpec keySpec= new PKCS8EncodedKeySpec(buffer);
+			KeyFactory keyFactory= KeyFactory.getInstance("RSA");
+			return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+		} catch (Exception e) {
+			throw new Exception("私钥数据为空");
+		}
+	}
+
+
 	/**  
 	 * 16进制 To byte[] 解决RSA编码错误：Bad arguments 
 	 * @param hexString  
 	 * @return byte[]  
 	 */  
-	public static byte[] hexStringToBytes(String hexString) {  
+	@Deprecated
+	static byte[] hexStringToBytes(String hexString) {  
 		if (hexString == null || hexString.equals("")) {  
 			return null;  
 		}  
@@ -242,26 +382,101 @@ public class RSAUtil {
 	 * @return byte  
 	 */  
 	private static byte charToByte(char c) {  
-		return (byte) "0123456789ABCDEF".indexOf(c);  
+		return (byte)"0123456789ABCDEF".indexOf(c);  
 	}
 	
-
 	/**
-	 * * *
-	 * 
-	 * @param args *
+	 * 生成Base64处理过的公钥、私钥
+	 * @date 2016年10月10日
+	 * @author zc.ding
 	 * @throws Exception
 	 */
-	public static void main(String[] args) throws Exception {
-//		RSAPublicKey rsap = (RSAPublicKey) RSAUtil.generateKeyPair().getPublic();
-//		String test = "hello world";
-//		byte[] en_test = encrypt(getKeyPair().getPublic(), test.getBytes());
-//		byte[] de_test = decrypt(getKeyPair().getPrivate(), en_test);
-//		System.out.println(new String(de_test));
+	public static void genPrikAndPubk() throws Exception{
+		KeyPair keyPair = generateKeyPair();
+		System.out.println("======原始私钥====");
+		System.out.println(keyPair.getPrivate());
+		System.out.println("======Base64编码后的私钥==");
+		byte[] buf = Base64.encodeBase64(keyPair.getPrivate().getEncoded());
+		System.out.println(new String(buf, "utf-8"));
 
-		//生成秘钥库文件
-		RSAUtil.generateKeyPair();
+		System.out.println("======原始公钥=====");
+		System.out.println(keyPair.getPublic());
+		System.out.println("======Base64编码后的公钥==");
+		byte[] buf2 = Base64.encodeBase64(keyPair.getPublic().getEncoded());
+		System.out.println(new String(buf2,"UTF-8"));
+	}
+	
+	/**
+	 * 生成自定义公钥私钥
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @throws Exception
+	 */
+	@Deprecated
+	public static void genComPrikAndPubk() throws Exception {
+		String modulusMsg = "51qiankundai.com";
+		byte[] modulus = modulusMsg.getBytes();
+		String exponentMsg = "51qiankundai.com";
+		byte[] exponent = exponentMsg.getBytes();
+		String pubk = getPubk(modulus, exponent);
+		System.out.println("=====生成的公钥=========");
+		System.out.println(pubk);
+		System.out.println("=====生成的私钥=========");
+		String prik = getPrik(modulus, exponent);
+		System.out.println(prik);
 	}
 
+
+	/**
+	 * 测试简单数据
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @throws Exception
+	 */
+	static void testSimpleData() throws Exception{
+		String data = "hello world";
+		System.out.println("=========原数据===========");
+		System.out.println(data);
+		String msg = encrypt(data);
+		System.out.println("=========加密后===========");
+		System.out.println(msg);
+		System.out.println("=========解密后===========");
+		msg = decrypt(msg);
+		System.out.println(msg);
+		System.out.println("对比加解密后的数据：" + msg.equals(data));
+	}
 	
+	/**
+	 * 
+	 * @date 2016年10月10日
+	 * @author zc.ding
+	 * @throws Exception
+	 */
+	static void testBigData() throws Exception{
+		String data = "jiI2I7cP58PG1LVXWXnYDsE8Jwo46uAk9/zSO5lTV5fVUclBbWZLDITmg9DnOeJUylDvjdZ8ohKGYGagEai1TICsN2lSYaIhO+a8bu7vbwISOm5fx+GKflxc5+d1KCLKmd+nl4Dfc5YDyOro0CMgVv0ATR4fraMfYfY731yrraORPcBMy8bZUDUE60AGNJRg/cVNzFGnrzZ2l7I4k1F8YuCj/FwwOduFXvnYDi7cGN3xSGNMdC2b1q0S3521W8hTSQwBzfPBuyEhTZ7dyvcdERzw94a56EMupmArgKTQehkRqe5QOxE29Xm0Nm5rfz4r7rGPR43YzXhrkEdHj0PbcVi2LbwfoXKa";
+		System.out.println("=========原数据===========");
+		System.out.println(data);
+		System.out.println("原数据长度：" + data.length() + "\t" + data.getBytes().length);
+		System.out.println("=========加密后===========");
+		String msg = encryptBlock(data);
+		System.out.println(msg);
+		System.out.println("=========解密后===========");
+		msg = decryptBlock(msg);
+		System.out.println(msg);
+		System.out.println("对比加解密后的数据：" + msg.equals(data));
+	}
+	
+	
+	public static void main(String[] args) throws Exception {
+		//生成秘钥库文件
+//		RSAUtil.generateKeyPair();
+		//生成私钥、公钥
+//		genPrikAndPubk();
+		//测试简单数据的加密解密
+		testSimpleData();
+		//测试大数据的机密解密
+//		testBigData();
+		//生成自定义私钥、公钥
+//		genComPrikAndPubk();
+	}
 }
