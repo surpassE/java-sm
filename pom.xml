@@ -30,6 +30,7 @@
 		<mybatis.spring.version>1.3.0</mybatis.spring.version>
 		<hibernate.version>5.2.2.Final</hibernate.version>
 		<mysql.version>5.1.35</mysql.version>
+		<shiro.version>1.3.2</shiro.version>
 	</properties>
 
 	<repositories>
@@ -158,6 +159,32 @@
 		</dependency>
 		
 		<!-- Spring security end -->
+		
+		
+		<!-- shiro security start -->
+		<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
+		<dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-core</artifactId>
+		    <version>${shiro.version}</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring -->
+		<dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-spring</artifactId>
+		    <version>${shiro.version}</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-web -->
+		<dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-web</artifactId>
+		    <version>${shiro.version}</version>
+		</dependency>
+		
+		<!-- shiro security end -->
+		
 
 
 		<!-- hibernate start -->

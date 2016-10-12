@@ -79,13 +79,13 @@ public class HttpClientUtil {
 		String uri2 = "/tp_mfq/realValidate";
 		String uri3 = "/tp_mfq/bindBankCard";
 		
-		String zhuce = "jiI2I7cP58PG1LVXWXnYDsE8Jwo46uAk/6Nu5+56cC/+7i7Qc9Vq+oqIED2Ty3+aikxlii7FVZxhdr1aPc5ev8/VgUMMB9crmXUagdnzaRA5O7z+gcZbTt4+u3klabSP9VkZrwuTW+oKHgahs5JxMFfQ9I3ZMn43HsI3c0catFKzWZTdMPt6RmmbFqvvMNUIWwkHwTCXLQtRrWxm1vwpNjocIMezC9ixNCSWGTC3+9DjlRgekV5WdnR51hsgBHKavj5Idlc6WFRDMjijCzV94FB5x4IXOW9SiTduOXYc5ip/ixwnqcUHofPvIy/hS4OH+49qCynDWz1kjLP4K7V0kjY1WqYMGYji";
+		String zhuce = "jiI2I7cP58PG1LVXWXnYDsE8Jwo46uAk/6Nu5+56cC/lOhDzov/CBR7RqNDMgVCoM1tQsvWPo4Utd9vhJFiiAk3AB1Bp8gsuZzQuNirx/D3dBBq8rhF34F7hj2rMpheZIAnDeDeupDqhmTXl3+p7i876Wt53eyzicOGMQVjE5LOq1UJkdYYRONaaggnkCjm0zmU8YnU1kZRWWgFeSlXKF3e/nk2P9z/CamA8Arg+XRn93dRPdF++13+Mxb633fFh9FVLvFGFQbaZ2/w0Wisyg0MZa6hBvz3Rejq8UKiiGxzWW0M4A2w5+soVxy8B6y3bTOjyhHGBjSw58YLxfqyoOvF8Qxv+k1hR";
 		String shiming = "jiI2I7cP58PG1LVXWXnYDsE8Jwo46uAk/6Nu5+56cC/+7i7Qc9Vq+oqIED2Ty3+aikxlii7FVZxhdr1aPc5ev8/VgUMMB9crmXUagdnzaRDnlM94aNTmqaXqQ4GGerMQug+hlhol2qZ11YK5zqMIBHsGOEibJSK6aVZ+okTZ9D9oM3u0uGLm0OPy6YpbKgBACEtuRLMVLDlst3m3lIIa3pQ8hB8wpRq5mtCnd4MZibJ84G5ls8LDakhoKkea6YANfltG/yztdNmdg9nXkVQZwuCURgZ9tRa61DWYKwPhjiWxUE9vgxY0gEZVpvMKRmYDqWd2zizSZFKslaISkbxbn/DkrMUagXVd";
 		String bindCard = "jiI2I7cP58PG1LVXWXnYDsE8Jwo46uAk/6Nu5+56cC/+7i7Qc9Vq+oqIED2Ty3+aikxlii7FVZxhdr1aPc5ev8/VgUMMB9crmXUagdnzaRDnlM94aNTmqaXqQ4GGerMQug+hlhol2qZ11YK5zqMIBHsGOEibJSK6aVZ+okTZ9D9oM3u0uGLm0OPy6YpbKgBACEtuRLMVLDlst3m3lIIa3pQ8hB8wpRq5mtCnd4MZibJ84G5ls8LDakhoKkea6YANfltG/yztdNmdg9nXkVQZwuCURgZ9tRa61DWYKwPhjiWxUE9vgxY0gEZVpvMKRmYDqWd2zizSZFKslaISkbxbn/DkrMUagXVd";
 		//测试注册
 //		this.requestByPost(host1 + uri1, zhuce);
 //		this.requestByPost(host2 + uri1, zhuce);
-//		this.requestByPost(host3 + uri1, zhuce);
+		this.requestByPost(host3 + uri1, zhuce);
 //		this.requestByPost(host4 + uri1, zhuce);
 		//测试实名
 //		this.requestByPost(host1 + uri2, shiming);
@@ -93,10 +93,10 @@ public class HttpClientUtil {
 //		this.requestByPost(host3 + uri2, shiming);
 //		this.requestByPost(host4 + uri2, shiming);
 		//测试绑卡
-		this.requestByPost(host1 + uri3, bindCard);
-		this.requestByPost(host2 + uri3, bindCard);
-		this.requestByPost(host3 + uri3, bindCard);
-		this.requestByPost(host4 + uri3, bindCard);
+//		this.requestByPost(host1 + uri3, bindCard);
+//		this.requestByPost(host2 + uri3, bindCard);
+//		this.requestByPost(host3 + uri3, bindCard);
+//		this.requestByPost(host4 + uri3, bindCard);
 		
 	}
 

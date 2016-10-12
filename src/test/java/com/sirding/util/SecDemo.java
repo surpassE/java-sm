@@ -66,7 +66,7 @@ public class SecDemo {
 	private MfqJson getObj(){
 		MfqJson obj = new MfqJson();
 		//注册
-		obj.setMobile("14510001112"); //14510001112 14510001113
+		obj.setMobile("14510001113"); //14510001112 14510001113
 		obj.setPassword("a12345");
 		//实名
 		obj.setUserName("孙兆才");

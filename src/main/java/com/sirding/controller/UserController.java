@@ -13,7 +13,7 @@ import com.sirding.service.UserService;
  * @date 2016年9月14日
  */
 @Controller
-@RequestMapping("/userController")
+@RequestMapping("/user")
 public class UserController {
 	private final static Logger logger = Logger.getLogger(UserController.class);
 	
@@ -32,5 +32,12 @@ public class UserController {
 		this.userService.findUser(0);
 		return "user/userList";
 	}
+	
+	@RequestMapping("/toHome")
+	public String toHome(){
+		logger.debug("进入主页");
+		return "shiro/home";
+	}
+	
 
 }

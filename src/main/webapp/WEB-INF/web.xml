@@ -8,9 +8,64 @@
 <!-- ;classpath:spring-oauth2.xml -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring-core.xml;classpath:spring-mybatis.xml;classpath:spring-oauth2.xml</param-value>
+		<param-value>classpath:spring-core.xml;classpath:spring-mybatis.xml</param-value>
 	</context-param>
 
+	<!-- 配置使用shiro start -->
+	<!-- 使用自定义的方式创建shiro运行所需要的WebEnvironment instance，可以替代EnvironmentLoaderListener， 
+		   默认优先查找WEB-INF/shiro.ini或是classpath:shiro.ini,如果文件名称改变可以在shiroConfigLocations中进行添加
+	 -->
+	<!-- 
+	<context-param>
+    	<param-name>shiroEnvironmentClass</param-name>
+	    <param-value>com.foo.bar.shiro.MyWebEnvironment</param-value>
+	</context-param> 
+	<context-param>
+	    <param-name>shiroConfigLocations</param-name>
+	    <param-value>YOUR_RESOURCE_LOCATION_HERE</param-value>
+	</context-param>
+	-->
+
+	<!-- <listener>
+	    <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+	</listener>
+	
+	<filter>
+	    <filter-name>ShiroFilter</filter-name>
+	    <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	    <filter-name>ShiroFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	    <dispatcher>REQUEST</dispatcher> 
+	    <dispatcher>FORWARD</dispatcher> 
+	    <dispatcher>INCLUDE</dispatcher> 
+	    <dispatcher>ERROR</dispatcher>
+	</filter-mapping> -->
+	<!-- 配置使用shiro end -->
+	
+	
+	<!-- The filter-name matches name of a 'shiroFilter' bean inside applicationContext.xml -->
+	<filter>
+	    <filter-name>shiroFilter</filter-name>
+	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	    <!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->
+	    <init-param>
+	        <param-name>targetFilterLifecycle</param-name>
+	        <param-value>true</param-value>
+	    </init-param>
+	</filter>
+	
+	<!-- Make sure any request you want accessible to Shiro is filtered. /* catches all -->
+	<!-- requests.  Usually this filter mapping is defined first (before all others) to -->
+	<!-- ensure that Shiro works in subsequent filters in the filter chain:             -->
+	<filter-mapping>
+	    <filter-name>shiroFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
 	<filter>
 		<description>统一编码</description>
 		<filter-name>encodingFilter</filter-name>
@@ -35,7 +90,7 @@
 		</init-param> </filter> <filter-mapping> <filter-name>openSessionInViewFilter</filter-name> 
 		<url-pattern>*.do</url-pattern> </filter-mapping> -->
 
-	<!-- security filter -->
+	<!-- Spring security filter 
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -45,7 +100,7 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
+    -->
 
 	<listener>
 		<description>初始化Spring框架</description>
@@ -55,7 +110,8 @@
 		<description>初始化项目运行需要的参数</description>
 		<listener-class>com.sirding.listener.InitListener</listener-class>
 	</listener>
-
+	
+	
 	<servlet>
 		<description>加载SpringMVC配置信息</description>
 		<servlet-name>springMvc</servlet-name>

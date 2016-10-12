@@ -29,4 +29,39 @@
 	
 	<!-- 初始化ApplicationContext工具类 -->
 	<bean id="SpringContextUtils" class="com.sirding.utils.ACUtils"/>
+	
+	<!-- 支持 shiro -->
+	<!-- shirofilter要同web.xml中的filter的name对应 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+	    <property name="securityManager" ref="securityManager"/>
+	    <property name="loginUrl" value="/index.jsp"/>
+	    <property name="successUrl" value="/shiro/home.jsp"/>
+	    <property name="unauthorizedUrl" value="/shiro/unauthorized.jsp"/>
+	    <property name="filters">
+	        <util:map>
+	            <entry key="myShiorFilter" value-ref="myShiroFilter"/>
+	        </util:map>
+	    </property>
+	    <property name="filterChainDefinitions">
+	    	<value>
+	    		/shiro/** = anon
+	    		/admin/** = authc, roles[admin]
+	            /docs/** = authc, perms[document:read]
+	            /** = myShiorFilter
+	    	</value>
+	    	<!-- <util:map>
+	    		<entry key="/admin/**" value="authc, roles[admin]"></entry>
+	    		<entry key="/docs/**" value="authc, perms[document:read]"></entry>
+	    		<entry key="/**" value="authc"></entry>
+	    	</util:map> -->
+	    </property>
+	</bean>
+
+	<bean id="myShiroFilter" class="com.sirding.filter.MyShiroFilter"/>
+	
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+	    <property name="realm" ref="myShiroRealm"/>
+	</bean>
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	<bean id="myShiroRealm" class="com.sirding.security.shiro.realm.MyShiroRealm2" />
 </beans>
