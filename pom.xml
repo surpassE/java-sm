@@ -281,14 +281,6 @@
 		    <classifier>jdk15</classifier>
 		</dependency>
 		
-		<!-- Base64 -->
-		<dependency>
-	      <groupId>com.cloopen</groupId>  
-	      <artifactId>CCPSmsSDK</artifactId>  
-	      <version>1.0</version> 
-	    </dependency>
-
-
 	</dependencies>
 
 	<build>

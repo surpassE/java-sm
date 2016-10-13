@@ -8,7 +8,7 @@
 <!-- ;classpath:spring-oauth2.xml -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring-core.xml;classpath:spring-mybatis.xml</param-value>
+		<param-value>classpath:spring-core.xml;classpath:spring-mybatis.xml;classpath:spring-shiro.xml</param-value>
 	</context-param>
 
 	<!-- 配置使用shiro start -->

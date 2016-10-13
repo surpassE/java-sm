@@ -1,5 +1,7 @@
 package com.sirding.service.impl;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import com.github.pagehelper.PageHelper;
 import com.sirding.mybatis.mapper.AddresInfoMapper;
 import com.sirding.mybatis.mapper.UserInfoMapper;
 import com.sirding.mybatis.model.UserInfo;
+import com.sirding.mybatis.model.UserInfoExample;
 import com.sirding.service.AddresService;
 import com.sirding.service.UserService;
 
@@ -104,5 +107,14 @@ public class UserServiceImpl implements UserService {
 //			}
 //			addResService.insertAddres(obj);
 		}
+	}
+
+
+	@Override
+	public List<UserInfo> findUsers(UserInfo user) {
+		UserInfoExample example = new UserInfoExample();
+		UserInfoExample.Criteria criteria = example.createCriteria();
+		criteria.andNameEqualTo(user.getName());
+		return this.userInfoMapper.selectByExample(example);
 	}
 }

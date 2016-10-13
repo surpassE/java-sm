@@ -6,8 +6,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 
-import com.cloopen.rest.sdk.utils.encoder.BASE64Decoder;
-import com.cloopen.rest.sdk.utils.encoder.BASE64Encoder;
+import org.apache.commons.codec.binary.Base64;
 
 public class DesUtil {
 
@@ -114,8 +113,7 @@ public class DesUtil {
 		try {
 			byteMing = strMing.getBytes("utf-8");
 			byteMi = encryptByte(byteMing, md5key);
-			BASE64Encoder base64Encoder = new BASE64Encoder();
-			strMi = base64Encoder.encode(byteMi);
+			strMi = Base64.encodeBase64String(byteMi);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -143,8 +141,7 @@ public class DesUtil {
 			byte md5key[] = DesUtil.getMD5(key.getBytes("utf-8"));
 			byteMing = strMing.getBytes("utf-8");
 			byteMi = encryptByte(byteMing, md5key);
-			BASE64Encoder base64Encoder = new BASE64Encoder();
-			strMi = base64Encoder.encode(byteMi);
+			strMi = Base64.encodeBase64String(byteMi);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -168,8 +165,7 @@ public class DesUtil {
 		byte[] byteMing = null;
 		String strMing = "";
 		try {
-			BASE64Decoder decoder = new BASE64Decoder();
-			byteMing = decoder.decodeBuffer(strMi);
+			byteMing = Base64.decodeBase64(strMi);
 			byteMing = decryptByte(byteMing, md5key);
 			strMing = new String(byteMing);
 		} catch (Exception e) {
@@ -195,8 +191,7 @@ public class DesUtil {
 		String strMing = "";
 		try {
 			byte md5key[] = DesUtil.getMD5(key.getBytes("utf-8"));
-			BASE64Decoder decoder = new BASE64Decoder();
-			byteMing = decoder.decodeBuffer(strMi);
+			byteMing = Base64.decodeBase64(strMi);
 			byteMing = decryptByte(byteMing, md5key);
 			strMing = new String(byteMing);
 		} catch (Exception e) {

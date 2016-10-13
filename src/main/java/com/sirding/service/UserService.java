@@ -1,5 +1,7 @@
 package com.sirding.service;
 
+import java.util.List;
+
 import com.sirding.mybatis.model.UserInfo;
 
 public interface UserService {
@@ -13,4 +15,6 @@ public interface UserService {
 	int delUser(UserInfo user);
 	
 	UserInfo findUser(int id);
+	
+	List<UserInfo> findUsers(UserInfo user);
 }

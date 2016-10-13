@@ -3,25 +3,25 @@ package com.sirding.security.shiro.realm;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.realm.Realm;
 
 public class MyShiroRealm implements Realm{
 
 	@Override
-	public AuthenticationInfo getAuthenticationInfo(AuthenticationToken arg0) throws AuthenticationException {
-		return null;
+	public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+		String userName = (String)token.getPrincipal();
+		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userName, userName, getName());
+		return info;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "IMSR";
 	}
 
 	@Override
-	public boolean supports(AuthenticationToken arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean supports(AuthenticationToken token) {
+		return true;
 	}
-
 }

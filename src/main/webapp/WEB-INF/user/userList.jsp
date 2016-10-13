@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	hello world!
+	这是一个展示用户列表的页面<br/>
+	<a href="/auth/login.jsp">Go Home...</a>
 </body>
 </html>
