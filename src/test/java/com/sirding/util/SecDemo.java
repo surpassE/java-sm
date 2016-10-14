@@ -32,10 +32,10 @@ public class SecDemo {
 		try {
 			String str = JsonUtil.object2Json(obj);
 			System.out.println("======加密====");
-			String encodeMsg = DesUtil.encryptStr(str);
+			String encodeMsg = DesUtil.encrypt(str);
 			System.out.println(encodeMsg);
 			System.out.println("======解密====");
-			String msg = DesUtil.decryptStr(encodeMsg);
+			String msg = DesUtil.decrypt(encodeMsg);
 			System.out.println(msg);
 			System.out.println(str);
 		} catch (Exception e) {

@@ -28,9 +28,6 @@ public class JsonUtil {
 	 * @throws IOException
 	 */
 	public static String object2Json(Object object) throws IOException{
-		if(!ObjectUtils.isNotEmpty(object)){
-			return "";
-		}
 		ObjectMapper mapper = new ObjectMapper();
 		StringWriter sw = new StringWriter();
 		JsonGenerator gen = new JsonFactory().createJsonGenerator(sw);
@@ -49,10 +46,6 @@ public class JsonUtil {
 	 * @throws IOException
 	 */
 	public static Object json2Object(String json, Class<?> cls) throws  IOException{
-		if(!ObjectUtils.isNotEmpty(json)){
-			return null;
-		}
-		
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.readValue(json, cls);
 	}
@@ -68,9 +61,6 @@ public class JsonUtil {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> List<T> json2List(String json, T instance){
-		if(!ObjectUtils.isNotEmpty(json)){
-			return null;
-		}
 		JSONArray jsonArray = JSONArray.fromObject(json);  
 		T[] items = (T[])JSONArray.toArray(jsonArray,instance.getClass());  
         List<T> listm = Arrays.asList(items);  

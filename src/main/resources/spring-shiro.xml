@@ -43,4 +43,10 @@
 	</bean>
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 	<bean id="myShiroRealm" class="com.sirding.security.shiro.realm.MyShiroRealm2" />
+	
+	<!-- 密码安全性操作 -->
+	<bean id="hashService" class="org.apache.shiro.crypto.hash.DefaultHashService">
+		<property name="HashAlgorithmName" value="md5"/>
+		<property name="hashIterations" value="100"/>
+	</bean>
 </beans>

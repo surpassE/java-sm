@@ -10,6 +10,8 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sirding.utils.PwdUtil;
+
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
@@ -19,7 +21,8 @@ public class AuthController {
 	@RequestMapping("/login")
 	public String login(String userName, String pwd){
 		Subject subject = SecurityUtils.getSubject();
-		UsernamePasswordToken token = new UsernamePasswordToken(userName, pwd);
+		String password = PwdUtil.encrypt(pwd).toString();
+		UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
 		token.setRememberMe(true);
 		boolean success = true;
 		try {
@@ -33,6 +36,7 @@ public class AuthController {
 		}catch (AuthenticationException e) {
 			logger.debug("身份验证异常....");
 			success = !success;
+			e.printStackTrace();
 		}
 		if(!success){
 			token.clear();

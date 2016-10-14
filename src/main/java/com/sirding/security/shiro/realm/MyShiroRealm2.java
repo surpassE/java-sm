@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sirding.mybatis.model.UserInfo;
 import com.sirding.service.UserService;
+import com.sirding.utils.PwdUtil;
 
 public class MyShiroRealm2 extends AuthorizingRealm{
 
@@ -26,6 +27,8 @@ public class MyShiroRealm2 extends AuthorizingRealm{
 	
 	@Autowired
 	private UserService userService;
+	
+	
 	/**
 	 * 授权
 	 */
@@ -64,36 +67,23 @@ public class MyShiroRealm2 extends AuthorizingRealm{
 		if(list == null || list.size() == 0){
 			throw new AccountException();
 		}
-		logger.debug("realm name:" + getName());
-		char[] password = (char[])token.getCredentials();
-		logger.debug("客户输入的密码：password:" + new String(password));
-		
-		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userName, user.getName(), getName());
+		String password = PwdUtil.encrypt(userName).toString();
+		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userName, password, getName());
 		return info;
 	}
 
 
 	void showFillters(){
 //		anon org.apache.shiro.web.filter.authc.AnonymousFilter
-
 //		authc org.apache.shiro.web.filter.authc.FormAuthenticationFilter
-
 //		authcBasic org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter
-
 //		logout org.apache.shiro.web.filter.authc.LogoutFilter
-
 //		noSessionCreation org.apache.shiro.web.filter.session.NoSessionCreationFilter
-
 //		perms org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter
-
 //		port org.apache.shiro.web.filter.authz.PortFilter
-
 //		rest org.apache.shiro.web.filter.authz.HttpMethodPermissionFilter
-
 //		roles org.apache.shiro.web.filter.authz.RolesAuthorizationFilter
-
 //		ssl org.apache.shiro.web.filter.authz.SslFilter
-
 //		user org.apache.shiro.web.filter.authc.UserFilter
 	}
 }
