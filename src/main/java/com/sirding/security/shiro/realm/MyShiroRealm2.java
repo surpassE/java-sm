@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sirding.mybatis.model.UserInfo;
 import com.sirding.service.UserService;
-import com.sirding.utils.PwdUtil;
+import com.sirding.utils.secure.PwdUtil;
 
 public class MyShiroRealm2 extends AuthorizingRealm{
 

@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 		i = this.userInfoMapper.insert(user);
 		if("NO".equalsIgnoreCase(user.getName())){
 			String tmp = null;
-			System.out.println(tmp.length());
+			logger.debug(tmp.length());
 		}
 		return i;
 	}
