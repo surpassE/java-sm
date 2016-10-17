@@ -13,7 +13,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sirding.utils.secure.PwdUtil;
+import com.sirding.core.utils.secure.PwdUtil;
 
 @Controller
 @RequestMapping("/auth")

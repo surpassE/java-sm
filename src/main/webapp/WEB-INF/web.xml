@@ -107,8 +107,12 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<listener>
+		<description>防止javabean导致的spring内存溢出监听器</description>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	<listener>
 		<description>初始化项目运行需要的参数</description>
-		<listener-class>com.sirding.listener.InitListener</listener-class>
+		<listener-class>com.sirding.core.listener.InitListener</listener-class>
 	</listener>
 	
 	

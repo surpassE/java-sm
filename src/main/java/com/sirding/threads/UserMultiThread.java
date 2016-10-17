@@ -5,10 +5,10 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import com.sirding.core.utils.ACUtils;
 import com.sirding.mybatis.mapper.UserInfoMapper;
 import com.sirding.mybatis.model.UserInfo;
 import com.sirding.service.UserService;
-import com.sirding.utils.ACUtils;
 
 public class UserMultiThread implements Runnable {
 

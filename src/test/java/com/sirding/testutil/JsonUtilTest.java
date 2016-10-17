@@ -9,10 +9,10 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
+import com.sirding.core.utils.json.jsonlib.JsonUtil;
+import com.sirding.core.utils.secure.DesUtil;
+import com.sirding.core.utils.secure.RSAUtil;
 import com.sirding.domain.MfqJson;
-import com.sirding.utils.json.jsonlib.JsonUtil;
-import com.sirding.utils.secure.DesUtil;
-import com.sirding.utils.secure.RSAUtil;
 
 /**
  * JsonUtil单元测试
@@ -105,7 +105,7 @@ public class JsonUtilTest {
 		
 		obj = this.getObj();
 		try {
-			String str = com.sirding.utils.json.jsonlib.JsonUtil.objectToJson(obj);
+			String str = com.sirding.core.utils.json.jsonlib.JsonUtil.objectToJson(obj);
 			System.out.println("======加密====");
 			String encodeMsg = DesUtil.encrypt(str);
 			System.out.println(encodeMsg);

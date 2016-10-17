@@ -12,9 +12,107 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<!-- 支持 shiro -->
-	<!-- shirofilter要同web.xml中的filter的name对应 -->
+	<description>
+		shiro
+	</description>
+	<!-- ================= 缓存配置 ========start============== -->
+	<!-- redis 的缓存 -->
+	<bean id="jedisManager" class="com.sirding.core.redis.JedisManager">
+	    <property name="jedisPool" ref="jedisPool"/>
+	</bean>
+	
+	<!-- 使用redis缓存 -->
+	<bean id="custShiroCacheManager" class="com.sirding.core.security.shiro.cache.CustShiorCacheManager">
+	    <property name="jedisManager" ref="jedisManager"/>
+	</bean>
+	
+	<!-- ================= 缓存配置 ========end============== -->
+	
+	
+	<!-- ================= session管理配置 ========end============== -->
+	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+	
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+	    <description>自定义session管理</description>
+	    <property name="globalSessionTimeout" value="1800000" />
+	    <property name="sessionIdCookie" ref="sessionIdCookie" />
+	    <!-- 自定义session监听器 -->
+	    <property name="sessionListeners">
+	    	<util:list>
+	    		<bean class="com.sirding.core.security.shiro.listener.CustSessionListener"/>
+	    	</util:list>
+	    </property>
+	    <!-- 是否开启 检测，默认开启 -->
+	  	<property name="sessionValidationSchedulerEnabled" value="true"/>
+	    <!-- 间隔多少时间检查，不配置是60分钟 -->	
+	  	<property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+	  	<!-- 是否删除无效的，默认也是开启 -->
+	  	<property name="deleteInvalidSessions" value="true"/>
+	  	<property name="sessionDAO" ref="customShiroSessionDAO"/>
+	</bean>
+	
+	<bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+		<description>基于quart实现的会话验证调度器</description>
+		 <!-- 间隔多少时间检查，不配置是60分钟 -->
+	     <property name="interval" value="3600000"/>
+	     <property name="sessionManager" ref="sessionManager"/>
+	</bean>
+	
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <description>会话Cookie模板</description>
+        <constructor-arg value="sid"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="-1"/><!-- cookie有效时间（s）-1:浏览器关闭是就清楚cookie -->
+    </bean>
+    
+    <bean id="custShiroSessionDAO" class="com.sirding.core.security.shiro.session.CustomShiroSessionDAO">
+	    <description>session CURD管理</description>
+	    <property name="shiroSessionRepository" ref="jedisShiroSessionRepository"/>
+	    <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+	</bean>
+	
+	<bean id="customSessionManager" class="com.sirding.core.security.shiro.session.CustomSessionManager">
+		<description>自定义管理user对应session管理</description>
+		<property name="shiroSessionRepository" ref="jedisShiroSessionRepository"/>
+		<property name="customShiroSessionDAO" ref="customShiroSessionDAO"/>
+	</bean>
+	
+	<bean id="jedisShiroSessionRepository" class="com.sirding.core.security.shiro.session.JedisShiroSessionRepository" >
+		 <property name="jedisManager" ref="jedisManager"/>
+	</bean>
+	<!-- ================= session管理配置 ========end============== -->
+
+	
+	<!-- ================= remember功能配置 ========start============== -->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="2592000"/><!-- 30天 -->
+    </bean>
+
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <description>
+       		rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位）
+        </description>
+        <property name="cipherKey"
+                  value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+	<!-- ================= remember功能配置 ========end============== -->
+
+	
+	<!-- ================= 核心配置 ========start============== -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+	    <property name="sessionManager" ref="sessionManager"/>
+	    <property name="cacheManager" ref="custShiroCacheManager"/>
+	    <property name="realm" ref="myShiroRealm"/>
+	</bean>
+	
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+	    <description>
+	    	shirofilter要同web.xml中的filter的name对应
+	    </description>
 	    <property name="securityManager" ref="securityManager"/>
 	    <property name="loginUrl" value="/auth/login.jsp"/>
 	    <property name="successUrl" value="/shiro/home.jsp"/>
@@ -36,49 +134,12 @@
 	    </property>
 	</bean>
 
-	<bean id="myShiroFilter" class="com.sirding.security.shiro.filter.MyShiroFilter"/>
-	
-	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-	    <property name="sessionManager" ref="sessionManager"/>
-	    <property name="realm" ref="myShiroRealm"/>
-	</bean>
-	
-	<!-- 自定义session管理 -->
-	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
-	    <property name="globalSessionTimeout" value="1800000" />
-	    <property name="sessionIdCookie" ref="sessionIdCookie" />
-	    <!-- 自定义session监听器 -->
-	    <property name="SessionListeners">
-	    	<util:list>
-	    		<bean class="com.sirding.security.shiro.listener.CustSessionListener"/>
-	    	</util:list>
-	    </property>
-	</bean>
-	
-	<!-- 会话Cookie模板 -->
-    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-        <constructor-arg value="sid"/>
-        <property name="httpOnly" value="true"/>
-        <property name="maxAge" value="-1"/><!-- cookie有效时间（s）-1:浏览器关闭是就清楚cookie -->
-    </bean>
-
-    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-        <constructor-arg value="rememberMe"/>
-        <property name="httpOnly" value="true"/>
-        <property name="maxAge" value="2592000"/><!-- 30天 -->
-    </bean>
-
-    <!-- rememberMe管理器 -->
-    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
-        <!-- rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位）-->
-        <property name="cipherKey"
-                  value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
-        <property name="cookie" ref="rememberMeCookie"/>
-    </bean>
+	<bean id="myShiroFilter" class="com.sirding.core.security.shiro.filter.MyShiroFilter"/>
 	
 	<!-- 自定义权限控制 -->	
-	<bean id="myShiroRealm" class="com.sirding.security.shiro.realm.MyShiroRealm2" />
+	<bean id="myShiroRealm" class="com.sirding.core.security.shiro.realm.MyShiroRealm2" />
 	
 	<!-- Shiro生命周期处理器-->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	<!-- ================= 核心配置 ========start============== -->
 </beans>
