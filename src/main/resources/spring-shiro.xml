@@ -36,17 +36,49 @@
 	    </property>
 	</bean>
 
-	<bean id="myShiroFilter" class="com.sirding.filter.MyShiroFilter"/>
+	<bean id="myShiroFilter" class="com.sirding.security.shiro.filter.MyShiroFilter"/>
 	
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+	    <property name="sessionManager" ref="sessionManager"/>
 	    <property name="realm" ref="myShiroRealm"/>
 	</bean>
-	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	
+	<!-- 自定义session管理 -->
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+	    <property name="globalSessionTimeout" value="1800000" />
+	    <property name="sessionIdCookie" ref="sessionIdCookie" />
+	    <!-- 自定义session监听器 -->
+	    <property name="SessionListeners">
+	    	<util:list>
+	    		<bean class="com.sirding.security.shiro.listener.CustSessionListener"/>
+	    	</util:list>
+	    </property>
+	</bean>
+	
+	<!-- 会话Cookie模板 -->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="-1"/><!-- cookie有效时间（s）-1:浏览器关闭是就清楚cookie -->
+    </bean>
+
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="2592000"/><!-- 30天 -->
+    </bean>
+
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <!-- rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位）-->
+        <property name="cipherKey"
+                  value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+	
+	<!-- 自定义权限控制 -->	
 	<bean id="myShiroRealm" class="com.sirding.security.shiro.realm.MyShiroRealm2" />
 	
-	<!-- 密码安全性操作 -->
-	<bean id="hashService" class="org.apache.shiro.crypto.hash.DefaultHashService">
-		<property name="HashAlgorithmName" value="md5"/>
-		<property name="hashIterations" value="100"/>
-	</bean>
+	<!-- Shiro生命周期处理器-->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 </beans>

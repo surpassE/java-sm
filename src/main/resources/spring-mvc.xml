@@ -25,7 +25,9 @@
 	  	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
   	</context:component-scan>
 
-
+	<!-- 静态资源映射 -->
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
+    
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/"></property>

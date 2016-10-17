@@ -1,16 +1,19 @@
 package com.sirding.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sirding.utils.PwdUtil;
+import com.sirding.utils.secure.PwdUtil;
 
 @Controller
 @RequestMapping("/auth")
@@ -43,5 +46,15 @@ public class AuthController {
 			return "redirect:/auth/login.jsp";
 		}
 		return "shiro/home";
+	}
+	
+	@RequestMapping(value="/logout")
+	public String logout(HttpSession session){
+		Subject subject = SecurityUtils.getSubject();
+		Session shiroSession = subject.getSession();
+		String msg = (String)shiroSession.getAttribute("sirding");
+		logger.debug("从shiro的sesion中取值：" + msg);
+		subject.logout();
+		return "redirect:/auth/login.jsp";
 	}
 }

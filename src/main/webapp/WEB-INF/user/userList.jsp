@@ -8,6 +8,7 @@
 </head>
 <body>
 	这是一个展示用户列表的页面<br/>
-	<a href="/auth/login.jsp">Go Home...</a>
+	<a href="/auth/login.jsp">Go Home...</a><br/>
+	<a href="/auth/logout.htm">Logout...</a><br/>
 </body>
 </html>
