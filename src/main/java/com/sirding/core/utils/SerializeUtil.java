@@ -7,28 +7,25 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 /**
- * 
- * 开发公司：SOJSON在线工具 <p>
- * 版权所有：© www.sojson.com<p>
- * 博客地址：http://www.sojson.com/blog/  <p>
- * <p>
- * 
  * Java版的 Serialize
- * 
- * <p>
- * 
- * 区分　责任人　日期　　　　说明<br/>
- * 创建　周柏成　2016年6月2日 　<br/>
+ * @author zc.ding
+ * @date 2016年10月18日
  *
- * @author zhou-baicheng
- * @email  so@sojson.com
- * @version 1.0,2016年6月2日 <br/>
- * 
  */
-@SuppressWarnings("unchecked")
 public class SerializeUtil {
 
+	/**
+	 * <p>
+	 * 	将对象进行序列化操作
+	 * <p>
+	 * @param value
+	 * @return
+	 * @author zc.ding
+	 * @date 2016年10月18日
+	 */
     public static byte[] serialize(Object value) {
         if (value == null) {
             throw new NullPointerException("Can't serialize null");
@@ -53,12 +50,18 @@ public class SerializeUtil {
         return rv;
     }
 
-    
-	public static Object deserialize(byte[] in) {
-        return deserialize(in, Object.class);
-    }
-
-    public static <T> T deserialize(byte[] in, Class<T>...requiredType) {
+    /**
+     * <p>
+     * 	对象的反序列化
+     * <p>
+     * @param in
+     * @param clazz
+     * @return
+     * @author zc.ding
+     * @date 2016年10月18日
+     */
+    public static <T> T deserialize(byte[] in, Class<T> clazz) {
+    	T result = null;
         Object rv = null;
         ByteArrayInputStream bis = null;
         ObjectInputStream is = null;
@@ -67,6 +70,8 @@ public class SerializeUtil {
                 bis = new ByteArrayInputStream(in);
                 is = new ObjectInputStream(bis);
                 rv = is.readObject();
+                result = clazz.newInstance();
+                BeanUtils.copyProperties(result, rv);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,9 +80,17 @@ public class SerializeUtil {
             close(is);
             close(bis);
         }
-        return (T) rv;
+        return result;
     }
 
+    /**
+     * <p>
+     * 	关闭流
+     * <p>
+     * @param closeable
+     * @author zc.ding
+     * @date 2016年10月18日
+     */
     private static void close(Closeable closeable) {
         if (closeable != null)
             try {

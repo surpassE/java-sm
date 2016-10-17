@@ -75,7 +75,7 @@ public class JedisShiroCache<K, V> implements Cache<K, V> {
         } catch (Exception e) {
             LoggerUtils.error(SELF, "get value by cache throw exception",e);
         }
-        return (V) SerializeUtil.deserialize(byteValue);
+        return (V) SerializeUtil.deserialize(byteValue, Object.class);
     }
 
     @Override
@@ -103,7 +103,6 @@ public class JedisShiroCache<K, V> implements Cache<K, V> {
 
     @Override
     public void clear() throws CacheException {
-        //TODO--
     }
 
     @Override
@@ -115,13 +114,11 @@ public class JedisShiroCache<K, V> implements Cache<K, V> {
 
     @Override
     public Set<K> keys() {
-        //TODO
         return null;
     }
 
     @Override
     public Collection<V> values() {
-        //TODO
         return null;
     }
 

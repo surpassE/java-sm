@@ -67,17 +67,18 @@
     
     <bean id="custShiroSessionDAO" class="com.sirding.core.security.shiro.session.CustomShiroSessionDAO">
 	    <description>session CURD管理</description>
-	    <property name="shiroSessionRepository" ref="jedisShiroSessionRepository"/>
+	    <property name="shiroSessionRepository" ref="custShiroSessionRepository"/>
 	    <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
 	</bean>
 	
 	<bean id="customSessionManager" class="com.sirding.core.security.shiro.session.CustomSessionManager">
 		<description>自定义管理user对应session管理</description>
-		<property name="shiroSessionRepository" ref="jedisShiroSessionRepository"/>
+		<property name="shiroSessionRepository" ref="custShiroSessionRepository"/>
 		<property name="customShiroSessionDAO" ref="customShiroSessionDAO"/>
 	</bean>
 	
-	<bean id="jedisShiroSessionRepository" class="com.sirding.core.security.shiro.session.JedisShiroSessionRepository" >
+	<bean id="custShiroSessionRepository" class="com.sirding.core.security.shiro.session.ShiroSessionRepository" >
+		 <description>自定义session仓库</description>
 		 <property name="jedisManager" ref="jedisManager"/>
 	</bean>
 	<!-- ================= session管理配置 ========end============== -->
