@@ -8,7 +8,12 @@
 <!-- ;classpath:spring-oauth2.xml -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring-core.xml;classpath:spring-mybatis.xml;classpath:spring-shiro.xml</param-value>
+		<param-value>
+			classpath:spring-core.xml;
+			classpath:spring-mybatis.xml;
+			classpath:spring-shiro.xml;
+			classpath:spring-redis.xml
+		</param-value>
 	</context-param>
 
 	<!-- 配置使用shiro start -->
@@ -47,23 +52,23 @@
 	
 	
 	<!-- The filter-name matches name of a 'shiroFilter' bean inside applicationContext.xml -->
-	<filter>
+	<!-- <filter>
 	    <filter-name>shiroFilter</filter-name>
 	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	    <!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->
+	    该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理
 	    <init-param>
 	        <param-name>targetFilterLifecycle</param-name>
 	        <param-value>true</param-value>
 	    </init-param>
 	</filter>
 	
-	<!-- Make sure any request you want accessible to Shiro is filtered. /* catches all -->
-	<!-- requests.  Usually this filter mapping is defined first (before all others) to -->
-	<!-- ensure that Shiro works in subsequent filters in the filter chain:             -->
+	Make sure any request you want accessible to Shiro is filtered. /* catches all
+	requests.  Usually this filter mapping is defined first (before all others) to
+	ensure that Shiro works in subsequent filters in the filter chain:            
 	<filter-mapping>
 	    <filter-name>shiroFilter</filter-name>
 	    <url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 	
 	
 	<filter>

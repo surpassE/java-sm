@@ -22,8 +22,19 @@
 	</bean>
 	
 	<!-- 使用redis缓存 -->
-	<bean id="custShiroCacheManager" class="com.sirding.core.security.shiro.cache.CustShiorCacheManager">
+	<!-- <bean id="custShiroCacheManager" class="com.sirding.core.security.shiro.cache.CustShiorCacheManager">
 	    <property name="jedisManager" ref="jedisManager"/>
+	</bean> -->
+	
+	<bean id="redisManager" class="org.crazycake.shiro.RedisManager">
+	    <!-- <property name="jedisPool" ref="jedisPool"/> -->
+	    <property name="host" value="119.253.134.199" />
+	    <property name="port" value="2185" />
+	    <property name="timeout" value="5000" />
+	</bean>
+	
+	<bean id="redisCacheManager" class="org.crazycake.shiro.RedisCacheManager">
+	    <property name="redisManager" ref="redisManager"/>
 	</bean>
 	
 	<!-- ================= 缓存配置 ========end============== -->
@@ -31,6 +42,15 @@
 	
 	<!-- ================= session管理配置 ========end============== -->
 	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+    <bean id="redisSessionDAO" class="org.crazycake.shiro.RedisSessionDAO">
+	    <description>session CURD管理</description>
+	    <property name="redisManager" ref="redisManager"/>
+	    <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+	</bean>
+	
+	<bean id="custSessionListener" class="com.sirding.core.security.shiro.listener.CustSessionListener">
+		<!-- <property name="redisSessionDao" ref="redisSessionDao"/> -->
+	</bean>
 	
 	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
 	    <description>自定义session管理</description>
@@ -39,7 +59,7 @@
 	    <!-- 自定义session监听器 -->
 	    <property name="sessionListeners">
 	    	<util:list>
-	    		<bean class="com.sirding.core.security.shiro.listener.CustSessionListener"/>
+	    		<ref bean="custSessionListener"/>
 	    	</util:list>
 	    </property>
 	    <!-- 是否开启 检测，默认开启 -->
@@ -48,7 +68,8 @@
 	  	<property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
 	  	<!-- 是否删除无效的，默认也是开启 -->
 	  	<property name="deleteInvalidSessions" value="true"/>
-	  	<property name="sessionDAO" ref="customShiroSessionDAO"/>
+<!-- 	  	<property name="sessionDAO" ref="customShiroSessionDAO"/> -->
+	  	<property name="sessionDAO" ref="redisSessionDAO"/>
 	</bean>
 	
 	<bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
@@ -65,22 +86,16 @@
         <property name="maxAge" value="-1"/><!-- cookie有效时间（s）-1:浏览器关闭是就清楚cookie -->
     </bean>
     
-    <bean id="custShiroSessionDAO" class="com.sirding.core.security.shiro.session.CustomShiroSessionDAO">
+    <!-- <bean id="custShiroSessionDAO" class="com.sirding.core.security.shiro.session.CustShiroSessionDAO">
 	    <description>session CURD管理</description>
-	    <property name="shiroSessionRepository" ref="custShiroSessionRepository"/>
+	    <property name="jedisManager" ref="jedisManager"/>
 	    <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
-	</bean>
+	</bean> -->
 	
-	<bean id="customSessionManager" class="com.sirding.core.security.shiro.session.CustomSessionManager">
-		<description>自定义管理user对应session管理</description>
-		<property name="shiroSessionRepository" ref="custShiroSessionRepository"/>
-		<property name="customShiroSessionDAO" ref="customShiroSessionDAO"/>
-	</bean>
-	
-	<bean id="custShiroSessionRepository" class="com.sirding.core.security.shiro.session.ShiroSessionRepository" >
-		 <description>自定义session仓库</description>
-		 <property name="jedisManager" ref="jedisManager"/>
-	</bean>
+	<!-- <bean id="customSessionManager" class="com.sirding.core.security.shiro.session.CustSessionManager">
+		<description>自定义管理user对应session管理, 只进行的实例化，为使用</description>
+		<property name="custShiroSessionDAO" ref="custShiroSessionDAO"/>
+	</bean> -->
 	<!-- ================= session管理配置 ========end============== -->
 
 	
@@ -106,7 +121,7 @@
 	<!-- ================= 核心配置 ========start============== -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 	    <property name="sessionManager" ref="sessionManager"/>
-	    <property name="cacheManager" ref="custShiroCacheManager"/>
+	    <property name="cacheManager" ref="redisCacheManager"/>
 	    <property name="realm" ref="myShiroRealm"/>
 	</bean>
 	

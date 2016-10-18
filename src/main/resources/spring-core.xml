@@ -28,6 +28,6 @@
 	</context:component-scan> 
 	
 	<!-- 初始化ApplicationContext工具类 -->
-	<bean id="SpringContextUtils" class="com.sirding.utils.ACUtils"/>
+	<bean id="SpringContextUtils" class="com.sirding.core.utils.ACUtils"/>
 
 </beans>

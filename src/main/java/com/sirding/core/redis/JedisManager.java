@@ -6,7 +6,6 @@ import java.util.Set;
 
 import org.apache.shiro.session.Session;
 
-import com.sirding.core.security.shiro.session.CustShiroSessionRepository;
 import com.sirding.core.utils.LoggerUtils;
 import com.sirding.core.utils.SerializeUtil;
 
@@ -137,7 +136,7 @@ public class JedisManager {
             jedis = getJedis();
             jedis.select(dbIndex);
             
-            Set<byte[]> byteKeys = jedis.keys((CustShiroSessionRepository.REDIS_SHIRO_ALL).getBytes());  
+            Set<byte[]> byteKeys = jedis.keys(("*sojson-shiro-demo-session:*").getBytes());  
             if (byteKeys != null && byteKeys.size() > 0) {  
                 for (byte[] bs : byteKeys) {  
                 	Session obj = SerializeUtil.deserialize(jedis.get(bs),  

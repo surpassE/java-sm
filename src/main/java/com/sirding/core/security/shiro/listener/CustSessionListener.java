@@ -2,8 +2,7 @@ package com.sirding.core.security.shiro.listener;
 
 import org.apache.log4j.Logger;
 import org.apache.shiro.session.Session;
-
-import com.sirding.core.security.shiro.session.ShiroSessionRepository;
+import org.crazycake.shiro.RedisSessionDAO;
 
 /**
  * 监听session有两种方式
@@ -17,14 +16,12 @@ public class CustSessionListener implements org.apache.shiro.session.SessionList
 
 	private static Logger logger = Logger.getLogger(CustSessionListener.class);
 	
-	private ShiroSessionRepository shiroSessionRepository;
-	public ShiroSessionRepository getShiroSessionRepository() {
-		return shiroSessionRepository;
+	private RedisSessionDAO redisSessionDao;
+	public RedisSessionDAO getRedisSessionDao() {
+		return redisSessionDao;
 	}
-
-	public void setShiroSessionRepository(
-			ShiroSessionRepository shiroSessionRepository) {
-		this.shiroSessionRepository = shiroSessionRepository;
+	public void setRedisSessionDao(RedisSessionDAO redisSessionDao) {
+		this.redisSessionDao = redisSessionDao;
 	}
 
 	@Override
@@ -41,7 +38,7 @@ public class CustSessionListener implements org.apache.shiro.session.SessionList
 	@Override
 	public void onExpiration(Session session) {
 		//删除过期的session
-		shiroSessionRepository.deleteSession(session.getId());
+		redisSessionDao.delete(session);
 		logger.debug("超时session...");
 	}
 
