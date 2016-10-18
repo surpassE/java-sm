@@ -18,3 +18,6 @@
 [DEBUG][2016-10-18 11:44:10,882][com.sirding.service.impl.SecServiceImpl]从【C:/yrtz/project4ecplise/java-sm/config.ini】文件中加载配置信息
 [DEBUG][2016-10-18 11:45:46,955][com.sirding.service.impl.SecServiceImpl]从【C:/yrtz/project4ecplise/java-sm/config.ini】文件中加载配置信息
 [DEBUG][2016-10-18 11:55:04,157][com.sirding.service.impl.SecServiceImpl]从【C:/yrtz/project4ecplise/java-sm/config.ini】文件中加载配置信息
+[DEBUG][2016-10-18 23:12:59,236][com.sirding.service.impl.SecServiceImpl]从【e:/git/github/java-sm/config.ini】文件中加载配置信息
+[DEBUG][2016-10-18 23:43:03,329][com.sirding.service.impl.SecServiceImpl]从【e:/git/github/java-sm/config.ini】文件中加载配置信息
+[DEBUG][2016-10-18 23:45:25,540][com.sirding.service.impl.SecServiceImpl]从【e:/git/github/java-sm/config.ini】文件中加载配置信息

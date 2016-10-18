@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.sirding.mybatis.mapper.AddresInfoMapper;
+import com.sirding.mybatis.mapper.AppSysUserMapper;
 import com.sirding.mybatis.mapper.UserInfoMapper;
+import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.mybatis.model.UserInfo;
 import com.sirding.mybatis.model.UserInfoExample;
 import com.sirding.service.AddresService;
@@ -115,6 +117,9 @@ public class UserServiceImpl implements UserService {
 		UserInfoExample example = new UserInfoExample();
 		UserInfoExample.Criteria criteria = example.createCriteria();
 		criteria.andNameEqualTo(user.getName());
+		
+		UserInfo ui = this.userInfoMapper.selectByPrimaryKey(1);
+		
 		return this.userInfoMapper.selectByExample(example);
 	}
 }

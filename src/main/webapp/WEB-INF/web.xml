@@ -5,7 +5,9 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<display-name>java-sm</display-name>
-<!-- ;classpath:spring-oauth2.xml -->
+<!-- 
+	classpath:spring-oauth2.xml
+ -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -52,7 +54,7 @@
 	
 	
 	<!-- The filter-name matches name of a 'shiroFilter' bean inside applicationContext.xml -->
-	<!-- <filter>
+	<filter>
 	    <filter-name>shiroFilter</filter-name>
 	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	    该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理
@@ -62,13 +64,13 @@
 	    </init-param>
 	</filter>
 	
-	Make sure any request you want accessible to Shiro is filtered. /* catches all
+	<!-- Make sure any request you want accessible to Shiro is filtered. /* catches all
 	requests.  Usually this filter mapping is defined first (before all others) to
-	ensure that Shiro works in subsequent filters in the filter chain:            
+	ensure that Shiro works in subsequent filters in the filter chain:  -->           
 	<filter-mapping>
 	    <filter-name>shiroFilter</filter-name>
 	    <url-pattern>/*</url-pattern>
-	</filter-mapping> -->
+	</filter-mapping>
 	
 	
 	<filter>
@@ -111,10 +113,10 @@
 		<description>初始化Spring框架</description>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<listener>
+	<!-- <listener>
 		<description>防止javabean导致的spring内存溢出监听器</description>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-	</listener>
+	</listener> -->
 	<listener>
 		<description>初始化项目运行需要的参数</description>
 		<listener-class>com.sirding.core.listener.InitListener</listener-class>

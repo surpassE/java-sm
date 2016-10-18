@@ -31,10 +31,10 @@ public class AuthController {
 		try {
 			subject.login(token);
 		} catch (AccountException e) {
-			logger.debug("用户名不正确");
+			logger.debug("用户名或密码不正确");
 			success = !success;
 		}catch (CredentialsException e) {
-			logger.debug("密码不正确...");
+			logger.debug("密码或密码不正确");
 			success = !success;
 		}catch (AuthenticationException e) {
 			logger.debug("身份验证异常....");

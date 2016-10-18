@@ -18,16 +18,16 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sirding.core.utils.secure.PwdUtil;
+import com.sirding.mybatis.model.AppUser;
 import com.sirding.mybatis.model.UserInfo;
-import com.sirding.service.UserService;
+import com.sirding.service.AppUserService;
 
 public class MyShiroRealm2 extends AuthorizingRealm{
 
 	Logger logger = Logger.getLogger(MyShiroRealm2.class);
 	
 	@Autowired
-	private UserService userService;
-	
+	private AppUserService appUserService;
 	
 	/**
 	 * 授权
@@ -63,8 +63,10 @@ public class MyShiroRealm2 extends AuthorizingRealm{
 		logger.debug("userName:" + userName);
 		UserInfo user = new UserInfo();
 		user.setName(userName);
-		List<UserInfo> list = this.userService.findUsers(user);
-		if(list == null || list.size() == 0){
+		AppUser appUser = new AppUser();
+		appUser.setLoginName("sirding");
+		List<AppUser> userList = this.appUserService.find(appUser);
+		if(userList == null || userList.size() == 0){
 			throw new AccountException();
 		}
 		String password = PwdUtil.encrypt(userName).toString();
