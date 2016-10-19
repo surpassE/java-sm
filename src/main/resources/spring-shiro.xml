@@ -16,17 +16,17 @@
 		shiro
 	</description>
 	<!-- ================= 缓存配置 ========start============== -->
-	<!-- redis 的缓存 -->
-	<bean id="jedisManager" class="com.sirding.core.redis.JedisManager">
+	<!-- <bean id="jedisManager" class="com.sirding.core.redis.JedisManager">
+		<description>自定义redis管理</description>
 	    <property name="jedisPool" ref="jedisPool"/>
 	</bean>
-	
-	<!-- 使用redis缓存 -->
-	<!-- <bean id="custShiroCacheManager" class="com.sirding.core.security.shiro.cache.CustShiorCacheManager">
+	<bean id="custShiroCacheManager" class="com.sirding.core.security.shiro.cache.CustShiorCacheManager">
+		<description>自定义shiro cacheManager</description>
 	    <property name="jedisManager" ref="jedisManager"/>
 	</bean> -->
 	
 	<bean id="redisManager" class="org.crazycake.shiro.RedisManager">
+		<description>使用第三方redi缓存管理</description>
 	    <!-- <property name="jedisPool" ref="jedisPool"/> -->
 	    <property name="host" value="119.253.134.199" />
 	    <property name="port" value="2185" />
@@ -36,7 +36,6 @@
 	<bean id="redisCacheManager" class="org.crazycake.shiro.RedisCacheManager">
 	    <property name="redisManager" ref="redisManager"/>
 	</bean>
-	
 	<!-- ================= 缓存配置 ========end============== -->
 	
 	
@@ -94,7 +93,8 @@
 	</bean>
 	
 	<bean id="custSessionListener" class="com.sirding.core.security.shiro.listener.CustSessionListener">
-		<!-- <property name="redisSessionDao" ref="redisSessionDao"/> -->
+		<description>自定义session监听器</description>
+		<property name="redisSessionDao" ref="redisSessionDao"/>
 	</bean>
 	<!-- ================= session管理配置 ========end============== -->
 
@@ -145,6 +145,9 @@
 	    		/admin/** = authc, roles[admin]
 	            /docs/** = authc, perms[document:read]
 	            /user/** = authc, roles[admin], perms[user:query]
+	            /menu/** = authc, roles[secadmin]
+	            /auth/** = authc, roles[secadmin]
+	            /role/** = authc, roles[secdmin]
 	            /** = authc
 	    	</value>
 	    </property>
