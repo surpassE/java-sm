@@ -37,6 +37,7 @@ public class CustSessionListener implements org.apache.shiro.session.SessionList
 
 	@Override
 	public void onExpiration(Session session) {
+		logger.debug("redisSessionDao" + this.redisSessionDao);
 		//删除过期的session
 		redisSessionDao.delete(session);
 		logger.debug("超时session...");

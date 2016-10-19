@@ -10,6 +10,8 @@ import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.crazycake.shiro.RedisSessionDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,6 +22,9 @@ import com.sirding.core.utils.secure.PwdUtil;
 public class AuthController {
 	
 	Logger logger = Logger.getLogger(AuthController.class);
+	
+	@Autowired
+	private RedisSessionDAO redisSessionDAO;
 	
 	@RequestMapping("/login")
 	public String login(String userName, String pwd){
@@ -43,6 +48,7 @@ public class AuthController {
 		}
 		if(!success){
 			token.clear();
+			redisSessionDAO.delete(subject.getSession());
 			return "redirect:/auth/login.jsp";
 		}
 		return "shiro/home";

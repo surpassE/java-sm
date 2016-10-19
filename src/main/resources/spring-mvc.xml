@@ -26,9 +26,9 @@
   	</context:component-scan>
 
 
-	<!-- 静态资源映射 -->
-	<!-- <mvc:default-servlet-handler/>	
-    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/> -->
+	<!-- 静态资源映射  不配置mvc:annotation只配置mvc:resources将导致SpringMVC无法拦截请求-->
+	<mvc:annotation-driven/>
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
     
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
