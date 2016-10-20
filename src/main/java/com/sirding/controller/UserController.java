@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sirding.mybatis.model.AppUser;
+import com.sirding.service.AppSysUserService;
+import com.sirding.service.AppUserService;
 import com.sirding.service.UserService;
 
 /**
@@ -19,6 +22,11 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AppUserService appUserService;
+	@Autowired
+	private AppSysUserService appSysUserService;
 	
 	/**
 	 * 
@@ -39,5 +47,15 @@ public class UserController {
 		return "shiro/home";
 	}
 	
+	@RequestMapping("toUser")
+	public String toUser(){
+		return "user/user";
+	}
+	
+	@RequestMapping("addUser")
+	public String addUser(AppUser appUser){
+		
+		return "redirect:uert/toUser.htm";
+	}
 
 }

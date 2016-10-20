@@ -305,4 +305,36 @@
       This element was generated on Tue Oct 18 23:45:29 CST 2016.
     -->
   </cache>
+  
+  <!-- ==============华丽分割线======custom sql====================== -->
+  <!--  -->
+  <select id="findMenuListByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+		m.*
+	FROM
+		app_user AS u
+	INNER JOIN app_user_role AS ur ON u.id = ur.user_id
+	INNER JOIN app_role AS r ON ur.role_id = r.id
+	INNER JOIN app_role_menu AS rm ON rm.role_id = r.id
+	INNER JOIN app_menu AS m ON rm.menu_id = m.id
+	WHERE u.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!--  -->
+  <select id="findMenuListBySysUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+		m.id AS id,		
+		m.parent_id AS parent_id,
+		m.`name` AS NAME,
+		m.url AS url,
+		m.pos AS pos,
+		m.note AS note
+	FROM
+		app_sys_user AS u
+	INNER JOIN app_sys_user_role AS ur ON u.id = ur.sys_user_id
+	INNER JOIN app_role AS r ON ur.role_id = r.id
+	INNER JOIN app_role_menu AS rm ON rm.role_id = r.id
+	INNER JOIN app_menu AS m ON rm.menu_id = m.id
+	WHERE u.id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -2,23 +2,9 @@ package com.sirding.core.utils;
 
 import org.apache.log4j.Logger;
 /**
- * 
- * 开发公司：SOJSON在线工具 <p>
- * 版权所有：© www.sojson.com<p>
- * 博客地址：http://www.sojson.com/blog/  <p>
- * <p>
- * 
- * Log输出封装
- * 
- * <p>
- * 
- * 区分　责任人　日期　　　　说明<br/>
- * 创建　周柏成　2016年6月2日 　<br/>
- *
- * @author zhou-baicheng
- * @email  so@sojson.com
- * @version 1.0,2016年6月2日 <br/>
- * 
+ * logger日志输出工具类
+ * @author zc.ding
+ * @date 2016年10月20日
  */
 public class LoggerUtils {
 	/**
@@ -31,11 +17,36 @@ public class LoggerUtils {
 	 * @param clazz  	目标.Class
 	 * @param message	输出信息
 	 */
+	public static void debugForTest(Class<? extends Object> clazz ,Object message){
+		if(!isDebug)return ;
+		Logger logger = Logger.getLogger(clazz);
+		logger.debug("=================华丽的分割线=======================");
+		logger.debug(message);
+		logger.debug("=================华丽的分割线=======================");
+	}
+	
+	/**
+	 * Debug 输出
+	 * @param clazz  	目标.Class
+	 * @param message	输出信息
+	 */
 	public static void debug(Class<? extends Object> clazz ,String message){
 		if(!isDebug)return ;
 		Logger logger = Logger.getLogger(clazz);
 		logger.debug(message);
 	}
+	
+	/**
+	 * Debug 输出
+	 * @param clazz  	目标.Class
+	 * @param message	输出信息
+	 */
+	public static void info(Class<? extends Object> clazz ,String message){
+		if(!isDebug)return ;
+		Logger logger = Logger.getLogger(clazz);
+		logger.info(message);
+	}
+	
 	/**
 	 * Debug 输出
 	 * @param clazz  	目标.Class
@@ -58,7 +69,7 @@ public class LoggerUtils {
 	 * @param message	输出信息
 	 * @param e			异常类
 	 */
-	public static void error(Class<? extends Object> clazz ,String message,Exception e){
+	public static void error(Class<? extends Object> clazz ,String message, Exception e){
 		Logger logger = Logger.getLogger(clazz);
 		if(null == e){
 			logger.error(message);
@@ -81,7 +92,7 @@ public class LoggerUtils {
 	 * @param e			异常类
 	 * @param value		输出信息value
 	 */
-	public static void fmtError(Class<? extends Object> clazz,Exception e,String fmtString,Object...value){
+	public static void fmtError(Class<? extends Object> clazz,Exception e,String fmtString, Object...value){
 		if(isBlank(fmtString)){
 			return ;
 		}
@@ -118,4 +129,5 @@ public class LoggerUtils {
 		}
 		return result ;
 	}
+	
 }

@@ -30,12 +30,45 @@
 	<mvc:annotation-driven/>
     <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
     
-	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/"></property>
-		<property name="suffix" value=".jsp"></property>
+    
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<!-- <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" /> -->
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+			</list>
+		</property>
 	</bean>
 	
+	<!-- ===================华丽分割线======================================== -->
+	<!-- SpringMVC支持多视图配置  通过order属性决策优先级决定视图解析器的由优先级 -->
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<description>freemarker视图配置</description>
+		<!-- 指定FreeMarker模板文件目录 -->
+		<property name="templateLoaderPath" value="/WEB-INF/ftl/" />
+		<!-- 编码设置 -->
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="defaultEncoding">UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="freeMarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<description>初始化ftl视图解析器</description>
+		<property name="prefix" value="" />
+		<property name="suffix" value=".ftl" />
+		<property name="contentType" value="text/html; charset=UTF-8" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<description>初始化jsp视图解析器 </description>
+		<property name="prefix" value="/WEB-INF/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="1"></property>
+	</bean>
+	
+	<!-- ===================华丽分割线======================================== -->
 	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 
 	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 		<property name="supportedMediaTypes">

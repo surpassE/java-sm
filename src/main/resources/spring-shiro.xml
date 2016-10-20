@@ -94,7 +94,7 @@
 	
 	<bean id="custSessionListener" class="com.sirding.core.security.shiro.listener.CustSessionListener">
 		<description>自定义session监听器</description>
-		<property name="redisSessionDao" ref="redisSessionDao"/>
+		<property name="redisSessionDao" ref="redisSessionDAO"/>
 	</bean>
 	<!-- ================= session管理配置 ========end============== -->
 
@@ -122,7 +122,7 @@
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 	    <property name="sessionManager" ref="sessionManager"/>
 	    <property name="cacheManager" ref="redisCacheManager"/>
-	    <property name="realm" ref="myShiroRealm"/>
+	    <property name="realm" ref="appSysUserRealm"/>
 	</bean>
 	
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -143,10 +143,10 @@
 	    		/auth/** = anon
 	    		/shiro/** = authc
 	    		/admin/** = authc, roles[admin]
+	    		/sec/** = authc, roles[secAdmin]
 	            /docs/** = authc, perms[document:read]
 	            /user/** = authc, roles[admin], perms[user:query]
 	            /menu/** = authc, roles[secadmin]
-	            /auth/** = authc, roles[secadmin]
 	            /role/** = authc, roles[secdmin]
 	            /** = authc
 	    	</value>
@@ -156,7 +156,7 @@
 	<bean id="myShiroFilter" class="com.sirding.core.security.shiro.filter.MyShiroFilter"/>
 	
 	<!-- 自定义权限控制 -->	
-	<bean id="myShiroRealm" class="com.sirding.core.security.shiro.realm.MyShiroRealm2" />
+	<bean id="appSysUserRealm" class="com.sirding.core.security.shiro.realm.AppSysUserRealm" />
 	
 	<!-- Shiro生命周期处理器-->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>

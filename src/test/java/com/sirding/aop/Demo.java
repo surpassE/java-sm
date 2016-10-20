@@ -6,9 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 
-import com.sirding.Parent;
-
-public class Demo extends Parent{
+public class Demo{
 
 	@Test
 	public void testMethodInterceptor() throws Exception {

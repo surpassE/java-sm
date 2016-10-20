@@ -23,18 +23,18 @@ public class AppUserServiceImpl implements AppUserService {
 	private AppUserMapper appUserMapper;
 
 	@Override
-	public int addAppUser(AppUser obj) {
-		return appUserMapper.insert(obj);
+	public int add(AppUser record) {
+		return appUserMapper.insert(record);
 	}
 
 	@Override
-	public int delAppUser(Integer id) {
+	public int del(Integer id) {
 		return appUserMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
-	public int updateAppUser(AppUser obj) {
-		return this.appUserMapper.updateByPrimaryKey(obj);
+	public int update(AppUser record) {
+		return this.appUserMapper.updateByPrimaryKey(record);
 	}
 
 	@Override
@@ -43,10 +43,10 @@ public class AppUserServiceImpl implements AppUserService {
 	}
 
 	@Override
-	public List<AppUser> find(AppUser obj) {
+	public List<AppUser> findList(AppUser record) {
 		AppUserExample example = new AppUserExample();
 		AppUserExample.Criteria criteria = example.createCriteria();
-		criteria.andLoginNameEqualTo(obj.getLoginName());
+		criteria.andLoginNameEqualTo(record.getLoginName());
 		return this.appUserMapper.selectByExample(example);
 	}
 

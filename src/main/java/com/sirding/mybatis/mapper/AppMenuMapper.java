@@ -93,4 +93,22 @@ public interface AppMenuMapper {
      * @mbg.generated Tue Oct 18 23:45:29 CST 2016
      */
     int updateByPrimaryKey(AppMenu record);
+    
+    /**
+     * 查询应用用户拥有的菜单
+     * @date 2016年10月20日
+     * @author zc.ding
+     * @param id
+     * @return
+     */
+    List<AppMenu> findMenuListByUserId(Integer id);
+    
+    /**
+     * 查询系统管理员拥有的菜单
+     * @date 2016年10月20日
+     * @author zc.ding
+     * @param id
+     * @return
+     */
+    List<AppMenu> findMenuListBySysUserId(Integer id);
 }

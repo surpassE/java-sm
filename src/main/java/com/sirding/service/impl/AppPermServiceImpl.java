@@ -41,7 +41,9 @@ public class AppPermServiceImpl extends BaseServiceImpl implements AppPermServic
 	public List<AppPerm> findList(AppPerm record) {
 		AppPermExample example = new AppPermExample();
 		AppPermExample.Criteria criteria = example.createCriteria();
-		criteria.andIdEqualTo(record.getId());
+		if(record != null){
+			criteria.andIdEqualTo(record.getId());
+		}
 		return this.appPermMapper.selectByExample(example);
 	}
 
