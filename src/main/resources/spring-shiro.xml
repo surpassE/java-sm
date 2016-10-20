@@ -132,7 +132,7 @@
 	    <property name="securityManager" ref="securityManager"/>
 	    <property name="loginUrl" value="/auth/login.jsp"/>
 	    <property name="successUrl" value="/shiro/home.jsp"/>
-	    <property name="unauthorizedUrl" value="/auth/unauthorized.jsp"/>
+	    <property name="unauthorizedUrl" value="/auth/authFail.htm"/>
 	    <property name="filters">
 	        <util:map>
 	            <entry key="myShiorFilter" value-ref="myShiroFilter"/>

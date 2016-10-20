@@ -49,8 +49,9 @@ public class AppSysUserRealm extends AuthorizingRealm {
 	    //查询用户对应的角色
 	    Set<String> roleSet = new HashSet<String>();
 	    roleSet.add("admin");
+	    roleSet.add("secAdmin");
 	    info.setRoles(roleSet);
-		return null;
+		return info;
 	}
 
 	@Override

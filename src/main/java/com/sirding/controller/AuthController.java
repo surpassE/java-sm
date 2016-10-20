@@ -63,4 +63,12 @@ public class AuthController {
 		subject.logout();
 		return "redirect:/auth/login.jsp";
 	}
+	
+	@RequestMapping("authFail")
+	public String authFail(){
+		Subject subject = SecurityUtils.getSubject();
+		Session session = subject.getSession();
+		redisSessionDAO.delete(session);
+		return "redirect:/auth/unauthorized.jsp";
+	}
 }

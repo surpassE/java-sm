@@ -42,7 +42,7 @@ public class SecController extends BaseController{
 	
 	@RequestMapping("toPerm")
 	public ModelAndView toPerm(){
-		ModelAndView mav = new ModelAndView("sec/perm");
+		ModelAndView mav = new ModelAndView("secu/perm");
 		mav.addObject("list", this.appPermService.findList(null));
 		return mav;
 	}

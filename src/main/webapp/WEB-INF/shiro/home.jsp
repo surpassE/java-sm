@@ -8,7 +8,7 @@
 </head>
 <body>
 I'm Home page!<br/>
-<a href="${pageContext.request.contextPath}/user/findUser.htm">Go to User...</a>
+<a href="${pageContext.request.contextPath}/user/findUser.htm">Go to User...</a><br/>
 <a href="${pageContext.request.contextPath}/sec/toPerm.htm">Go to Perm...</a>
 </body>
 </html>

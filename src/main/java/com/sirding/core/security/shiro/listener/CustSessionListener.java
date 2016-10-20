@@ -32,6 +32,7 @@ public class CustSessionListener implements org.apache.shiro.session.SessionList
 
 	@Override
 	public void onStop(Session session) {
+		this.redisSessionDao.delete(session);
 		logger.debug("停止session...");
 	}
 

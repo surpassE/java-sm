@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/webapp/WEB-INF/ftl/secu/menu.ftl=UTF-8
-encoding//src/main/webapp/WEB-INF/ftl/secu/perm.ftl=UTF-8
+encoding//src/main/webapp/WEB-INF/ftl/secu/perm.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/security/role.jsp=UTF-8
 encoding//src/test/java=UTF-8
