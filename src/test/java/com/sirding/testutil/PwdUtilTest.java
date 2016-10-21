@@ -5,6 +5,8 @@ import java.security.MessageDigest;
 import org.apache.shiro.codec.Hex;
 import org.junit.Test;
 
+import com.sirding.core.utils.secure.PwdUtil;
+
 public class PwdUtilTest {
 
 	private static final int DEFAULT_ITERATIONS = 1;
@@ -35,5 +37,12 @@ public class PwdUtilTest {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Test
+	public void test2(){
+		String msg = "sirding";
+		String pwd = PwdUtil.encrypt(msg).toString();
+		System.out.println(pwd);
 	}
 }

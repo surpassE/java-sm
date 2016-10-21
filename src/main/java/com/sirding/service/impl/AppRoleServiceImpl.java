@@ -44,4 +44,14 @@ public class AppRoleServiceImpl extends BaseServiceImpl implements AppRoleServic
 		return this.appRoleMapper.selectByExample(example);
 	}
 
+	@Override
+	public List<AppRole> findRoleByUserName(String userName) {
+		return this.appRoleMapper.findRoleByUserName(userName);
+	}
+
+	@Override
+	public List<AppRole> findRoleBySysUserName(String userName) {
+		return this.appRoleMapper.findRoleBySysUserName(userName);
+	}
+
 }

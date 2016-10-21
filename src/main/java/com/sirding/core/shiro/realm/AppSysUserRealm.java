@@ -1,4 +1,4 @@
-package com.sirding.core.security.shiro.realm;
+package com.sirding.core.shiro.realm;
 
 import java.util.ArrayList;
 import java.util.HashSet;

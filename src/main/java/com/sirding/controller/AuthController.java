@@ -116,7 +116,7 @@ public class AuthController {
 	public String authFail(){
 		Subject subject = SecurityUtils.getSubject();
 		Session session = subject.getSession();
-		redisSessionDAO.delete(session);
+//		redisSessionDAO.delete(session);
 		return "redirect:/auth/unauthorized.jsp";
 	}
 }

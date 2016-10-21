@@ -1,4 +1,4 @@
-package com.sirding.core.security.shiro.cache;
+package com.sirding.core.shiro.cache;
 
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;

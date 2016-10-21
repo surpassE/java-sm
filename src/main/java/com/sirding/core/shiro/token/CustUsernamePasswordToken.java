@@ -1,4 +1,4 @@
-package com.sirding.core.security.shiro.token;
+package com.sirding.core.shiro.token;
 
 import org.apache.shiro.authc.UsernamePasswordToken;
 

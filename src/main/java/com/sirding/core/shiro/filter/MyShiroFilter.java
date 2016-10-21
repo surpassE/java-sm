@@ -1,4 +1,4 @@
-package com.sirding.core.security.shiro.filter;
+package com.sirding.core.shiro.filter;
 
 import java.io.IOException;
 

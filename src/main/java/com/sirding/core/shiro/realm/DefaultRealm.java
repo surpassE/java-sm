@@ -1,4 +1,4 @@
-package com.sirding.core.security.shiro.realm;
+package com.sirding.core.shiro.realm;
 
 import org.apache.shiro.web.filter.authc.AnonymousFilter;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;

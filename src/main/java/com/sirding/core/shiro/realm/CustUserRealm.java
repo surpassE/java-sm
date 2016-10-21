@@ -1,6 +1,9 @@
-package com.sirding.core.security.shiro.realm;
+package com.sirding.core.shiro.realm;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
@@ -8,14 +11,19 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sirding.commons.Cons.UserType;
-import com.sirding.core.security.shiro.CustTokenManager;
+import com.sirding.core.shiro.CustTokenManager;
+import com.sirding.mybatis.model.AppPerm;
+import com.sirding.mybatis.model.AppRole;
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.mybatis.model.AppUser;
+import com.sirding.service.AppPermService;
+import com.sirding.service.AppRoleService;
 import com.sirding.service.AppSysUserService;
 import com.sirding.service.AppUserService;
 
@@ -25,10 +33,48 @@ public class CustUserRealm extends AuthorizingRealm{
 	private AppSysUserService appSysUserService;
 	@Autowired
 	private AppUserService appUserService;
+	@Autowired
+	private AppPermService appPermService;
+	@Autowired
+	private AppRoleService appRoleService;
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		return null;
+		String userName = (String) principals.getPrimaryPrincipal();
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+		//通过userName查询对应的role、permission
+	    List<String> list = new ArrayList<String>(); 
+	    List<AppPerm> permList = null;
+	    Set<String> set = new HashSet<String>();
+	    List<AppRole> roleList = null;
+	    
+	    UserType userType = CustTokenManager.getUserType();
+		switch(userType){
+		case APPUSER:
+			permList = this.appPermService.findPermByUserName(userName);
+			roleList = this.appRoleService.findRoleByUserName(userName);
+			break;
+		case APPSYSUSER:
+			permList = this.appPermService.findPermBySysUserName(userName);
+			roleList = this.appRoleService.findRoleBySysUserName(userName);
+			break;
+		}
+		//添加用户权限
+		if(permList != null){
+			for(AppPerm ap : permList){
+				list.add(ap.getWildcard());
+			}
+		}
+		info.addStringPermissions(list);
+		//添加用户角色
+		if(roleList != null){
+			for(AppRole ar : roleList){
+				set.add(ar.getName());
+			}
+		}
+		info.addRoles(set);
+	    return info;
+
 	}
 
 	@Override

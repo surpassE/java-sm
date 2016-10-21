@@ -20,7 +20,7 @@
 		<description>自定义redis管理</description>
 	    <property name="jedisPool" ref="jedisPool"/>
 	</bean>
-	<bean id="custShiroCacheManager" class="com.sirding.core.security.shiro.cache.CustShiorCacheManager">
+	<bean id="custShiroCacheManager" class="com.sirding.core.shiro.cache.CustShiorCacheManager">
 		<description>自定义shiro cacheManager</description>
 	    <property name="jedisManager" ref="jedisManager"/>
 	</bean> -->
@@ -74,13 +74,13 @@
         <property name="maxAge" value="-1"/><!-- cookie有效时间（s）-1:浏览器关闭是就清楚cookie -->
     </bean>
     
-    <!-- <bean id="custShiroSessionDAO" class="com.sirding.core.security.shiro.session.CustShiroSessionDAO">
+    <!-- <bean id="custShiroSessionDAO" class="com.sirding.core.shiro.session.CustShiroSessionDAO">
 	    <description>session CURD管理</description>
 	    <property name="jedisManager" ref="jedisManager"/>
 	    <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
 	</bean> -->
 	
-	<!-- <bean id="customSessionManager" class="com.sirding.core.security.shiro.session.CustSessionManager">
+	<!-- <bean id="customSessionManager" class="com.sirding.core.shiro.session.CustSessionManager">
 		<description>自定义管理user对应session管理, 只进行的实例化，为使用</description>
 		<property name="custShiroSessionDAO" ref="custShiroSessionDAO"/>
 	</bean> -->
@@ -92,7 +92,7 @@
 	    <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
 	</bean>
 	
-	<bean id="custSessionListener" class="com.sirding.core.security.shiro.listener.CustSessionListener">
+	<bean id="custSessionListener" class="com.sirding.core.shiro.listener.CustSessionListener">
 		<description>自定义session监听器</description>
 		<property name="redisSessionDao" ref="redisSessionDAO"/>
 	</bean>
@@ -153,11 +153,11 @@
 	    </property>
 	</bean>
 
-	<bean id="myShiroFilter" class="com.sirding.core.security.shiro.filter.MyShiroFilter"/>
+	<bean id="myShiroFilter" class="com.sirding.core.shiro.filter.MyShiroFilter"/>
 	
 	<!-- 自定义权限控制 -->	
-<!-- 	<bean id="appSysUserRealm" class="com.sirding.core.security.shiro.realm.AppSysUserRealm" /> -->
-	<bean id="custUserRealm" class="com.sirding.core.security.shiro.realm.CustUserRealm" />
+<!-- 	<bean id="appSysUserRealm" class="com.sirding.core.shiro.realm.AppSysUserRealm" /> -->
+	<bean id="custUserRealm" class="com.sirding.core.shiro.realm.CustUserRealm" />
 	
 	<!-- Shiro生命周期处理器-->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>

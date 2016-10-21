@@ -40,7 +40,7 @@ public class AppSysUserServiceImpl extends BaseServiceImpl implements AppSysUser
 	public List<AppSysUser> findList(AppSysUser record) {
 		AppSysUserExample example = new AppSysUserExample();
 		AppSysUserExample.Criteria criteria = example.createCriteria();
-		criteria.andIdEqualTo(record.getId());
+//		criteria.andIdEqualTo(record.getId());
 		criteria.andLoginNameEqualTo(record.getLoginName());
 		return this.appSysUserMapper.selectByExample(example);
 	}

@@ -47,4 +47,14 @@ public class AppPermServiceImpl extends BaseServiceImpl implements AppPermServic
 		return this.appPermMapper.selectByExample(example);
 	}
 
+	@Override
+	public List<AppPerm> findPermByUserName(String userName) {
+		return this.appPermMapper.findPermByUserName(userName);
+	}
+
+	@Override
+	public List<AppPerm> findPermBySysUserName(String userName) {
+		return this.appPermMapper.findPermBySysUserName(userName);
+	}
+
 }

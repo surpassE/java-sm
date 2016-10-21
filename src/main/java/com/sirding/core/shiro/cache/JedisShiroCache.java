@@ -1,4 +1,4 @@
-package com.sirding.core.security.shiro.cache;
+package com.sirding.core.shiro.cache;
 
 import java.util.Collection;
 import java.util.Set;

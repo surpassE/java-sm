@@ -1,4 +1,4 @@
-package com.sirding.core.security.shiro;
+package com.sirding.core.shiro;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;

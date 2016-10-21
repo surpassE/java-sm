@@ -1,4 +1,4 @@
-package com.sirding.core.security.shiro.listener;
+package com.sirding.core.shiro.listener;
 
 import org.apache.log4j.Logger;
 import org.apache.shiro.session.Session;

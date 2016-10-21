@@ -1,4 +1,4 @@
-package com.sirding.core.security.shiro.session;
+package com.sirding.core.shiro.session;
 
 import java.io.Serializable;
 

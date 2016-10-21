@@ -2,7 +2,9 @@ package com.sirding.mybatis.mapper;
 
 import com.sirding.mybatis.model.AppRole;
 import com.sirding.mybatis.model.AppRoleExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface AppRoleMapper {
@@ -93,4 +95,22 @@ public interface AppRoleMapper {
      * @mbg.generated Tue Oct 18 23:45:36 CST 2016
      */
     int updateByPrimaryKey(AppRole record);
+    
+    /**
+	 * 通过用户userName查询对应的角色
+	 * @param userName
+	 * @return
+	 * @author zc.ding
+	 * @date 2016年10月21日
+	 */
+	List<AppRole> findRoleByUserName(String userName);
+	
+	/**
+	 * 通过管理员userName查询对应的角色
+	 * @param userName
+	 * @return
+	 * @author zc.ding
+	 * @date 2016年10月21日
+	 */
+	List<AppRole> findRoleBySysUserName(String userName);
 }
