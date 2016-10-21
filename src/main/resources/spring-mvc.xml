@@ -90,7 +90,7 @@
 	</bean>  
 	 -->
 
-	<!-- 配置Spring自带文件上传操作类 
+	<!-- 配置Spring自带文件上传操作类 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding">
 			<value>UTF-8</value>
@@ -102,7 +102,7 @@
 			<value>4096</value>
 		</property>
 	</bean>
-	-->
+	
 	
 	<!-- 导出pdf操作依赖类 
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">

@@ -122,7 +122,7 @@
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 	    <property name="sessionManager" ref="sessionManager"/>
 	    <property name="cacheManager" ref="redisCacheManager"/>
-	    <property name="realm" ref="appSysUserRealm"/>
+	    <property name="realm" ref="custUserRealm"/>
 	</bean>
 	
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -156,7 +156,8 @@
 	<bean id="myShiroFilter" class="com.sirding.core.security.shiro.filter.MyShiroFilter"/>
 	
 	<!-- 自定义权限控制 -->	
-	<bean id="appSysUserRealm" class="com.sirding.core.security.shiro.realm.AppSysUserRealm" />
+<!-- 	<bean id="appSysUserRealm" class="com.sirding.core.security.shiro.realm.AppSysUserRealm" /> -->
+	<bean id="custUserRealm" class="com.sirding.core.security.shiro.realm.CustUserRealm" />
 	
 	<!-- Shiro生命周期处理器-->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>

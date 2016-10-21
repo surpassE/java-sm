@@ -17,6 +17,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.sirding.core.utils.LoggerUtils;
 import com.sirding.core.utils.secure.PwdUtil;
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.service.AppSysUserService;
@@ -37,6 +38,10 @@ public class AppSysUserRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		String userName = (String) principals.getPrimaryPrincipal();
 		logger.debug("userName:" + userName);
+		
+		LoggerUtils.debugForTest(getClass(), "11111111111111111111111");
+		
+		
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
 		//通过userName查询对应的role、permission
@@ -63,9 +68,9 @@ public class AppSysUserRealm extends AuthorizingRealm {
 		appSysUser.setId(1);
 		appSysUser.setLoginName(userName);	
 		List<AppSysUser> userList = this.appSysUserService.findList(appSysUser);
-		if(userList == null || userList.size() == 0){
-			throw new AccountException();
-		}
+//		if(userList == null || userList.size() == 0){
+//			throw new AccountException();
+//		}
 		String password = PwdUtil.encrypt(userName).toString();
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userName, password, getName());
 		return info;

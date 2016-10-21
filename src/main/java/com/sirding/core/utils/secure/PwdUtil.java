@@ -13,7 +13,7 @@ import org.apache.commons.codec.binary.Hex;
  */
 public class PwdUtil {
 	//默认加密方式
-	private static final String DEFAULT_ALGORITHM = "SHA-512";
+	private static final String DEFAULT_ALGORITHM = "MD5";	//SHA-512
 	//默认盐源
 	private static final String DEFAULT_SALT = Hex.encodeHexString("I am siridng.".getBytes());
 	//Hash次数
