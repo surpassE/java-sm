@@ -62,11 +62,11 @@
 		<!-- 监控数据库 -->
 		<!-- <property name="filters" value="mergeStat" /> -->
 		<property name="filters" value="stat" />
-		<!-- <property name="proxyFilters">
+		<property name="proxyFilters">
 	        <list>
 	            <ref bean="log-filter"/>
 	        </list>
-	    </property> -->
+	    </property>
 	</bean>
     
     <!-- 配置Session工厂 -->

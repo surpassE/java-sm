@@ -135,7 +135,7 @@
 	    <property name="unauthorizedUrl" value="/auth/authFail.htm"/>
 	    <property name="filters">
 	        <util:map>
-	            <entry key="myShiorFilter" value-ref="myShiroFilter"/>
+	            <entry key="custShiorFilter" value-ref="custShiroFilter"/>
 	        </util:map>
 	    </property>
 	    <property name="filterChainDefinitions">
@@ -153,7 +153,7 @@
 	    </property>
 	</bean>
 
-	<bean id="myShiroFilter" class="com.sirding.core.shiro.filter.MyShiroFilter"/>
+	<bean id="custShiroFilter" class="com.sirding.core.shiro.filter.CustShiroFilter"/>
 	
 	<!-- 自定义权限控制 -->	
 <!-- 	<bean id="appSysUserRealm" class="com.sirding.core.shiro.realm.AppSysUserRealm" /> -->

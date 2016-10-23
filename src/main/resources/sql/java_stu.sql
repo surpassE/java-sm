@@ -188,7 +188,7 @@ CREATE TABLE `app_sys_user` (
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '用户状态 0：禁用 1：启用',
   `note` varchar(100) DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='应用管理用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='应用管理用户信息表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,6 +197,7 @@ CREATE TABLE `app_sys_user` (
 
 LOCK TABLES `app_sys_user` WRITE;
 /*!40000 ALTER TABLE `app_sys_user` DISABLE KEYS */;
+INSERT INTO `app_sys_user` VALUES (1,'sirding','b667d21fa07bddb03e88b4433cd47609',1,'hello');
 /*!40000 ALTER TABLE `app_sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +239,7 @@ CREATE TABLE `app_user` (
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '运行状态 0：禁用  1：启用 ',
   `note` varchar(100) DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='应用用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='应用用户信息表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,6 +248,7 @@ CREATE TABLE `app_user` (
 
 LOCK TABLES `app_user` WRITE;
 /*!40000 ALTER TABLE `app_user` DISABLE KEYS */;
+INSERT INTO `app_user` VALUES (1,'sirding','b667d21fa07bddb03e88b4433cd47609',1,'');
 /*!40000 ALTER TABLE `app_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -562,4 +564,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-18 23:15:29
+-- Dump completed on 2016-10-23 10:55:58

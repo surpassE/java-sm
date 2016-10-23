@@ -44,8 +44,8 @@
 			
 		<!-- 配置数据库的连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost/java_stu" userId="root"
-			password="root">
+			connectionURL="jdbc:mysql://119.253.134.199:8098/java_stu" userId="dzc4test"
+			password="dzc4test@123">
 		</jdbcConnection>
 
 		<!-- 定义数据库中类型与java中类型的对应转换 -->
@@ -83,7 +83,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-<table schema="java_stu" tableName="app_user_role" domainObjectName="AppUserRole">
+<table schema="java_stu" tableName="app_menu" domainObjectName="AppMenu">
 			<!-- 直接使用列名称作为属性名 default：false -->
 			<property name="useActualColumnNames" value="false" />
 			<!-- 执行添加的操作时，主键的值会绑定到插入的对象中 -->
@@ -99,7 +99,7 @@
 			</ignoreColumnsByRegex> -->
 			<!-- 列指定对应属性名及属性类型 -->
 			<columnOverride column="TEST_A" property="testa" />
-			<columnOverride column="age" javaType="Integer" />
+			<columnOverride column="sort" javaType="Integer" />
 		</table>
 	</context>
 	

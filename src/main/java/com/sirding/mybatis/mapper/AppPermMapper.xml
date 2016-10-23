@@ -278,7 +278,7 @@
 			p.*
 		FROM
 			app_sys_user u
-		INNER JOIN app_sys_user_role ur ON u.id = ur.user_id
+		INNER JOIN app_sys_user_role ur ON u.id = ur.sys_user_id
 		INNER JOIN app_role r ON ur.role_id = r.id
 		INNER JOIN app_role_perm rp ON r.id = rp.role_id
 		INNER JOIN app_perm p ON rp.perm_id = p.id

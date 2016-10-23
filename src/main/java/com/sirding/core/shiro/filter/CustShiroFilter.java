@@ -11,9 +11,9 @@ import javax.servlet.ServletResponse;
 
 import org.apache.log4j.Logger;
 
-public class MyShiroFilter implements Filter{
+public class CustShiroFilter implements Filter{
 
-	Logger logger = Logger.getLogger(MyShiroFilter.class);
+	Logger logger = Logger.getLogger(CustShiroFilter.class);
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		

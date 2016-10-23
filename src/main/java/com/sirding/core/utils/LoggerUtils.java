@@ -26,6 +26,17 @@ public class LoggerUtils {
 	}
 	
 	/**
+	 * 打印华丽的分割线
+	 * @param clazz
+	 * @author zc.ding
+	 * @date 2016年10月23日
+	 */
+	public static void line(Class<? extends Object> clazz){
+		Logger logger = Logger.getLogger(clazz);
+		logger.debug("======================华丽的分割线=============================================");
+	}
+	
+	/**
 	 * Debug 输出
 	 * @param clazz  	目标.Class
 	 * @param message	输出信息
