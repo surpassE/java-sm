@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>stronger</title>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 	<table>
 		<tr>
 			<th>用户名</th>
-			<td><input type="text" name="userName" value="sirding"/></td>
+			<td><input type="text" name="userName" value="admin"/></td>
 		</tr>
 		<tr>
 			<th>密码</th>

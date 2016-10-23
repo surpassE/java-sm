@@ -17,6 +17,7 @@ public class CustSessionListener implements org.apache.shiro.session.SessionList
 	private static Logger logger = Logger.getLogger(CustSessionListener.class);
 	
 	private RedisSessionDAO redisSessionDao;
+	
 	public RedisSessionDAO getRedisSessionDao() {
 		return redisSessionDao;
 	}

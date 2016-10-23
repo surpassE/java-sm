@@ -141,14 +141,18 @@
 	    <property name="filterChainDefinitions">
 	    	<value>
 	    		/auth/** = anon
+	    		/comjs/** = anon
+	    		/comcss/** = anon
+	    		/comjsp/** = anon
 	    		/shiro/** = authc
 	    		/admin/** = authc, roles[admin]
-	    		/sec/** = authc, roles[secAdmin]
+	    		/sec/** = authc
 	            /docs/** = authc, perms[document:read]
 	            /user/** = authc, roles[admin], perms[user:query]
 	            /menu/** = authc, roles[secadmin]
 	            /role/** = authc, roles[secdmin]
 	            /** = authc
+	            
 	    	</value>
 	    </property>
 	</bean>

@@ -1,5 +1,7 @@
 package com.sirding.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sirding.base.BaseController;
 import com.sirding.base.Result;
 import com.sirding.mybatis.model.AppPerm;
+import com.sirding.mybatis.model.AppRole;
 import com.sirding.service.AppMenuService;
 import com.sirding.service.AppPermService;
 import com.sirding.service.AppRoleService;
@@ -29,10 +32,15 @@ public class SecController extends BaseController{
 	private AppPermService appPermService;
 	
 	
-	@RequestMapping(value = "toRole", method = RequestMethod.POST)
+	@RequestMapping(value = "toRole")
 	public String toRole(){
-		
 		return "sec/role";
+	}
+	
+	@RequestMapping("roleList")
+	@ResponseBody
+	public List<AppRole> roleList(){
+		return this.appRoleService.findList(null);
 	}
 	
 	@RequestMapping(value = "toMenu", method = RequestMethod.POST)

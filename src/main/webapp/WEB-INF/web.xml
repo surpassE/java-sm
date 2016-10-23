@@ -123,8 +123,7 @@
 		<description>初始化项目运行需要的参数</description>
 		<listener-class>com.sirding.core.listener.InitListener</listener-class>
 	</listener>
-	
-	
+		
 	<servlet>
 		<description>加载SpringMVC配置信息</description>
 		<servlet-name>springMvc</servlet-name>
@@ -150,6 +149,6 @@
 		</error-page> <error-page> <error-code>500</error-code> <location>/error/500.jsp</location> 
 		</error-page> -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>auth/login.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

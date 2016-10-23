@@ -40,7 +40,9 @@ public class AppRoleServiceImpl extends BaseServiceImpl implements AppRoleServic
 	public List<AppRole> findList(AppRole record) {
 		AppRoleExample example = new AppRoleExample();
 		AppRoleExample.Criteria criteria = example.createCriteria();
-		criteria.andIdEqualTo(record.getId());
+		if(record != null){
+			criteria.andIdEqualTo(record.getId());
+		}
 		return this.appRoleMapper.selectByExample(example);
 	}
 
