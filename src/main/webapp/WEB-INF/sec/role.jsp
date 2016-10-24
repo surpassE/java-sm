@@ -8,12 +8,16 @@
 </head>
 <body>
 角色管理
+<div ng-repeat="role in roles">
+	{{role.name + ":" + role.note}}
+</div>
 </body>
 
 <script type="text/javascript">
 var roleNg = angular.module("roleNg", []).controller("roleController", function($scope, $http){
 	$http.post('/sec/roleList.htm', {}, {}).then(function(response){
 		console.info(response);
+		$scope.roles = response.data;
 	}, function(response){
 		
 	});
