@@ -50,11 +50,11 @@ public class CustUserRealm extends AuthorizingRealm{
 	    
 	    UserType userType = CustTokenManager.getUserType();
 		switch(userType){
-		case APPUSER:
+		case APP_USER:
 			permList = this.appPermService.findPermByUserName(userName);
 			roleList = this.appRoleService.findRoleByUserName(userName);
 			break;
-		case APPSYSUSER:
+		case APP_SYS_USER:
 			permList = this.appPermService.findPermBySysUserName(userName);
 			roleList = this.appRoleService.findRoleBySysUserName(userName);
 			break;
@@ -84,7 +84,7 @@ public class CustUserRealm extends AuthorizingRealm{
 		UserType userType = CustTokenManager.getUserType();
 		SimpleAuthenticationInfo info = null;
 		switch(userType){
-		case APPUSER:
+		case APP_USER:
 			AppUser appUser = new AppUser();
 			appUser.setLoginName(userName);
 			List<AppUser> list = this.appUserService.findList(appUser);
@@ -93,7 +93,7 @@ public class CustUserRealm extends AuthorizingRealm{
 			}
 			pwd = list.get(0).getLoginPwd();
 			break;
-		case APPSYSUSER:
+		case APP_SYS_USER:
 			AppSysUser appSysUser = new AppSysUser();
 			appSysUser.setLoginName(userName);
 			List<AppSysUser> sysList = this.appSysUserService.findList(appSysUser);

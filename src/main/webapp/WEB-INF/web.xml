@@ -6,19 +6,21 @@
 
 	<display-name>java-sm</display-name>
 <!-- 
-	classpath:spring-oauth2.xml
+	classpath:spring-oauth2.xml;
+	classpath:spring-so2.xml;
+	classpath:spring-shiro.xml;
  -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath:spring-core.xml;
 			classpath:spring-mybatis.xml;
-			classpath:spring-shiro.xml;
+			classpath:spring-so2.xml;
 			classpath:spring-redis.xml
 		</param-value>
 	</context-param>
 
-	<!-- 配置使用shiro start -->
+	<!-- 配置使用shiro start 
 	<filter>
 		<description>
 			shiroFilter要与spring-shiro的id="shiroFilter"对应
@@ -36,6 +38,7 @@
 	    <filter-name>shiroFilter</filter-name>
 	    <url-pattern>/*</url-pattern>
 	</filter-mapping>
+	-->
 	<!-- 配置使用shiro end -->
 	
 	

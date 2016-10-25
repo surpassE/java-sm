@@ -11,8 +11,8 @@ public class Cons {
 	 * @date 2016年10月21日
 	 */
 	public enum UserType {
-		APPSYSUSER(1),	//系统管理员
-		APPUSER(2);		//应用用户
+		APP_SYS_USER(1),	//系统管理员
+		APP_USER(2);		//应用用户
 		private final int value;
 
 		UserType(int value) {
