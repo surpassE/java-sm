@@ -8,15 +8,13 @@ import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-import org.crazycake.shiro.RedisSessionDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sirding.commons.Cons;
 import com.sirding.commons.Cons.UserType;
+import com.sirding.core.shiro.CustTokenManager;
 import com.sirding.core.utils.secure.PwdUtil;
 
 @Controller
@@ -25,9 +23,6 @@ public class AuthController {
 	
 	Logger logger = Logger.getLogger(AuthController.class);
 
-	@Autowired
-	private RedisSessionDAO redisSessionDAO;
-	
 	/**
 	 * 验证应用用户信息
 	 * @date 2016年10月21日
@@ -71,9 +66,8 @@ public class AuthController {
 	 */
 	private boolean authStatus(String userName, String pwd, UserType userType ){
 		Subject subject = SecurityUtils.getSubject();
-		Session session = subject.getSession();
 		//设置用户的类型
-		session.setAttribute(Cons.USER_TYPE, userType);
+		CustTokenManager.setAttr(Cons.USER_TYPE, userType);
 		//对密码进行解密操作
 		String password = PwdUtil.encrypt(pwd).toString();
 		//创建验证需要的token
@@ -88,7 +82,7 @@ public class AuthController {
 			success = !success;
 			e.printStackTrace();
 		}catch (CredentialsException e) {
-			logger.debug("密码或密码不正确");
+			logger.debug("用户名或密码不正确");
 			success = !success;
 			e.printStackTrace();
 		}catch (AuthenticationException e) {
@@ -104,19 +98,18 @@ public class AuthController {
 	
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session){
-		Subject subject = SecurityUtils.getSubject();
-		Session shiroSession = subject.getSession();
-		String msg = (String)shiroSession.getAttribute("sirding");
+//		Subject subject = SecurityUtils.getSubject();
+//		Session shiroSession = subject.getSession();
+//		String msg = (String)shiroSession.getAttribute("sirding");
+//		subject.logout();		
+		String msg = CustTokenManager.getString("sirding");
 		logger.debug("从shiro的sesion中取值：" + msg);
-		subject.logout();
+		CustTokenManager.getSubject().logout();
 		return "redirect:/auth/login.jsp";
 	}
 	
 	@RequestMapping("authFail")
 	public String authFail(){
-		Subject subject = SecurityUtils.getSubject();
-		Session session = subject.getSession();
-//		redisSessionDAO.delete(session);
 		return "redirect:/auth/unauthorized.jsp";
 	}
 }

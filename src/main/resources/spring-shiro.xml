@@ -16,18 +16,8 @@
 		shiro
 	</description>
 	<!-- ================= 缓存配置 ========start============== -->
-	<!-- <bean id="jedisManager" class="com.sirding.core.redis.JedisManager">
-		<description>自定义redis管理</description>
-	    <property name="jedisPool" ref="jedisPool"/>
-	</bean>
-	<bean id="custShiroCacheManager" class="com.sirding.core.shiro.cache.CustShiorCacheManager">
-		<description>自定义shiro cacheManager</description>
-	    <property name="jedisManager" ref="jedisManager"/>
-	</bean> -->
-	
 	<bean id="redisManager" class="org.crazycake.shiro.RedisManager">
 		<description>使用第三方redi缓存管理</description>
-	    <!-- <property name="jedisPool" ref="jedisPool"/> -->
 	    <property name="host" value="119.253.134.199" />
 	    <property name="port" value="2185" />
 	    <property name="timeout" value="5000" />
@@ -56,7 +46,6 @@
 	  	<property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
 	  	<!-- 是否删除无效的，默认也是开启 -->
 	  	<property name="deleteInvalidSessions" value="true"/>
-<!-- 	  	<property name="sessionDAO" ref="customShiroSessionDAO"/> -->
 	  	<property name="sessionDAO" ref="redisSessionDAO"/>
 	</bean>
 	
@@ -74,17 +63,6 @@
         <property name="maxAge" value="-1"/><!-- cookie有效时间（s）-1:浏览器关闭是就清楚cookie -->
     </bean>
     
-    <!-- <bean id="custShiroSessionDAO" class="com.sirding.core.shiro.session.CustShiroSessionDAO">
-	    <description>session CURD管理</description>
-	    <property name="jedisManager" ref="jedisManager"/>
-	    <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
-	</bean> -->
-	
-	<!-- <bean id="customSessionManager" class="com.sirding.core.shiro.session.CustSessionManager">
-		<description>自定义管理user对应session管理, 只进行的实例化，为使用</description>
-		<property name="custShiroSessionDAO" ref="custShiroSessionDAO"/>
-	</bean> -->
-	
 	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
     <bean id="redisSessionDAO" class="org.crazycake.shiro.RedisSessionDAO">
 	    <description>session CURD管理</description>
@@ -160,7 +138,6 @@
 	<bean id="custShiroFilter" class="com.sirding.core.shiro.filter.CustShiroFilter"/>
 	
 	<!-- 自定义权限控制 -->	
-<!-- 	<bean id="appSysUserRealm" class="com.sirding.core.shiro.realm.AppSysUserRealm" /> -->
 	<bean id="custUserRealm" class="com.sirding.core.shiro.realm.CustUserRealm" />
 	
 	<!-- Shiro生命周期处理器-->
