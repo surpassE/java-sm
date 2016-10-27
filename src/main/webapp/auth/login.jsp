@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<%-- <form action="${pageContext.request.contextPath}/login.htm"> --%>
 <form action="${pageContext.request.contextPath}/auth/adminLogin.htm">
 <%-- <form action="${pageContext.request.contextPath}/auth/login.htm"> --%>
 	<table>

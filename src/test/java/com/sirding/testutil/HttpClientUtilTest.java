@@ -25,8 +25,9 @@ public class HttpClientUtilTest {
 	 */
 	@Test
 	public void testTp(){
-		String tpId = "tp_003_ybej";
-		String host1 = "http://101.201.152.200/openapi";
+		String tpId = "tp_002_ybej";
+//		String host1 = "http://101.201.152.200/openapi";
+		String host1 = "http://192.168.1.249/openapi";
 		String host2 = "https://51qiankundai.com/apptest";
 		String host3 = "https://51qiankundai.com/openapi";
 		//线上测试节点

@@ -11,19 +11,33 @@
 
 	<http pattern="/auth/login.jsp" security="none" />  
     <http pattern="/common/**" security="none" />  
-    <http pattern="/*.ico" security="none" /> 
+    <http pattern="/*.ico" security="none" />
     
-    <http disable-url-rewriting="true" use-expressions="false"
-          authentication-manager-ref="authenticationManager">
+    <http use-expressions="false" authentication-manager-ref="authenticationManager">
         <intercept-url pattern="/sec/**" access="ROLE_USER,ROLE_UNITY,ROLE_MOBILE"/>
         <intercept-url pattern="/auth/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <!-- <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/> -->
+        <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+       <!--  <intercept-url pattern="/sec/**" access="hasRole('USER')"/>
+        <intercept-url pattern="/auth/**" access="hasRole('ANONYMOUS')"/>
+        <intercept-url pattern="/**" access="hasRole('ANONYMOUS')"/> -->
 
-        <form-login authentication-failure-url="/auth/login.jsp" default-target-url="/auth/login.jsp"
-                    login-page="/auth/login.jsp" login-processing-url="/auth/login.htm"/>
-        <logout logout-success-url="/auth/login.jsp" logout-url="/auth/logout.htm"/>
+        <form-login 
+        	authentication-failure-url="/auth/login.jsp" 
+        	default-target-url="/auth/adminLogin.htm"
+            login-page="/auth/login.jsp" 
+            login-processing-url="/shiro/home.jsp"
+            password-parameter="pwd"
+            username-parameter="userName"
+            />
+            
+        <logout 
+        	logout-success-url="/auth/login.jsp" 
+        	logout-url="/auth/logout.htm"
+        	/>
+        
         <access-denied-handler error-page="/auth/login.jsp?authorization_error=2"/>
         <anonymous/>
+        
         <csrf disabled="true"/>
     </http>
 
