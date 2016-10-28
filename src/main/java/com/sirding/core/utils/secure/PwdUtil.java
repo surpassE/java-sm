@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
+import org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder;
 
 /**
  * 基于java.security.MessageDigest + Base64实现密码加盐、加密操作
@@ -212,5 +213,13 @@ public class PwdUtil {
 		System.out.println("---------指定MD5算法、盐值、加密次数-------------");
 		result = encrypt(password, "MD5", "Hello world", 10).toHex();
 		System.out.println("加密后：" + result);
+		
+		
+		System.out.println(encrypt("admin", "MD5", "admin", 1));
+		System.out.println(encrypt("sirding", "MD5", "admin", 1));
+		
+		MessageDigestPasswordEncoder mdpe = new MessageDigestPasswordEncoder("MD5");
+		String msg = mdpe.encodePassword("sirding", "admin");
+		System.out.println(msg);
 	}
 }

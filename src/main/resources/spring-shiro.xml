@@ -18,7 +18,7 @@
 	<!-- ================= 缓存配置 ========start============== -->
 	<bean id="redisManager" class="org.crazycake.shiro.RedisManager">
 		<description>使用第三方redi缓存管理</description>
-	    <property name="host" value="119.253.134.199" />
+	    <property name="host" value="127.0.0.1" />
 	    <property name="port" value="2185" />
 	    <property name="timeout" value="5000" />
 	</bean>

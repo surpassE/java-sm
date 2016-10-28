@@ -42,7 +42,7 @@
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-			<url>http://119.253.134.199:8097/nexus/content/repositories/releases</url>
+			<url>http://127.0.0.1:8097/nexus/content/repositories/releases</url>
 		</repository>
 
 		<repository>
@@ -51,7 +51,7 @@
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
-			<url>http://119.253.134.199:8097/nexus/content/repositories/snapshots</url>
+			<url>http://127.0.0.1:8097/nexus/content/repositories/snapshots</url>
 		</repository>
 	</repositories>
 

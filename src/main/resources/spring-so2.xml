@@ -12,20 +12,39 @@
 	<http pattern="/auth/login.jsp" security="none" />  
     <http pattern="/common/**" security="none" />  
     <http pattern="/*.ico" security="none" />
+    <http pattern="/comjs/**" security="none" />
     
-    <http use-expressions="false" authentication-manager-ref="authenticationManager">
-        <intercept-url pattern="/sec/**" access="ROLE_USER,ROLE_UNITY,ROLE_MOBILE"/>
+    <!-- 
+    	use-expressions:
+    		是否启用SpEL表达式，如果设置为true,那么【access="hasRole("USER")】，ROLE的前缀可以自己定义，只需要重新定义
+    		org.springframework.security.access.vote.RoleVoter中rolePrefix属性即可
+    	auto-config:
+    		自动注入授权、验证等的filter、默认为false，版本4.0.x默认加载11个filter
+		form-login:
+			此标签下的节点配置的具体意义参考官方文档，重点说明【login-processing-url="/auth/adminLogin.htm"】
+			/auth/adminLogin.htm一定要是你登录的controller，如果不是那么你登录过程中将无法执行custUserDetailService
+			中的验证授权的操作，即使你操作controller中完成用户的登录验证，进入到主页面，但依然没有任何权限；
+			此部分验证过org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter类，但
+			执行类之前先要执行其父类的中逻辑，具体验证流程如下：
+			在(1)org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter#doFilter中调用
+			本类中的(2)requiresAuthentication方法，然后调用(3)boolean org.springframework.security.web.util.matcher.AntPathRequestMatcher.matches(HttpServletRequest request)
+			进行判断，其中方法最后matcher.matches(url)中url就是login-processing-url设置的值，如果不匹配，那么在(1)中的执行就会中断，导致自定义的
+			custUserDetailService不能被执行，无法执行授权操作，最终结果，虽然进入自定义controller，但是没有任何操作权限。
+			
+     -->
+     
+    <http use-expressions="false" 
+    	authentication-manager-ref="authenticationManager"
+    	access-decision-manager-ref="UnanimousAccessDecisionManager"
+    	>
+        <intercept-url pattern="/sec/**" access="ROLE_USER,ROLE_ADMIN"/>
         <intercept-url pattern="/auth/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-       <!--  <intercept-url pattern="/sec/**" access="hasRole('USER')"/>
-        <intercept-url pattern="/auth/**" access="hasRole('ANONYMOUS')"/>
-        <intercept-url pattern="/**" access="hasRole('ANONYMOUS')"/> -->
-
         <form-login 
         	authentication-failure-url="/auth/login.jsp" 
         	default-target-url="/auth/adminLogin.htm"
             login-page="/auth/login.jsp" 
-            login-processing-url="/shiro/home.jsp"
+            login-processing-url="/auth/adminLogin.htm"
             password-parameter="pwd"
             username-parameter="userName"
             />
@@ -40,19 +59,42 @@
         
         <csrf disabled="true"/>
     </http>
-
+    
+    <!-- 
+    	进入投票控制,默认为org.springframework.security.access.vote.AffirmativeBased一票通过决策策略，
+    	如下定义为一票否决策略，AffirmativeBased默认加载了RoleVoter、AuthenticatedVoter投票接口，如果要使用如下
+    	一票否决策略，应在<http>中添加【access-decision-manager-ref="UnanimousAccessDecisionManager"】
+    	来替换默认一票通过策略
+     -->
+    <beans:bean id="UnanimousAccessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased">
+    	<beans:constructor-arg>
+    		<beans:list>
+    			<beans:bean class="org.springframework.security.access.vote.RoleVoter" />
+    			<beans:bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
+    		</beans:list>
+    	</beans:constructor-arg>
+    </beans:bean>
+    
+    <!-- 验证 与授权的核心配置，几乎穿梭于整个请求过程 -->
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider ref="authenticationProvider" />
 	</authentication-manager>
 
+	<!-- 通过custUserDetailService验证用户并执行授权操作 -->
 	<beans:bean id="authenticationProvider"	class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<beans:property name="userDetailsService" ref="custUserDetailService" />
 		<beans:property name="passwordEncoder" ref="passwordEncoder" />
 		<beans:property name="saltSource" ref="saltSource" />
 	</beans:bean>
 
+	<!-- 
+		用户的密码的加密方式 ，此接口已经被废弃，建议使用
+		org.springframework.security.crypto.password.PasswordEncoder
+		进行加密操作
+	-->
 	<beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
 	<beans:bean id="saltSource"	class="org.springframework.security.authentication.dao.ReflectionSaltSource">
 		<beans:property name="userPropertyToUse" value="username" />
 	</beans:bean>
+	
 </beans:beans>

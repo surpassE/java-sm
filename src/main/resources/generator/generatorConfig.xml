@@ -44,7 +44,7 @@
 			
 		<!-- 配置数据库的连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://119.253.134.199:8098/java_stu" userId="dzc4test"
+			connectionURL="jdbc:mysql://localhost:8098/java_stu" userId="dzc4test"
 			password="dzc4test@123">
 		</jdbcConnection>
 

@@ -30,21 +30,21 @@ public class CustUserDetailServiceImpl implements CustUserDetailService {
 	@Override
 	public UserDetails loadUserByUsername(String username)	throws UsernameNotFoundException {
 		LoggerUtils.debugForTest(getClass(), "到底有没有执行这里......");
-		String[] arr = username.split("-");
+		String[] arr = new String[]{"1", username};
 		String pos = arr[0];
 		username = arr[1];
 		String password = "";
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority("USER"));
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		if(UserType.APP_USER.toString().equalsIgnoreCase(pos)){
+		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		if(String.valueOf(UserType.APP_USER.getValue()).equalsIgnoreCase(pos)){
 			AppUser appUser = new AppUser();
 			appUser.setLoginName(username);
 			List<AppUser> list = this.appUserService.findList(appUser);
 			if(list != null && list.size() > 0){
 				password = list.get(0).getLoginPwd();
 			}
-		}else if(UserType.APP_SYS_USER.toString().equalsIgnoreCase(pos)){
+		}else if(String.valueOf(UserType.APP_SYS_USER.getValue()).equalsIgnoreCase(pos)){
 			AppSysUser appSysUser = new AppSysUser();
 			appSysUser.setLoginName(username);
 			List<AppSysUser> list = this.appSysUserService.findList(appSysUser);

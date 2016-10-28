@@ -13,7 +13,7 @@ import org.apache.shiro.web.filter.authz.RolesAuthorizationFilter;
 import org.apache.shiro.web.filter.authz.SslFilter;
 import org.apache.shiro.web.filter.authc.UserFilter;
 
-/*********************************************************/
+/**********************默认的security的12filter***********************************/
 
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.context.SecurityContextPersistenceFilter;
@@ -28,15 +28,25 @@ import org.springframework.security.web.session.SessionManagementFilter;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
+
+/**********************************************************************/
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
+import org.springframework.security.access.vote.AffirmativeBased;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+
+import org.springframework.security.web.FilterChainProxy;
+
 
 public class DefaultFilter {
 
 	public void test(){
-		
-		
-		
+
+	
+	
+	
+	
 	}
 }
 

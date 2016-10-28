@@ -22,7 +22,7 @@
 	<!-- redis 配置,也可以把配置挪到properties配置文件中,再读取 -->
 	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
 		<constructor-arg index="0" ref="jedisPoolConfig" />
-	    <constructor-arg index="1" value="119.253.134.199" name="host" type="java.lang.String"/>
+	    <constructor-arg index="1" value="127.0.0.1" name="host" type="java.lang.String"/>
 	    <constructor-arg index="2" value="2185"  name="port" type="int"/>
 	    <constructor-arg index="3" value="5000"  name="timeout" type="int"/>
 	</bean>

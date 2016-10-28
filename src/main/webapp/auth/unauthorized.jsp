@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-Sorry，你个low鸡...<br/>
+Sorry，你个low鸡...木有权限<br/>
 <a href="/auth/login.jsp">哪来回哪去...</a>
 </body>
 </html>
