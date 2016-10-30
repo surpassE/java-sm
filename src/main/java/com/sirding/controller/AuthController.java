@@ -34,9 +34,9 @@ public class AuthController {
 	@RequestMapping("/login")
 	public String login(String userName, String pwd){
 		if(!this.authStatus(userName, pwd, UserType.APP_USER)){
-			return "shiro/home";
+			return "/home";
 		}
-		return "shiro/home";
+		return "home";
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class AuthController {
 //		if(!this.authStatus(userName, pwd, UserType.APP_SYS_USER)){
 //			return "redirect:/auth/login.jsp";
 //		}
-		return "shiro/home";
+		return "home";
 	}
 	
 	/**
