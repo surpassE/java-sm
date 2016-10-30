@@ -13,6 +13,7 @@
     <http pattern="/common/**" security="none" />  
     <http pattern="/*.ico" security="none" />
     <http pattern="/comjs/**" security="none" />
+    <http pattern="/template/**" security="none" />
     
     <!-- 
     	use-expressions:
@@ -30,7 +31,13 @@
 			本类中的(2)requiresAuthentication方法，然后调用(3)boolean org.springframework.security.web.util.matcher.AntPathRequestMatcher.matches(HttpServletRequest request)
 			进行判断，其中方法最后matcher.matches(url)中url就是login-processing-url设置的值，如果不匹配，那么在(1)中的执行就会中断，导致自定义的
 			custUserDetailService不能被执行，无法执行授权操作，最终结果，虽然进入自定义controller，但是没有任何操作权限。
+		log-out：
+			【(a)logout-success-url="/auth/login.jsp"】与【(b)success-handler-ref="custLogoutSuccessHandler"】二者只能配置一个
+			如果配置a，那么执行退出后直接重定向到目标jsp页面，如果配置b那么可以在执行玩LogoutFilter后还可以添加自定义的逻辑，通过设置
+			setDefaultTargetUrl再次重定向到指定的jsp页面，方便扩展。
 			
+			【logout-url="/auth/logout.htm"】如果controller中也配置了响应控制，那么将不走controller的接口， 因为在LogoutFilter中就已经
+			进行重定向了，而且"/auth/logout.htm"要与也页面中的退出操作的url目标一致，这样才能进LogoutFilter过滤器
      -->
      
     <http use-expressions="false" 
@@ -50,7 +57,7 @@
             />
             
         <logout 
-        	logout-success-url="/auth/login.jsp" 
+        	logout-success-url="/auth/login.jsp"
         	logout-url="/auth/logout.htm"
         	/>
         
@@ -59,6 +66,8 @@
         
         <csrf disabled="true"/>
     </http>
+    
+    <beans:bean id="custLogoutSuccessHandler" class="com.sirding.core.security.handler.CustLogoutSuccessHandler" />
     
     <!-- 
     	进入投票控制,默认为org.springframework.security.access.vote.AffirmativeBased一票通过决策策略，

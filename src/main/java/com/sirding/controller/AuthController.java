@@ -98,13 +98,9 @@ public class AuthController {
 	
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session){
-//		Subject subject = SecurityUtils.getSubject();
-//		Session shiroSession = subject.getSession();
-//		String msg = (String)shiroSession.getAttribute("sirding");
-//		subject.logout();		
-		String msg = CustTokenManager.getString("sirding");
-		logger.debug("从shiro的sesion中取值：" + msg);
-		CustTokenManager.getSubject().logout();
+//		String msg = CustTokenManager.getString("sirding");
+//		logger.debug("从shiro的sesion中取值：" + msg);
+//		CustTokenManager.getSubject().logout();
 		return "redirect:/auth/login.jsp";
 	}
 	
