@@ -26,12 +26,14 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
+/*********************************************************************/
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter;
+
 
 public class DefaultSecurityFilter {
 
 	public void test(){
 
-	
 	
 	}
 }

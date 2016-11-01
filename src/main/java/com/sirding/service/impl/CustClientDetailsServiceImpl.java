@@ -4,6 +4,7 @@ import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.stereotype.Service;
 
+import com.sirding.core.utils.LoggerUtils;
 import com.sirding.service.CustClientDetailsService;
 
 /**
@@ -16,7 +17,7 @@ public class CustClientDetailsServiceImpl implements CustClientDetailsService{
 	
 	@Override
 	public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
-		
+		LoggerUtils.debugForTest(getClass(), clientId);
 		return null;
 	}
 
