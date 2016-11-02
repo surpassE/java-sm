@@ -24,6 +24,6 @@
 	<input type="submit" value="ok" />
 </form>
 <br/>
-<a href="http://localhost:8080/oauth/token?grant_type=password&username=mobile&password=123456">GET TOKEN</a>
+<a href="http://localhost:8080/oauth/token?grant_type=password&username=mobile&password=sirding">GET TOKEN</a>
 </body>
 </html>

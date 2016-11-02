@@ -11,6 +11,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sirding.commons.Cons;
 import com.sirding.commons.Cons.UserType;
@@ -47,7 +48,7 @@ public class AuthController {
 	 * @param pwd
 	 * @return
 	 */
-	@RequestMapping("/adminLogin")
+	@RequestMapping(value = "/adminLogin", method=RequestMethod.POST)
 	public String adminLogin(String userName, String pwd){
 //		if(!this.authStatus(userName, pwd, UserType.APP_SYS_USER)){
 //			return "redirect:/auth/login.jsp";

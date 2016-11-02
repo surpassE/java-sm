@@ -219,7 +219,7 @@ public class PwdUtil {
 		System.out.println(encrypt("sirding", "MD5", "admin", 1));
 		
 		MessageDigestPasswordEncoder mdpe = new MessageDigestPasswordEncoder("MD5");
-		String msg = mdpe.encodePassword("sirding", "admin");
+		String msg = mdpe.encodePassword("sirding", "mobile");
 		System.out.println(msg);
 	}
 }
