@@ -14,7 +14,7 @@
 
 <hr>
 <div>
-	<form id="_sysUserForm" action="${pageContext.request.contextPath}/user/addSysUser.htm">
+	<form id="_sysUserForm" action="${pageContext.request.contextPath}/user/addSysUser.htm" method="post">
 		姓名：<input type="text" name="loginName"><br/>
 		密码：<input type="password" name="loginPwd"><br/>
 		状态：<input type="text" name="status"><br/>

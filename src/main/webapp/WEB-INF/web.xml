@@ -7,7 +7,7 @@
 	<display-name>java-sm</display-name>
 <!-- 
 	classpath:spring-oauth2.xml;
-	classpath:spring-so2.xml;
+	classpath:spring-security-oauth2.xml;
 	classpath:spring-shiro.xml;
  -->
 	<context-param>
@@ -15,12 +15,25 @@
 		<param-value>
 			classpath:spring-core.xml;
 			classpath:spring-mybatis.xml;
-			classpath:spring-so2.xml;
+			classpath:spring-security-oauth2.xml;
 			classpath:spring-redis.xml
 		</param-value>
 	</context-param>
 
 
+	<listener>
+		<description>初始化Spring框架</description>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- <listener>
+		<description>防止javabean导致的spring内存溢出监听器</description>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener> -->
+	<listener>
+		<description>初始化项目运行需要的参数</description>
+		<listener-class>com.sirding.core.listener.InitListener</listener-class>
+	</listener>
+	
 	<!-- 配置使用shiro start 
 	<filter>
 		<description>
@@ -84,19 +97,6 @@
     </filter-mapping>
 	<!-- Spring security filter end -->
     
-   	<listener>
-		<description>初始化Spring框架</description>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	<!-- <listener>
-		<description>防止javabean导致的spring内存溢出监听器</description>
-		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-	</listener> -->
-	<listener>
-		<description>初始化项目运行需要的参数</description>
-		<listener-class>com.sirding.core.listener.InitListener</listener-class>
-	</listener>
-    
 	<servlet>
 		<description>加载SpringMVC配置信息</description>
 		<servlet-name>springMvc</servlet-name>
@@ -106,7 +106,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:spring-mvc.xml</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>2</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springMvc</servlet-name>

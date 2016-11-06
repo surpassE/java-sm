@@ -14,6 +14,17 @@ I'm Home page!<br/>
 <a href="${pageContext.request.contextPath}/sec/toPerm.htm">Go to Perm...</a><br/>
 <a href="${pageContext.request.contextPath}/sec/toRole.htm">Go to Role...</a><br/>
 
+<p>============GET TOKEN============================</p>
+<form action="${pageContext.request.contextPath}/oauth/token.htm" id="authForm" method="post">
+		<input type="hidden" name="client_id" value="mobile"/>
+		<input type="hidden" name="client_secret" value="mobile"/>
+		<input type="hidden" name="grant_type" value="password"/>
+		<input type="hidden" name="scope" value="read write"/>
+		<input type="hidden" name="username" value="mobile"/>
+		<input type="hidden" name="password" value="sirding"/>
+		<input type="submit" value="OK"/>
+		
+	</form>
 <p>============华丽的分割线(angularJS)============================</p>
 
 <p>我的第一个表达式: {{ 5 + 5 + "}"}}</p>
