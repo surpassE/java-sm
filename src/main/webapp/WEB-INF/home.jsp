@@ -15,7 +15,7 @@ I'm Home page!<br/>
 <a href="${pageContext.request.contextPath}/sec/toRole.htm">Go to Role...</a><br/>
 
 <p>============GET TOKEN============================</p>
-<form action="${pageContext.request.contextPath}/oauth/token.htm" id="authForm" method="post">
+<form action="${pageContext.request.contextPath}/oauth/token" id="authForm" method="post">
 		<input type="hidden" name="client_id" value="mobile"/>
 		<input type="hidden" name="client_secret" value="mobile"/>
 		<input type="hidden" name="grant_type" value="password"/>

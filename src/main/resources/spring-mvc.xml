@@ -27,12 +27,12 @@
   	
     <!-- ================406   去掉此部分模块可解决，请求406异常================== -->
 	<!-- 静态资源映射  不配置mvc:annotation只配置mvc:resources将导致SpringMVC无法拦截请求-->
-	<!-- <mvc:annotation-driven/>
+	<!-- <mvc:annotation-driven/> -->
     <mvc:resources mapping="/comjs/**" location="/comjs/"/>
     <mvc:resources mapping="/comcss/**" location="/comcss/"/>
     <mvc:resources mapping="/comjsp/**" location="/comjsp/"/>
     <mvc:resources mapping="/index.jsp*" location="/index.jsp"/>
-    <mvc:resources mapping="/resources/**" location="/resources/"/> -->
+    <mvc:resources mapping="/resources/**" location="/resources/"/> 
     <!-- ================406================== -->
 	  
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
