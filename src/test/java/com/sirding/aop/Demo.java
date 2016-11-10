@@ -17,7 +17,7 @@ public class Demo{
 		Method method = HelloWorld.class.getDeclaredMethod("insertUser");
 		System.out.println("获得方法名称：" + method.getName());
 		Class<?> clazz = HelloWorld.class;
-		boolean matches = aspectJExpressionPointcut.getMethodMatcher().matches(method,clazz);
+		boolean matches = aspectJExpressionPointcut.getMethodMatcher().matches(method, clazz);
 		Assert.assertTrue(matches);
 	}
 }

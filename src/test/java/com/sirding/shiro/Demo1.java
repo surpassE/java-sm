@@ -2,7 +2,6 @@ package com.sirding.shiro;
 
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.config.IniSecurityManagerFactory;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.util.Factory;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.apache.shiro.mgt.SecurityManager;

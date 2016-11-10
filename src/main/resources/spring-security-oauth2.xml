@@ -98,8 +98,8 @@
     <!-- 授权处理器 -->
     <oauth2:authorization-server client-details-service-ref="clientDetailsService" token-services-ref="tokenServices"
                                  user-approval-handler-ref="oauthUserApprovalHandler"
-                                 user-approval-page="oauth_approval"
-                                 error-page="oauth_error">
+                                 user-approval-page="oauth/approval"
+                                 error-page="oauth/error">
         <oauth2:authorization-code authorization-code-services-ref="jdbcAuthorizationCodeServices"/>
 		<oauth2:implicit />
 		<oauth2:refresh-token />

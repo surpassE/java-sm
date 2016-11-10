@@ -14,7 +14,6 @@ import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.mybatis.model.AppUser;
 import com.sirding.service.AppSysUserService;
 import com.sirding.service.AppUserService;
-import com.sirding.service.UserService;
 
 /**
  * 
@@ -25,9 +24,6 @@ import com.sirding.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 	private final static Logger logger = Logger.getLogger(UserController.class);
-	
-	@Autowired
-	private UserService userService;
 	
 	@Autowired
 	private AppUserService appUserService;
@@ -43,7 +39,6 @@ public class UserController {
 	@RequestMapping("/findUser")
 	public String findUser(){
 		logger.debug("进入findUser接口...");
-		this.userService.findUser(0);
 		return "user/userList";
 	}
 	
