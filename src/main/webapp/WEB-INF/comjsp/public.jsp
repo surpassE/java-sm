@@ -5,4 +5,5 @@
 <script src="<%=request.getContextPath() %>/comjs/bootstrap/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath() %>/comjs/angular/angular.min.js"></script>
 
+<script src="<%=request.getContextPath() %>/comjs/jquery-3.1.1.min.js"></script>
 

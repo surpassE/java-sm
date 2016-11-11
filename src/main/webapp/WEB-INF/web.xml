@@ -12,7 +12,7 @@
 			classpath:spring-core.xml;
 			classpath:spring-mybatis.xml;
 			<!-- classpath:spring-shiro.xml; -->
-			classpath:spring-security-oauth2.xml;
+			classpath:spring-security.xml;
 			classpath:spring-redis.xml
 		</param-value>
 	</context-param>

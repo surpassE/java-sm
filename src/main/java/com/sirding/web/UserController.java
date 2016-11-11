@@ -21,7 +21,7 @@ import com.sirding.service.AppUserService;
  * @date 2016年9月14日
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/")
 public class UserController {
 	private final static Logger logger = Logger.getLogger(UserController.class);
 	
@@ -36,8 +36,8 @@ public class UserController {
 	 * @author zc.ding
 	 * @return
 	 */
-	@RequestMapping("/findUser")
-	public String findUser(){
+	@RequestMapping("userList")
+	public String userList(AppUser obj){
 		logger.debug("进入findUser接口...");
 		return "user/userList";
 	}
@@ -48,14 +48,9 @@ public class UserController {
 		return "shiro/home";
 	}
 	
-	@RequestMapping("toUser")
-	public String toUser(){
-		return "user/userList";
-	}
-	
 	@RequestMapping("addUser")
-	public String addUser(AppUser appUser){
-		
+	public String addUser(AppUser obj){
+		this.appUserService.add(obj);
 		return "redirect:uert/toUser.htm";
 	}
 	
@@ -66,7 +61,7 @@ public class UserController {
 	
 	@RequestMapping("sysUserList")
 	@ResponseBody
-	public List<AppSysUser> sysUserList(){
+	public List<AppSysUser> sysUserList(AppSysUser obj){
 		return this.appSysUserService.findList(null);
 	}
 	
