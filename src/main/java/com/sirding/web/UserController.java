@@ -30,53 +30,77 @@ public class UserController {
 	@Autowired
 	private AppSysUserService appSysUserService;
 	
+	//***********应用用户管理******************* 华丽分割线 *******************************
 	/**
 	 * 
 	 * @date 2016年9月14日
 	 * @author zc.ding
 	 * @return
 	 */
-	@RequestMapping("userList")
-	public String userList(AppUser obj){
-		logger.debug("进入findUser接口...");
+	@RequestMapping("toUser")
+	public String toUser(AppUser obj){
+		logger.debug("进入应用管理用户界面");
 		return "user/userList";
 	}
 	
-	@RequestMapping("/toHome")
-	public String toHome(){
-		logger.debug("进入主页");
-		return "shiro/home";
-	}
-	
+	/**
+	 * 添加应用用户信息
+	 * @param obj
+	 * @return
+	 * @author zc.ding
+	 * @date 2016年11月13日
+	 */
 	@RequestMapping("addUser")
 	public String addUser(AppUser obj){
 		this.appUserService.add(obj);
 		return "redirect:uert/toUser.htm";
 	}
 	
-	@RequestMapping("toSysUser")
-	public String toSysUser(){
-		return "user/sysuser";
+	public ModelAndView delUser(AppUser obj){
+		ModelAndView mav = new ModelAndView("user/userList");
+		return mav;
 	}
 	
-	@RequestMapping("sysUserList")
+	/**
+	 * 查询应用用户信息
+	 * @param obj
+	 * @return
+	 * @author zc.ding
+	 * @date 2016年11月13日
+	 */
+	@RequestMapping("userList")
 	@ResponseBody
-	public List<AppSysUser> sysUserList(AppSysUser obj){
-		return this.appSysUserService.findList(null);
+	public List<AppUser> userList(AppUser obj){
+		return this.appUserService.findList(null);
+	}
+	
+	//**************系统用户管理************* 华丽分割线 *************************
+	
+	@RequestMapping("toSysUser")
+	public String toSysUser(){
+		logger.debug("系统用户管理页面");
+		return "user/sysUserList";
 	}
 	
 	@RequestMapping("addSysUser")
 	public ModelAndView addSysUser(AppSysUser obj){
-		ModelAndView mav = new ModelAndView("user/sysuser");
+		ModelAndView mav = new ModelAndView("user/sysUserList");
 		this.appSysUserService.add(obj);
 		return mav;
 	}
 	
 	@RequestMapping("delSysUser")
 	public ModelAndView delSysUser(AppSysUser obj){
-		ModelAndView mav = new ModelAndView("user/sysuser");
+		ModelAndView mav = new ModelAndView("user/sysUserList");
 		this.appSysUserService.del(obj.getId());
 		return mav;
+	}
+	
+	@RequestMapping(value="sysUserList")
+	@ResponseBody
+	public List<AppSysUser> sysUserList(AppSysUser obj){
+		List<AppSysUser> list = this.appSysUserService.findList(null);
+		return list;
 	}
 	
 	@RequestMapping(value = "findSysUser", method = RequestMethod.POST)

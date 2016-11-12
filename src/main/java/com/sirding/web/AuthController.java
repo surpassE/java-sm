@@ -1,5 +1,6 @@
 package com.sirding.web;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -11,7 +12,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sirding.commons.Cons;
 import com.sirding.commons.Cons.UserType;
@@ -20,10 +21,32 @@ import com.sirding.core.utils.LoggerUtils;
 import com.sirding.core.utils.secure.PwdUtil;
 
 @Controller
-@RequestMapping("/auth")
+@RequestMapping("/")
 public class AuthController {
 	
 	Logger logger = Logger.getLogger(AuthController.class);
+	
+	@RequestMapping("/")
+	public String index(){
+		return "redirect:sysLogin";
+	}
+	
+	/**
+	 * 进入管理员登录页面
+	 * @return
+	 * @author zc.ding
+	 * @date 2016年11月12日
+	 */
+	@RequestMapping("sysLogin")
+	public String sysLogin(){
+		return "sysLogin";
+	}
+	
+	@RequestMapping("toHome")
+	public String toHome(HttpServletRequest request){
+		logger.debug("接收重定向前的属性:" + request.getParameter("test"));
+		return "home";
+	}
 
 	/**
 	 * 验证应用用户信息
@@ -33,7 +56,7 @@ public class AuthController {
 	 * @param pwd
 	 * @return
 	 */
-	@RequestMapping("/login")
+	@RequestMapping("login")
 	public String login(String userName, String pwd){
 		if(!this.authStatus(userName, pwd, UserType.APP_USER)){
 			return "/home";
@@ -49,13 +72,15 @@ public class AuthController {
 	 * @param pwd
 	 * @return
 	 */
-	@RequestMapping(value = "/adminLogin")
-	public String adminLogin(String userName, String pwd){
+	@RequestMapping(value = "adminLogin")
+	public ModelAndView adminLogin(String userName, String pwd){
 //		if(!this.authStatus(userName, pwd, UserType.APP_SYS_USER)){
 //			return "redirect:/auth/login.jsp";
 //		}
+		ModelAndView view = new ModelAndView("redirect:toHome");
 		LoggerUtils.debugForTest(getClass(), "执行controller中的方法...");
-		return "home";
+		view.addObject("test", "test");
+		return view;
 	}
 	
 	/**
@@ -99,7 +124,7 @@ public class AuthController {
 		return success;
 	}
 	
-	@RequestMapping(value="/logout")
+	@RequestMapping(value="logout")
 	public String logout(HttpSession session){
 //		String msg = CustTokenManager.getString("sirding");
 //		logger.debug("从shiro的sesion中取值：" + msg);

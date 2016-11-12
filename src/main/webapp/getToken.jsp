@@ -9,7 +9,7 @@
 <body>
 	
 	<form action="${pageContext.request.contextPath}/oauth/token" id="authForm" method="post">
-		<input type="hidden" name="client_id" value="mobile"/>
+		<input type="hidden" name="client_id" value="mobile-client"/>
 		<input type="hidden" name="client_secret" value="mobile"/>
 		<input type="hidden" name="grant_type" value="password"/>
 		<input type="hidden" name="scope" value="read write"/>

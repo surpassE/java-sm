@@ -23,11 +23,21 @@
 		<input type="submit" value="添加一个呗">
 	</form>
 </div>
+<a href="/auth/login.jsp">Go Home...</a><br/>
+<a href="/auth/logout.htm">Logout...</a><br/>
 
 </body>
 <script type="text/javascript">
+
+$(function(){
+	$.post("http://localhost:8080/user/sysUserList", { },
+		function (data, textStatus){
+			console(data);
+		}, "json");
+});
+
 var sysUserNg = angular.module("sysUserNg", []).controller("sysUserController", function($scope, $http){
-	$http.post('/user/sysUserList.htm', {}, {}).then(function(response){
+	$http.post('/user/sysUserList', {}, {}).then(function(response){
 		$scope.sysUsers = response.data;
 	}, function(response){
 		

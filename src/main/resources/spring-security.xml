@@ -173,9 +173,9 @@
         <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <form-login 
         	authentication-failure-url="/auth/login.jsp" 
-        	default-target-url="/auth/adminLogin.htm"
-            login-page="/auth/login.jsp" 
-            login-processing-url="/auth/adminLogin.htm"
+        	default-target-url="/adminLogin"
+            login-page="/sysLogin" 
+            login-processing-url="/adminLogin"
             password-parameter="pwd"
             username-parameter="userName"
             />

@@ -10,7 +10,8 @@
 </head>
 <body ng-controller="PhoneListCtrl">
 I'm Home page!<br/>
-<a href="${pageContext.request.contextPath}/user/toSysUser.htm">Go to User...</a><br/>
+<a href="${pageContext.request.contextPath}/user/toSysUser.htm">Go to SysUser...</a><br/>
+<a href="${pageContext.request.contextPath}/user/toUser">Go to User...</a><br/>
 <a href="${pageContext.request.contextPath}/sec/toPerm.htm">Go to Perm...</a><br/>
 <a href="${pageContext.request.contextPath}/sec/toRole.htm">Go to Role...</a><br/>
 

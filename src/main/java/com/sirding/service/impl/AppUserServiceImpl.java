@@ -46,7 +46,9 @@ public class AppUserServiceImpl implements AppUserService {
 	public List<AppUser> findList(AppUser record) {
 		AppUserExample example = new AppUserExample();
 		AppUserExample.Criteria criteria = example.createCriteria();
-		criteria.andLoginNameEqualTo(record.getLoginName());
+		if(record != null){
+			criteria.andLoginNameEqualTo(record.getLoginName());
+		}
 		return this.appUserMapper.selectByExample(example);
 	}
 

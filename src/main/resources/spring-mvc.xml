@@ -31,7 +31,7 @@
     <mvc:resources mapping="/comjs/**" location="/comjs/"/>
     <mvc:resources mapping="/comcss/**" location="/comcss/"/>
     <mvc:resources mapping="/comjsp/**" location="/comjsp/"/>
-    <mvc:resources mapping="/index.jsp*" location="/index.jsp"/>
+    <mvc:resources mapping="/index.jsp" location="/index.jsp"/>
     <mvc:resources mapping="/resources/**" location="/resources/"/> 
     <!-- ================406================== -->
 	  

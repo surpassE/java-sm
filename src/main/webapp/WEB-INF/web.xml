@@ -118,7 +118,8 @@
 	<!-- <error-page> <error-code>404</error-code> <location>/error/404.jsp</location> 
 		</error-page> <error-page> <error-code>500</error-code> <location>/error/500.jsp</location> 
 		</error-page> -->
-	<welcome-file-list>
-		<welcome-file>auth/login.jsp</welcome-file>
-	</welcome-file-list>
+	<!-- 当SpringMVC配置拦截"/"时，默认如下配置失效，通过定义默认的com.sirding.web.IndexController进入主页 -->
+	<!-- <welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list> -->
 </web-app>
