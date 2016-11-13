@@ -10,11 +10,13 @@
 
 
 	<http pattern="/auth/login.jsp" security="none" />  
-    <http pattern="/common/**" security="none" />  
     <http pattern="/*.ico" security="none" />
-    <http pattern="/comjs/**" security="none" />
     <http pattern="/template/**" security="none" />
-    <http pattern="/user/**" security="none" />
+    <http pattern="/css/**" security="none" />
+    <http pattern="/img/**" security="none" />
+    <http pattern="/fonts/**" security="none" />
+    <http pattern="/js/**" security="none" />
+    <http pattern="/layout/**" security="none" />
     
     <!-- *********************** Spring Oauth2 ****************************************** -->
     
