@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>系统用户</title>
-<jsp:include page="../comjsp/public.jsp"></jsp:include>
+<jsp:include page="/layout/inc.jsp"></jsp:include>
 </head>
 <body>
 

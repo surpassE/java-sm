@@ -28,7 +28,8 @@ public class AuthController {
 	
 	@RequestMapping("/")
 	public String index(){
-		return "redirect:sysLogin";
+//		return "redirect:sysLogin";
+		return "redirect:login.jsp";
 	}
 	
 	/**

@@ -12,13 +12,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.mybatis.model.AppUser;
+import com.sirding.mybatis.model.OauthClientDetails;
 import com.sirding.service.AppSysUserService;
 import com.sirding.service.AppUserService;
+import com.sirding.service.OauthClientDetailsService;
+
 
 /**
- * 
- * @author zc.ding
- * @date 2016年9月14日
+ * @Described	: 账户管理
+ * @project		: com.sirding.web.UserController
+ * @author 		: zc.ding
+ * @date 		: 2016年11月15日
  */
 @Controller
 @RequestMapping("/user/")
@@ -29,6 +33,8 @@ public class UserController {
 	private AppUserService appUserService;
 	@Autowired
 	private AppSysUserService appSysUserService;
+	@Autowired
+	private OauthClientDetailsService oauthClientDetailsService;
 	
 	//***********应用用户管理******************* 华丽分割线 *******************************
 	/**
@@ -114,5 +120,24 @@ public class UserController {
 		}
 		return null;
 	}
-
+	
+	
+	//********************************* oauth 管理 *********************************
+	
+	/**
+	 * 
+	 * @Described	: 进入clent detail信息配置页面
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月15日
+	 * @return		: ModelAndView
+	 */
+	@RequestMapping(value = "toClientDetail")
+	public ModelAndView toClientDtail(){
+		ModelAndView view = new ModelAndView("oauth/clientDetails");
+//		List<CustClientDetails> list = this.custClientDetailsService.findClientDetails();
+		List<OauthClientDetails> list = this.oauthClientDetailsService.findList(null);
+		view.addObject("list", list);
+		return view;
+	}
+	
 }

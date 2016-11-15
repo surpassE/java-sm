@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<jsp:include page="/layout/inc.jsp"></jsp:include>
+<%-- <jsp:include page="layout/inc.jsp"></jsp:include --%>>
 
 <title>找回密码</title>
 </head>

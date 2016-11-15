@@ -63,7 +63,8 @@
 	<oauth2:resource-server id="mobileResourceServer" resource-id="mobile-resource" token-services-ref="tokenServices" />
 
 	<!-- 用于管理oauth_client_detail信息 -->
-	<beans:bean id="clientDetailsService" class="org.springframework.security.oauth2.provider.client.JdbcClientDetailsService">
+<!-- 	<beans:bean id="clientDetailsService" class="org.springframework.security.oauth2.provider.client.JdbcClientDetailsService"> -->
+	<beans:bean id="clientDetailsService" class="com.sirding.core.oauth2.CustJdbcClientDetailsService">
 		<beans:constructor-arg index="0" ref="dataSource" />
 	</beans:bean>
 
@@ -174,7 +175,7 @@
         <!-- <intercept-url pattern="/auth/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/> -->
         <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <form-login 
-        	authentication-failure-url="/auth/login.jsp" 
+        	authentication-failure-url="/login.jsp" 
         	default-target-url="/adminLogin"
             login-page="/sysLogin" 
             login-processing-url="/adminLogin"

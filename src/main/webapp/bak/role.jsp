@@ -3,7 +3,7 @@
 <html ng-app="roleNg" ng-controller="roleController">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<jsp:include page="../comjsp/public.jsp"></jsp:include>
+<jsp:include page="/layout/inc.jsp"></jsp:include>
 <title>角色管理</title>
 </head>
 <body>
