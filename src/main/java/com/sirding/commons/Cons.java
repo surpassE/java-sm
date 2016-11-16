@@ -4,6 +4,10 @@ public class Cons {
 	
 	//用户 类型
 	public static final String USER_TYPE = "USER_TYPE";
+	//防重复提交的token
+	public static final String REPEAT_TOKEN = "REPEAT_TOKEN";
+	//错误提示信息
+	public static final String ERR_MSG = "errMsg";
 
 	/**
 	 * 标志用户的类型

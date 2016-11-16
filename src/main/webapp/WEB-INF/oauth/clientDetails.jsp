@@ -24,7 +24,7 @@
 	    </div>
 	    <div class="col-md-2">
 	        <div class="pull-right">
-	            <a href="register_client" class="btn btn-success btn-sm">注册client</a>
+	            <a href="toRegistClient" class="btn btn-success btn-sm">注册client</a>
 	        </div>
 	    </div>
 	</div>
@@ -70,11 +70,13 @@
 	
 	    </ul>
 	    <p class="help-block">
-	        每一个item对应<code>oauth_client_details</code>表中的一条数据; 共<strong>${fun:length(list)}</strong>条数据.
+	        每一个item对应<code>oauth_client_details</code>表中的一条数据; 共<code><strong>${fun:length(list)}</strong></code>条数据.
 	        <br/>
+	        <!-- 
 	        对spring-oauth-server数据库表的详细说明请访问
 	        <a href="http://andaily.com/spring-oauth-server/db_table_description.html" target="_blank">http://andaily.com/spring-oauth-server/db_table_description.html</a>
 	        (或访问项目others目录的db_table_description.html文件)
+	         -->
 	    </p>
 	</div>
 </div>

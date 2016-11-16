@@ -2,6 +2,8 @@ package com.sirding.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sirding.base.BaseController;
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.mybatis.model.AppUser;
 import com.sirding.mybatis.model.OauthClientDetails;
@@ -26,7 +29,7 @@ import com.sirding.service.OauthClientDetailsService;
  */
 @Controller
 @RequestMapping("/user/")
-public class UserController {
+public class UserController extends BaseController {
 	private final static Logger logger = Logger.getLogger(UserController.class);
 	
 	@Autowired
@@ -134,9 +137,38 @@ public class UserController {
 	@RequestMapping(value = "toClientDetail")
 	public ModelAndView toClientDtail(){
 		ModelAndView view = new ModelAndView("oauth/clientDetails");
-//		List<CustClientDetails> list = this.custClientDetailsService.findClientDetails();
 		List<OauthClientDetails> list = this.oauthClientDetailsService.findList(null);
 		view.addObject("list", list);
+		return view;
+	}
+	
+	/**
+	 * @Described	: 进入oauth client detail 注册页面
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月16日
+	 * @return		: ModelAndView
+	 * @return
+	 */
+	@RequestMapping(value = "toRegistClient")
+	public ModelAndView toRegistClient(HttpServletRequest request){
+		return super.getTokenView(request, "oauth/registClient");
+	}
+	
+	/**
+	 * @Described	: 注册client，添加oauth_client_details数据
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月17日
+	 * @return		: ModelAndView
+	 * @param object
+	 */
+	@RequestMapping(value = "registClient", method = RequestMethod.POST)
+	public ModelAndView registClient(HttpServletRequest request, OauthClientDetails object){
+		ModelAndView view = new ModelAndView("redirct:toClientDetail");
+		//验证token防止重复提交
+		if(!super.validateToken(request)){
+			return super.backView("oauth/registClient", "client", object);
+		}
+		this.oauthClientDetailsService.add(object);
 		return view;
 	}
 	
