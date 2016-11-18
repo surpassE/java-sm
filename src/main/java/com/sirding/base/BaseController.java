@@ -1,16 +1,26 @@
 package com.sirding.base;
 
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sirding.commons.Cons;
+import com.sirding.core.utils.TokenUtil;
+import com.sirding.mybatis.model.AppSysUser;
+import com.sirding.mybatis.model.AppUser;
 
+/**
+ * @Described	: controller基类
+ * @project		: com.sirding.base.BaseController
+ * @author 		: zc.ding
+ * @date 		: 2016年11月18日
+ */
 public abstract class BaseController {
 	private final Logger logger = Logger.getLogger(getClass());
 
@@ -19,15 +29,27 @@ public abstract class BaseController {
 	 * @author		: zc.ding
 	 * @date 		: 2016年11月16日
 	 * @return		: ModelAndView	含有token的请求
-	 * @param request
 	 * @param uri
 	 */
-	protected ModelAndView getTokenView(HttpServletRequest request, String uri){
-		HttpSession session = request.getSession();
+	protected ModelAndView getTokenView(String uri){
+		return this.getTokenView(this.getSession(), uri);
+	}
+	
+	/**
+	 * @Described	: 获得含有token的视图对象
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月16日
+	 * @return		: ModelAndView	含有token的请求
+	 * @param session
+	 * @param uri
+	 */
+	protected ModelAndView getTokenView(HttpSession session, String uri){
 		ModelAndView view = new ModelAndView(uri);
-		String token = UUID.randomUUID().toString();
-		view.addObject("token", token);
-		session.setAttribute(Cons.REPEAT_TOKEN, token);
+		String token = TokenUtil.getToken();
+		view.addObject(Cons.RESUBMIT_TOKEN, token);
+		view.addObject(Cons.CSRF_TOKEN, token);
+		session.setAttribute(Cons.RESUBMIT_TOKEN, token);
+		session.setAttribute(Cons.CSRF_TOKEN, token);
 		logger.info("生成的token：" + token);
 		return view;
 	}
@@ -40,31 +62,35 @@ public abstract class BaseController {
 	 * @param request
 	 */
 	protected boolean validateToken(HttpServletRequest request){
-		HttpSession session = request.getSession();
-		String token = request.getParameter("token");
-		String cmpToken = (String)session.getAttribute(Cons.REPEAT_TOKEN);
-		logger.info("session中存储的token：" + cmpToken + ", 需要验证的token:" + token);
+		boolean flag = false;
+		HttpSession session = this.getSession();
+		String token = request.getParameter(Cons.RESUBMIT_TOKEN);
+		String cmpToken = (String)session.getAttribute(Cons.RESUBMIT_TOKEN);
 		if(token != null && token.equals(cmpToken)){
-			session.removeAttribute(Cons.REPEAT_TOKEN);
-			return true;
+			session.removeAttribute(Cons.RESUBMIT_TOKEN);
+			flag = true;
 		}
-		return false;
+		if(logger.isDebugEnabled()){
+			logger.debug("token验证结果：" + flag + "session中存储的token：" + cmpToken + ", 需要验证的token:" + token);
+			logger.debug("session中存储的token：" + cmpToken);
+			logger.debug("需要验证的token:" + token);
+		}
+		return flag;
 	}
 	
 	/**
-	 * 
 	 * @Described	: 重复提交的请求返回原地址
 	 * @author		: zc.ding
 	 * @date 		: 2016年11月17日
 	 * @return		: ModelAndView
-	 * @param uri
-	 * @param key
-	 * @param object
+	 * @param uri	: 目标地址uri
+	 * @param name	: 
+	 * @param object: 用于在页面中展示的数据信息
 	 */
-	protected ModelAndView backView(String uri, String key, Object object){
+	protected ModelAndView backView(String uri, String name, Object object){
 		ModelAndView view = new ModelAndView(uri);
-		view.addObject(key, object);
-		view.addObject(Cons.ERR_MSG, "此请求已过期");
+		view.addObject(name, object);
+		view.addObject(Cons.ERROR_MSG, "此请求已过期");
 		return view;
 	}
 	
@@ -73,8 +99,8 @@ public abstract class BaseController {
 	 * @author		: zc.ding
 	 * @date 		: 2016年11月17日
 	 * @return		: ModelAndView
-	 * @param uri
-	 * @param map
+	 * @param uri	：目标地址
+	 * @param map	: 需要带回元页面中的数据信息
 	 */
 	protected ModelAndView backView(String uri, Map<String, Object> map){
 		ModelAndView view = new ModelAndView(uri);
@@ -83,8 +109,63 @@ public abstract class BaseController {
 				view.addObject(key, map.get(key));
 			}
 		}
-		view.addObject(Cons.ERR_MSG, "此请求已过期");
+		view.addObject(Cons.ERROR_MSG, "此请求已过期");
 		return view;
 	}
 	
+	/**
+	 * @Described	: 获得请求的session
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月18日
+	 * @return		: HttpSession
+	 * @return
+	 */
+	protected HttpSession getSession(){
+		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
+	}
+	
+	/**
+	 * @Described	: 从session中获得AppUser对象
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月18日
+	 * @return		: AppUser
+	 * @return
+	 */
+	protected AppUser getAppUser(){
+		return (AppUser)this.getSession().getAttribute(Cons.UserType.APP_USER.name());
+	}
+	
+	/**
+	 * 
+	 * @Described	: 从session获得AppSysUser对象
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月18日
+	 * @return		: AppSysUser
+	 * @return
+	 */
+	protected AppSysUser getAppSysUser(){
+		return (AppSysUser)this.getSession().getAttribute(Cons.UserType.APP_SYS_USER.name());
+	}
+	
+	/**
+	 * @Described	: 保存AppUser信息到seesion中
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月18日
+	 * @return		: void
+	 * @param appUser
+	 */
+	protected void saveAppUser(AppUser appUser){
+		this.getSession().setAttribute(Cons.UserType.APP_USER.name(), appUser);
+	}
+
+	/**
+	 * @Described	: 存AppSysUser信息到seesion中
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月18日
+	 * @return		: void
+	 * @param appSysUser
+	 */
+	protected void saveAppSysUser(AppSysUser appSysUser){
+		this.getSession().setAttribute(Cons.UserType.APP_SYS_USER.name(), appSysUser);
+	}
 }

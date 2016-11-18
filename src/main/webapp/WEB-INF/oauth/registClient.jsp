@@ -18,7 +18,7 @@
 <div>
     <div>
         <form class="form-horizontal" action="registClient" method="post">
-        	<input type="hidden" name="token" value="${token}" >
+        	<input type="hidden" name="resubmitToken" value="${resubmitToken}" >
             <div class="form-group">
                 <label for="clientId" class="col-sm-2 control-label">client_id<em class="text-danger">*</em></label>
 

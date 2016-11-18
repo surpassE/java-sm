@@ -3,10 +3,12 @@ package com.sirding.web;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -150,8 +152,8 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "toRegistClient")
-	public ModelAndView toRegistClient(HttpServletRequest request){
-		return super.getTokenView(request, "oauth/registClient");
+	public ModelAndView toRegistClient(HttpServletRequest request, HttpSession session){
+		return super.getTokenView(session, "oauth/registClient");
 	}
 	
 	/**
@@ -163,12 +165,27 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping(value = "registClient", method = RequestMethod.POST)
 	public ModelAndView registClient(HttpServletRequest request, OauthClientDetails object){
-		ModelAndView view = new ModelAndView("redirct:toClientDetail");
+		ModelAndView view = new ModelAndView("redirect:toClientDetail");
 		//验证token防止重复提交
 		if(!super.validateToken(request)){
 			return super.backView("oauth/registClient", "client", object);
 		}
 		this.oauthClientDetailsService.add(object);
+		return view;
+	}
+	
+	/**
+	 * @Described	: 通过clientId删除指定的clientId配置信息
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月19日
+	 * @return		: ModelAndView
+	 * @param clientId
+	 * @return
+	 */
+	@RequestMapping("delClient/{clientId}")
+	public ModelAndView delClient(@PathVariable("clientId") String clientId){
+		ModelAndView view = new ModelAndView("redirect:/user/toClientDetail");
+		this.oauthClientDetailsService.del(clientId);
 		return view;
 	}
 	

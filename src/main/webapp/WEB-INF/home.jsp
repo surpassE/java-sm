@@ -12,7 +12,7 @@
 	<h2>Spring Security&amp;OAuth2
 	    <small class="badge" title="Version">1.0</small>
 	</h2>
-	
+	${resubmitToken } =======
 	<p>
 	    <a href="${contextPath}/login.jsp">Login</a>
 	    &nbsp;|&nbsp;
