@@ -2,13 +2,9 @@ package com.sirding.web;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sirding.base.BaseController;
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.mybatis.model.AppUser;
-import com.sirding.mybatis.model.OauthClientDetails;
 import com.sirding.service.AppSysUserService;
 import com.sirding.service.AppUserService;
 import com.sirding.service.OauthClientDetailsService;
@@ -125,68 +120,4 @@ public class UserController extends BaseController {
 		}
 		return null;
 	}
-	
-	
-	//********************************* oauth 管理 *********************************
-	
-	/**
-	 * 
-	 * @Described	: 进入clent detail信息配置页面
-	 * @author		: zc.ding
-	 * @date 		: 2016年11月15日
-	 * @return		: ModelAndView
-	 */
-	@RequestMapping(value = "toClientDetail")
-	public ModelAndView toClientDtail(){
-		ModelAndView view = new ModelAndView("oauth/clientDetails");
-		List<OauthClientDetails> list = this.oauthClientDetailsService.findList(null);
-		view.addObject("list", list);
-		return view;
-	}
-	
-	/**
-	 * @Described	: 进入oauth client detail 注册页面
-	 * @author		: zc.ding
-	 * @date 		: 2016年11月16日
-	 * @return		: ModelAndView
-	 * @return
-	 */
-	@RequestMapping(value = "toRegistClient")
-	public ModelAndView toRegistClient(HttpServletRequest request, HttpSession session){
-		return super.getTokenView(session, "oauth/registClient");
-	}
-	
-	/**
-	 * @Described	: 注册client，添加oauth_client_details数据
-	 * @author		: zc.ding
-	 * @date 		: 2016年11月17日
-	 * @return		: ModelAndView
-	 * @param object
-	 */
-	@RequestMapping(value = "registClient", method = RequestMethod.POST)
-	public ModelAndView registClient(HttpServletRequest request, OauthClientDetails object){
-		ModelAndView view = new ModelAndView("redirect:toClientDetail");
-		//验证token防止重复提交
-		if(!super.validateToken(request)){
-			return super.backView("oauth/registClient", "client", object);
-		}
-		this.oauthClientDetailsService.add(object);
-		return view;
-	}
-	
-	/**
-	 * @Described	: 通过clientId删除指定的clientId配置信息
-	 * @author		: zc.ding
-	 * @date 		: 2016年11月19日
-	 * @return		: ModelAndView
-	 * @param clientId
-	 * @return
-	 */
-	@RequestMapping("delClient/{clientId}")
-	public ModelAndView delClient(@PathVariable("clientId") String clientId){
-		ModelAndView view = new ModelAndView("redirect:/user/toClientDetail");
-		this.oauthClientDetailsService.del(clientId);
-		return view;
-	}
-	
 }

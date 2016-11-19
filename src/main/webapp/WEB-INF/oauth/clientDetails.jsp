@@ -34,12 +34,12 @@
 	            <li class="list-group-item">
 	                <div class="pull-right">
 	                    <c:if test="${not cli.archived}">
-	                        <a href="test_client/${cli.clientId}">test</a>
+	                        <a href="/oauthClient/toGetAccessToken?clientId=${cli.clientId}">test</a>
 	                        <a href="archive_client/${cli.clientId}" class="text-danger"
 	                           onclick="return confirm('Are you sure archive \'${cli.clientId}\'?')">archive</a>
 	                    </c:if>
 	                    <c:if test="${cli.archived}"><strong class="text-muted">Archived</strong></c:if>
-	                    &nbsp;<strong class="text-muted"><a href="/user/delClient/${cli.clientId}">Delete</a></strong>
+	                    &nbsp;<strong class="text-muted"><a href="/oauthClient/delClient/${cli.clientId}">Delete</a></strong>
 	                </div>
 	                <h3 class="list-group-item-heading">
 	                        ${cli.clientId}

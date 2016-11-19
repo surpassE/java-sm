@@ -1,5 +1,6 @@
 package com.sirding.base;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -167,5 +168,19 @@ public abstract class BaseController {
 	 */
 	protected void saveAppSysUser(AppSysUser appSysUser){
 		this.getSession().setAttribute(Cons.UserType.APP_SYS_USER.name(), appSysUser);
+	}
+	
+	/**
+	 * @Described	: 异步验证数据唯一值得响应结果
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月19日
+	 * @return		: Map<String,Boolean>
+	 * @param flag	: true ：有效(验证的id不存在)  false ：无效
+	 * @return
+	 */
+	protected Map<String, Boolean> getValidateMap(Boolean flag){
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("valid", flag);
+		return map;
 	}
 }

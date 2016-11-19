@@ -12,7 +12,6 @@
 	<h2>Spring Security&amp;OAuth2
 	    <small class="badge" title="Version">1.0</small>
 	</h2>
-	${resubmitToken } =======
 	<p>
 	    <a href="${contextPath}/login.jsp">Login</a>
 	    &nbsp;|&nbsp;
@@ -63,13 +62,7 @@
 	<ul>
 	    <li>
 	        <p>
-	            <a href="resources/api/SOS_API-1.0.html" target="_blank">API</a> <span
-	                class="text-muted">- 查看提供的API文档</span>
-	        </p>
-	    </li>
-	    <li>
-	        <p>
-	            <a href="/user/toClientDetail">client_details</a> <span class="text-muted">- 管理ClientDetails</span>
+	            <a href="/oauthClient/toClientDetail">client_details</a> <span class="text-muted">- 管理ClientDetails</span>
 	        </p>
 	    </li>
 	    <li>

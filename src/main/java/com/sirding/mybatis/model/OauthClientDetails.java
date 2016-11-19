@@ -480,4 +480,34 @@ public class OauthClientDetails implements Serializable {
     public void setAdditionalInformation(String additionalInformation) {
         this.additionalInformation = additionalInformation == null ? null : additionalInformation.trim();
     }
+    
+    /**
+     * add by zc.ding
+     */
+    public boolean isContainsAuthorizationCode() {
+        return this.authorizedGrantTypes.contains("authorization_code");
+    }
+
+    public boolean isContainsPassword() {
+        return this.authorizedGrantTypes.contains("password");
+    }
+
+    public boolean isContainsImplicit() {
+        return this.authorizedGrantTypes.contains("implicit");
+    }
+
+    public boolean isContainsClientCredentials() {
+        return this.authorizedGrantTypes.contains("client_credentials");
+    }
+
+    public boolean isContainsRefreshToken() {
+        return this.authorizedGrantTypes.contains("refresh_token");
+    }
+    
+    public String getScopeWithBlank() {
+        if (scope != null && scope.contains(",")) {
+            return scope.replaceAll(",", " ");
+        }
+        return scope;
+    }
 }

@@ -17,13 +17,13 @@
 
 <div>
     <div>
-        <form class="form-horizontal" action="registClient" method="post">
+        <form id="clientForm" class="form-horizontal" action="registClient" method="post">
         	<input type="hidden" name="resubmitToken" value="${resubmitToken}" >
             <div class="form-group">
                 <label for="clientId" class="col-sm-2 control-label">client_id<em class="text-danger">*</em></label>
 
                 <div class="col-sm-10">
-                    <input name="clientId" class="form-control" id="clientId" placeholder="client_id" required="required"/>
+                    <input name="clientId" class="form-control" id="clientId" placeholder="client_id" />
                     <p class="help-block">
                     	client_id必须输入,且必须唯一,长度至少5位; 在实际应用中的另一个名称叫appKey,与client_id是同一个概念.
                     </p>
@@ -32,7 +32,7 @@
             <div class="form-group">
                 <label for="clientSecret" class="col-sm-2 control-label">client_secret<em class="text-danger">*</em></label>
                 <div class="col-sm-10">
-                    <input name="clientSecret" class="form-control" id="clientSecret" placeholder="client_secret" required="required"/>
+                    <input name="clientSecret" class="form-control" id="clientSecret" placeholder="client_secret" />
                     <p class="help-block">
                     	client_secret必须输入,且长度至少8位; 在实际应用中的另一个名称叫appSecret,与client_secret是同一个概念.
                     </p>
@@ -198,5 +198,39 @@
     	}
     	moreSpreadFlag = !moreSpreadFlag;
     }
+    
+    //添加表单校验
+    $(document).ready(function() {
+	    $('#clientForm').bootstrapValidator({
+	//      live: 'disabled',
+	      message: 'This value is not valid',
+	      feedbackIcons: {
+	          valid: 'glyphicon glyphicon-ok',
+	          invalid: 'glyphicon glyphicon-remove',
+	          validating: 'glyphicon glyphicon-refresh'
+	      },
+	      fields: {
+	          clientId: {
+	              message: 'The username is not valid',
+	              validators: {
+	                  notEmpty: {
+	                      message: ''
+	                  },
+	                  remote:{
+	                	  message: 'clientId已经存在',
+	                	  url: "/oauthClient/checkClientId"
+	                  }
+	              }
+	          },
+	          authorizedGrantTypes: {
+	              validators: {
+	                  notEmpty: {
+	                      message: 'Please specify at least one language you can speak'
+	                  }
+	              }
+	          }
+	      }
+	  });
+    })
 </script>
 </html>
