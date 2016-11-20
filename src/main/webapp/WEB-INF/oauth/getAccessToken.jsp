@@ -29,7 +29,7 @@
                                 redirect_uri: <input type="text" value="" ng-model="redirectUri" size="70"/>
                                 <br/>
                                 <a href="${contextPath}/oauth/authorize?client_id={{clientId}}&redirect_uri={{redirectUri}}&response_type=code&scope={{scope}}&state=your_state" target="_blank">
-                                /oauth/authorize?client_id={{clientId}}&redirect_uri={{redirectUri}}&response_type=code&scope={{scope}}&state=your_state</a>
+                                /oauth/authorize?client_id={{clientId}}&redirect_uri={{redirectUri}}&response_type=code&scope={{scope}}&state=cust_state</a>
                                 <span class="label label-info">GET</span>
                             </p>
                         </li>
@@ -38,7 +38,7 @@
                             	第二步：客户端用 第一步获得的[code]换取[access_token]
                             </code>
                             <br/>
-                            code: <input type="text" name="code" value="" ng-model="code"/>
+                            authorize_code: <input type="text" name="code" value="" ng-model="code" size="70"/>
                             <br/>
                             <form id="passwordForm" action="{{'/oauth/token?client_id=' + clientId +'&client_secret=' + clientSecret + '&grant_type=authorization_code&code=' + code +'&redirect_uri=' + redirectUri}}" method="post" target="_blank">
                                 <a href="javascript:$('#passwordForm').submit()">
@@ -84,8 +84,9 @@
                     <br/>
                     redirect_uri: <input type="text" value="" ng-model="implicitRedirectUri" size="70"/>
                     <p>
-                        <a href="${contextPath}/oauth/authorize?client_id={{clientId}}&client_secret={{clientSecret}}&response_type=token&scope={{scope}}&redirect_uri={{implicitRedirectUri}}"
-                                >/oauth/authorize?client_id={{clientId}}&client_secret={{clientSecret}}&response_type=token&scope={{scope}}&redirect_uri={{implicitRedirectUri}}</a>
+                        <a href="${contextPath}/oauth/authorize?client_id={{clientId}}&client_secret={{clientSecret}}&response_type=token&scope={{scope}}&redirect_uri={{implicitRedirectUri}}" method="post" target="_blank">
+                        	/oauth/authorize?client_id={{clientId}}&client_secret={{clientSecret}}&response_type=token&scope={{scope}}&redirect_uri={{implicitRedirectUri}}
+                        </a>
                         <span class="label label-info">GET</span>
                     </p>
                 </div>
@@ -102,7 +103,7 @@
                         <input type="text" name="client_id" value="{{clientId}}">
                         <input type="text" name="client_secret" value="{{clientSecret}}">
                         <input type="hidden" name="scope" value="{{scope}}">
-                        <a href="javascript:$('#clientCredentialsForm').submit()">
+                        <a href="javascript:$('#clientCredentialsForm').submit()" method="post" target="_blank">
                             /oauth/token?client_id={{clientId}}&client_secret={{clientSecret}}&grant_type=client_credentials&scope={{scope}}
                         </a>
                         <span class="label label-warning">POST</span>
@@ -119,14 +120,14 @@
 						通过refresh_token重新获得access_token
 					</code>
 					<br/>
-                    refresh_token: <input type="text" ng-model="refreshToken" required="required" size="70"/>
+                    refresh_token: <input type="text" ng-model="refreshToken" placeholder="refresh_token" required="required" size="70"/>
                     <br/>
                     <form id="refreshTokenForm" action="${contextPath}/oauth/token" method="post" target="_blank">
-                        <input type="hidden" name="client_id" value="refresh_token">
+                        <input type="hidden" name="grant_type" value="refresh_token">
                         <input type="hidden" name="client_id" value="{{clientId}}">
                         <input type="hidden" name="client_secret" value="{{clientSecret}}">
                         <input type="hidden" name="refresh_token" value="{{refreshToken}}">
-                        <a href="javascript:$('#refreshTokenForm').submit()" >
+                        <a href="javascript:$('#refreshTokenForm').submit()" method="post" target="_blank">
                         	/oauth/token?client_id={{clientId}}&client_secret={{clientSecret}}&grant_type=refresh_token&refresh_token={{refreshToken}}
                         </a>
                         <span class="label label-warning">POST</span>
@@ -155,7 +156,7 @@ angular.module("getAccessToken", []).controller("getAccessTokenCtrl", function($
     $scope.username = "mobile";
     $scope.password = "mobile";
     //a temp value
-    $scope.refreshToken = "hello";
+    $scope.refreshToken = "";
 });
 </script>
 </body>

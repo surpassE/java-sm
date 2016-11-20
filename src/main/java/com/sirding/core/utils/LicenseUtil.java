@@ -2,7 +2,6 @@ package com.sirding.core.utils;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.util.Scanner;
 
 /**
  * @Described	: 用于生成注册码、序列号
@@ -11,27 +10,6 @@ import java.util.Scanner;
  * @date 		: 2016年11月17日
  */
 public class LicenseUtil {
-	
-	
-	public static String getCpuSerial(){
-		try {
-			long start = System.currentTimeMillis();
-			Process process = Runtime.getRuntime().exec(
-			        new String[] { "wmic", "cpu", "get", "ProcessorId" });
-			process.getOutputStream().close();
-			Scanner sc = new Scanner(process.getInputStream());
-			String property = sc.next();
-			String serial = sc.next();
-			System.out.println(property + ": " + serial);
-			 
-			System.out.println("time:" + (System.currentTimeMillis() - start));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "";
-	}
-	
 	
 	/**
 	 * @Described	: 获得指定地址的mac信息	

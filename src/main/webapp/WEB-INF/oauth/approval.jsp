@@ -3,20 +3,27 @@
 
 <html>
 <head>
-    <title>Oauth Approval</title>
+    <title>认证授权</title>
+    <jsp:include page="/layout/inc.jsp"></jsp:include>
 </head>
-<body><h1>OAuth Approval</h1>
+<body>
+<div style="width: 76%;margin-left: 12%">
+<h1>认证授权</h1>
+<hr>
+<p>是否允许<strong>[${authorizationRequest.clientId}]</strong>访问你保护的资源?</p>
 
-<p>Do you authorize '${authorizationRequest.clientId}' to access your protected resources?</p>
-
-<form id='confirmationForm' name='confirmationForm' action='${pageContext.request.contextPath}/oauth/authorize'
-      method='post'>
-    <input name='user_oauth_approval' value='true' type='hidden'/>
-    <label> <input name='authorize' value='Authorize' type='submit' class="btn btn-success"/></label>
+<form id='approvalForm' name='approvalForm' action='${pageContext.request.contextPath}/oauth/authorize' method='post'>
+    <input name='user_oauth_approval' id='user_oauth_approval' value='true' type='hidden'/>
+    <label><a onclick="submitApproval(1)"  class="btn btn-success">同意</a></label>
+    <label><a onclick="submitApproval(0)"  class="btn btn-warning">拒绝</a></label>
 </form>
-<form id='denialForm' name='denialForm' action='${pageContext.request.contextPath}/oauth/authorize' method='post'>
-    <input name='user_oauth_approval' value='false' type='hidden'/>
-    <label><input name='deny' value='Deny' type='submit' class="btn btn-warning"/></label>
-</form>
+</div>
 </body>
+<script>
+function submitApproval(flag){
+	if(flag == 0)
+		$("#user_oauth_approval").val(false);
+	$("#approvalForm").submit();
+}
+</script>
 </html>

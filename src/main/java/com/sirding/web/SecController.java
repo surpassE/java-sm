@@ -19,7 +19,7 @@ import com.sirding.service.AppRoleService;
 import com.sirding.service.AppSysUserService;
 
 @Controller
-@RequestMapping("/sec")
+@RequestMapping("/sec/")
 public class SecController extends BaseController{
 
 	@Autowired

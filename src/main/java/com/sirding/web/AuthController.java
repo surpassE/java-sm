@@ -48,6 +48,11 @@ public class AuthController {
 		logger.debug("接收重定向前的属性:" + request.getParameter("test"));
 		return "home";
 	}
+	
+	@RequestMapping("toAdminIndex")
+	public String toAdminIndex(){
+		return "adminIndex";
+	}
 
 	/**
 	 * 验证应用用户信息
@@ -78,7 +83,7 @@ public class AuthController {
 //		if(!this.authStatus(userName, pwd, UserType.APP_SYS_USER)){
 //			return "redirect:/auth/login.jsp";
 //		}
-		ModelAndView view = new ModelAndView("redirect:toHome");
+		ModelAndView view = new ModelAndView("redirect:toAdminIndex");
 		LoggerUtils.debugForTest(getClass(), "执行controller中的方法...");
 		view.addObject("test", "test");
 		return view;
@@ -136,5 +141,10 @@ public class AuthController {
 	@RequestMapping("authFail")
 	public String authFail(){
 		return "redirect:/auth/unauthorized.jsp";
+	}
+	
+	@RequestMapping("oauth")
+	public String oauth(){
+		return "redirect:/oauth.jsp";
 	}
 }

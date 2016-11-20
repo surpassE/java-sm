@@ -12,14 +12,62 @@
 	<http pattern="/auth/login.jsp" security="none" />  
     <http pattern="/*.ico" security="none" />
     <http pattern="/template/**" security="none" />
+    <http pattern="/template-bs/**" security="none" />
     <http pattern="/css/**" security="none" />
     <http pattern="/img/**" security="none" />
     <http pattern="/fonts/**" security="none" />
     <http pattern="/js/**" security="none" />
     <http pattern="/layout/**" security="none" />
     
-    <!-- *********************** Spring Oauth2 ****************************************** -->
+    <!-- *********************** 受保护的资源 ******************************************** -->
+	<oauth2:resource-server id="unityResourceServer" resource-id="unity-resource" token-services-ref="tokenServices" />
+	<oauth2:resource-server id="mobileResourceServer" resource-id="mobile-resource" token-services-ref="tokenServices" />
+   
+    <!-- 应用用户权限控制 
+	<http pattern="/user/**" create-session="never" entry-point-ref="oauth2AuthenticationEntryPoint"  
+	      access-decision-manager-ref="oauth2AccessDecisionManager" use-expressions="false">  
+	    <anonymous enabled="false"/>  
+	    <intercept-url pattern="/user/addUser" access="ROLE_MOBILE,SCOPE_WRITE"/>
+	    <intercept-url pattern="/user/delUser" access="ROLE_MOBILE,SCOPE_WRITE"/>
+	    <intercept-url pattern="/user/updateUser" access="ROLE_MOBILE,SCOPE_WRITE"/>
+	    <intercept-url pattern="/user/**" access="ROLE_MOBILE,SCOPE_READ"/>
+	    <custom-filter ref="mobileResourceServer" before="PRE_AUTH_FILTER"/>  
+	    <access-denied-handler ref="oauth2AccessDeniedHandler"/>  
+	</http>
+	-->  
+	
+	<!-- 系统用户权限控制  
+	<http pattern="/sysUser/**" create-session="never" entry-point-ref="oauth2AuthenticationEntryPoint"  
+	      access-decision-manager-ref="oauth2AccessDecisionManager" use-expressions="false">  
+	    <anonymous enabled="false"/>  
+	    <intercept-url pattern="/sysUser/addSysUser" access="ROLE_MOBILE,SCOPE_WRITE"/>
+	    <intercept-url pattern="/sysUser/delSysUser" access="ROLE_MOBILE,SCOPE_WRITE"/>
+	    <intercept-url pattern="/sysUser/**" access="ROLE_MOBILE,SCOPE_READ"/>
+	    <custom-filter ref="mobileResourceServer" before="PRE_AUTH_FILTER"/>  
+	    <access-denied-handler ref="oauth2AccessDeniedHandler"/>  
+	</http>
+   --> 
+	<!--unity http configuration-->  
+	<http pattern="/unity/**" create-session="never" entry-point-ref="oauth2AuthenticationEntryPoint"  
+	      access-decision-manager-ref="oauth2AccessDecisionManager" use-expressions="false">  
+	    <anonymous enabled="false"/>  
+	    <intercept-url pattern="/unity/**" access="ROLE_UNITY,SCOPE_READ"/>  
+	    <custom-filter ref="unityResourceServer" before="PRE_AUTH_FILTER"/>  
+	    <access-denied-handler ref="oauth2AccessDeniedHandler"/>  
+	</http>  
+	  
+	<!--mobile http configuration-->  
+	<http pattern="/m/**" create-session="never" entry-point-ref="oauth2AuthenticationEntryPoint"  
+	      access-decision-manager-ref="oauth2AccessDecisionManager" use-expressions="false">  
+	    <anonymous enabled="false"/>  
+	    <intercept-url pattern="/m/**" access="ROLE_MOBILE,SCOPE_READ"/>  
+	    <custom-filter ref="mobileResourceServer" before="PRE_AUTH_FILTER"/>  
+	    <access-denied-handler ref="oauth2AccessDeniedHandler"/>  
+	</http> 
+	
+	 <!-- *********************** 受保护的资源 ******************************************** -->
     
+    <!-- *********************** Spring Oauth2 ****************************************** -->
 	<mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
     
@@ -40,29 +88,7 @@
 		<beans:property name="authenticationManager" ref="oauth2AuthenticationManager" />
 	</beans:bean>
     
-    <!--unity http configuration-->  
-	<http pattern="/unity/**" create-session="never" entry-point-ref="oauth2AuthenticationEntryPoint"  
-	      access-decision-manager-ref="oauth2AccessDecisionManager" use-expressions="false">  
-	    <anonymous enabled="false"/>  
-	    <intercept-url pattern="/unity/**" access="ROLE_UNITY,SCOPE_READ"/>  
-	    <custom-filter ref="unityResourceServer" before="PRE_AUTH_FILTER"/>  
-	    <access-denied-handler ref="oauth2AccessDeniedHandler"/>  
-	</http>  
-	  
-	<!--mobile http configuration-->  
-	<http pattern="/m/**" create-session="never" entry-point-ref="oauth2AuthenticationEntryPoint"  
-	      access-decision-manager-ref="oauth2AccessDecisionManager" use-expressions="false">  
-	    <anonymous enabled="false"/>  
-	    <intercept-url pattern="/m/**" access="ROLE_MOBILE,SCOPE_READ"/>  
-	    <custom-filter ref="mobileResourceServer" before="PRE_AUTH_FILTER"/>  
-	    <access-denied-handler ref="oauth2AccessDeniedHandler"/>  
-	</http> 
-	
-	<oauth2:resource-server id="unityResourceServer" resource-id="unity-resource" token-services-ref="tokenServices" />
-
-	<oauth2:resource-server id="mobileResourceServer" resource-id="mobile-resource" token-services-ref="tokenServices" />
-
-	<!-- 用于管理oauth_client_detail信息 -->
+    <!-- 用于管理oauth_client_detail信息 -->
 <!-- 	<beans:bean id="clientDetailsService" class="org.springframework.security.oauth2.provider.client.JdbcClientDetailsService"> -->
 	<beans:bean id="clientDetailsService" class="com.sirding.core.oauth2.CustJdbcClientDetailsService">
 		<beans:constructor-arg index="0" ref="dataSource" />
@@ -177,7 +203,7 @@
         <form-login 
         	authentication-failure-url="/login.jsp" 
         	default-target-url="/adminLogin"
-            login-page="/sysLogin" 
+            login-page="/login.jsp" 
             login-processing-url="/adminLogin"
             password-parameter="pwd"
             username-parameter="userName"
