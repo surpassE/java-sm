@@ -12,7 +12,7 @@ import com.sirding.mybatis.model.AppPermExample;
 import com.sirding.service.AppPermService;
 
 @Service
-public class AppPermServiceImpl extends BaseServiceImpl implements AppPermService {
+public class AppPermServiceImpl extends BaseServiceImpl<AppPerm> implements AppPermService {
 
 	@Autowired
 	private AppPermMapper appPermMapper;

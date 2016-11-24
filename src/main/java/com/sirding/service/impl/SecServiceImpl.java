@@ -21,7 +21,7 @@ import com.sirding.mybatis.model.AppRole;
 import com.sirding.service.SecService;
 
 @Service
-public class SecServiceImpl extends BaseServiceImpl implements SecService {
+public class SecServiceImpl extends BaseServiceImpl<Object> implements SecService {
 
 	@Autowired
 	private AppUserMapper appUserMapper;

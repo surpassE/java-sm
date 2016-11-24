@@ -9,7 +9,7 @@ import com.sirding.mybatis.model.AppRolePerm;
 import com.sirding.service.AppRolePermService;
 
 @Service
-public class AppRolePermServiceImpl extends BaseServiceImpl implements AppRolePermService {
+public class AppRolePermServiceImpl extends BaseServiceImpl<AppRolePerm> implements AppRolePermService {
 
 	@Override
 	public int add(AppRolePerm record) {

@@ -12,10 +12,11 @@ import com.sirding.mybatis.model.AppRoleExample;
 import com.sirding.service.AppRoleService;
 
 @Service
-public class AppRoleServiceImpl extends BaseServiceImpl implements AppRoleService {
+public class AppRoleServiceImpl extends BaseServiceImpl<AppRole> implements AppRoleService {
 
 	@Autowired
 	private AppRoleMapper appRoleMapper;
+	
 	@Override
 	public int add(AppRole record) {
 		return this.appRoleMapper.insert(record);

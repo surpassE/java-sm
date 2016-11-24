@@ -1,6 +1,7 @@
 package com.sirding.web;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sirding.base.BaseController;
+import com.sirding.domain.dtpage.Page;
 import com.sirding.mybatis.model.AppUser;
 import com.sirding.service.AppUserService;
 
@@ -111,5 +113,13 @@ public class UserController extends BaseController {
 	@ResponseBody
 	public List<AppUser> userList(AppUser obj){
 		return this.appUserService.findList(null);
+	}
+	
+	
+	@RequestMapping("findUser")
+	@ResponseBody
+	public Map<String, Object> findUser(Page page, AppUser obj){
+		List<AppUser> list = this.appUserService.findUser(page, obj);
+		return super.getPageMap(page, list);
 	}
 }

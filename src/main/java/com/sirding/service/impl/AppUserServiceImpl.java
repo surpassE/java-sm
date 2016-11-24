@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sirding.base.BaseServiceImpl;
+import com.sirding.domain.dtpage.Page;
 import com.sirding.mybatis.mapper.AppUserMapper;
 import com.sirding.mybatis.model.AppUser;
 import com.sirding.mybatis.model.AppUserExample;
@@ -17,10 +19,15 @@ import com.sirding.service.AppUserService;
  *
  */
 @Service
-public class AppUserServiceImpl implements AppUserService {
+public class AppUserServiceImpl extends BaseServiceImpl<AppUser> implements AppUserService {
+	
+	private AppUserMapper appUserMapper;
 	
 	@Autowired
-	private AppUserMapper appUserMapper;
+	public void setAppUserMapper(AppUserMapper appUserMapper) {
+		this.appUserMapper = appUserMapper;
+		super.mapper = this.appUserMapper;
+	}
 
 	@Override
 	public int add(AppUser record) {
@@ -44,12 +51,36 @@ public class AppUserServiceImpl implements AppUserService {
 
 	@Override
 	public List<AppUser> findList(AppUser record) {
-		AppUserExample example = new AppUserExample();
-		AppUserExample.Criteria criteria = example.createCriteria();
-		if(record != null){
-			criteria.andLoginNameEqualTo(record.getLoginName());
-		}
+		AppUserExample example = this.initExample(record);
 		return this.appUserMapper.selectByExample(example);
 	}
 
+//	@Override
+//	public long findUserCount(AppUser record) {
+//		return this.appUserMapper.countByExample(this.initExample(record));
+//	}
+
+	@Override
+	public List<AppUser> findUser(Page page, AppUser record) {
+		return super.findByPage(page, this.initExample(record));
+	}
+	
+	/**
+	 * @Described	: 初始化检索条件
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月23日
+	 * @return		: AppUserExample
+	 * @param record
+	 * @return
+	 */
+	private AppUserExample initExample(AppUser record){
+		AppUserExample example = new AppUserExample();
+		AppUserExample.Criteria criteria = example.createCriteria();
+		if(record != null){
+			if(record.getLoginName() != null){
+				criteria.andLoginNameEqualTo(record.getLoginName());
+			}
+		}
+		return example;
+	}
 }

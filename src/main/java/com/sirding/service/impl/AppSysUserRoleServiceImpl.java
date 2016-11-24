@@ -9,7 +9,7 @@ import com.sirding.mybatis.model.AppSysUserRole;
 import com.sirding.service.AppSysUserRoleService;
 
 @Service
-public class AppSysUserRoleServiceImpl extends BaseServiceImpl implements AppSysUserRoleService {
+public class AppSysUserRoleServiceImpl extends BaseServiceImpl<AppSysUserRole> implements AppSysUserRoleService {
 
 	@Override
 	public int add(AppSysUserRole record) {

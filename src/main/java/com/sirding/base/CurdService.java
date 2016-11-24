@@ -48,4 +48,5 @@ public interface CurdService<T> {
 	 * @date 2016年10月19日
 	 */
 	List<T> findList(T record);
+	
 }

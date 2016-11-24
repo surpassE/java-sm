@@ -18,7 +18,7 @@ $(document).ready(function() {
 	        "sInfoEmpty": "没有数据",
 	        "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
 	        "sZeroRecords": "没有检索到数据",
-	         "sSearch": "搜索:",
+	        "sSearch": "搜索:",
 	        "oPaginate": {
 	        "sFirst": "首页",
 	        "sPrevious": "前一页",
@@ -27,7 +27,10 @@ $(document).ready(function() {
 	        }
 	    },
 	    "aoColumnDefs": [
-               	{ "orderable": false, "targets": [2, 5] },
+               	{ 
+               		"orderable": false, 
+               		"targets": [2, 3, 5] 
+               	},
                	{
                     targets: [ 3 ],
                     orderData: [ 3, 1 ]  //如果第一列进行排序，有相同数据则按照第二列顺序排列

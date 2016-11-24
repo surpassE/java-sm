@@ -9,7 +9,7 @@ import com.sirding.mybatis.model.AppRoleMenu;
 import com.sirding.service.AppRoleMenuService;
 
 @Service
-public class AppRoleMenuServiceImpl extends BaseServiceImpl implements AppRoleMenuService {
+public class AppRoleMenuServiceImpl extends BaseServiceImpl<AppRoleMenu> implements AppRoleMenuService {
 
 	@Override
 	public int add(AppRoleMenu record) {

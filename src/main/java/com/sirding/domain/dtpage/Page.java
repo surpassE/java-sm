@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
@@ -30,6 +32,7 @@ public class Page implements Serializable{
 	private int start = 0;
 	//每页条数
 	private int length = 10;
+	private long total = 0;
 	//
 	private String data;
 	//进行排序的列
@@ -60,10 +63,16 @@ public class Page implements Serializable{
 	public void setSortList(List<SimpleJson> sortList) {
 		this.sortList = sortList;
 	}
-	
+	public long getTotal() {
+		return total;
+	}
+	public void setTotal(long total) {
+		this.total = total;
+	}
 	public String getData() {
 		return data;
 	}
+	
 	/**
 	 * @Described	: 样例数据 [{"name":"sEcho","value":3},{"name":"iColumns","value":6},{"name":"sColumns","value":",,,,,"},{"name":"iDisplayStart","value":0},{"name":"iDisplayLength","value":10},{"name":"mDataProp_0","value":"id"},{"name":"sSearch_0","value":""},{"name":"bRegex_0","value":false},{"name":"bSearchable_0","value":true},{"name":"bSortable_0","value":true},{"name":"mDataProp_1","value":"loginName"},{"name":"sSearch_1","value":""},{"name":"bRegex_1","value":false},{"name":"bSearchable_1","value":true},{"name":"bSortable_1","value":true},{"name":"mDataProp_2","value":"function"},{"name":"sSearch_2","value":""},{"name":"bRegex_2","value":false},{"name":"bSearchable_2","value":true},{"name":"bSortable_2","value":false},{"name":"mDataProp_3","value":"function"},{"name":"sSearch_3","value":""},{"name":"bRegex_3","value":false},{"name":"bSearchable_3","value":true},{"name":"bSortable_3","value":true},{"name":"mDataProp_4","value":"note"},{"name":"sSearch_4","value":""},{"name":"bRegex_4","value":false},{"name":"bSearchable_4","value":true},{"name":"bSortable_4","value":true},{"name":"mDataProp_5","value":"function"},{"name":"sSearch_5","value":""},{"name":"bRegex_5","value":false},{"name":"bSearchable_5","value":true},{"name":"bSortable_5","value":false},{"name":"sSearch","value":""},{"name":"bRegex","value":false},{"name":"iSortCol_0","value":3},{"name":"sSortDir_0","value":"desc"},{"name":"iSortCol_1","value":1},{"name":"sSortDir_1","value":"desc"},{"name":"iSortingCols","value":2}]
 	 * @author		: zc.ding
@@ -91,7 +100,15 @@ public class Page implements Serializable{
 			if(obj.getName().length() > 30 || !(sort.equalsIgnoreCase("DESC") || sort.equalsIgnoreCase("asc"))){
 				continue;
 			}
-			sb.append(obj.getName() + " " + String.valueOf(obj.getValue())).append(",");
+			String colName = obj.getName();
+			String reg = "[A-Z]";
+			Pattern pattern = Pattern.compile(reg);
+			Matcher m = pattern.matcher(colName);
+			while(m.find()){
+				String tmp = m.group();
+				colName = colName.replaceAll(tmp, "_" + tmp.toLowerCase());
+			}
+			sb.append(colName + " " + String.valueOf(obj.getValue())).append(",");
 		}
 		if(sb.toString().trim().endsWith(",")){
 			return sb.toString().trim().substring(0, sb.toString().trim().length() - 1) + " ";
@@ -147,17 +164,15 @@ public class Page implements Serializable{
 		List<SimpleJson> list = JSONArray.parseArray(data, SimpleJson.class);
 		Map<String, Object> map = new HashMap<String, Object>();
 		if(list != null){
-			if(logger.isDebugEnabled()){
+			/*if(logger.isDebugEnabled()){
 				for(SimpleJson dt : list){
 					logger.debug("name:" + dt.getName() + "\t" + dt.getValue());
 				}
-			}
+			}*/
 			for(SimpleJson obj : list){
 				map.put(obj.getName(), obj.getValue());
 			}
 		}
 		return map;
 	}
-	
-
 }

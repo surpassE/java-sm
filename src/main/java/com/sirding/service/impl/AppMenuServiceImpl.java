@@ -12,7 +12,7 @@ import com.sirding.mybatis.model.AppMenuExample;
 import com.sirding.service.AppMenuService;
 
 @Service
-public class AppMenuServiceImpl extends BaseServiceImpl implements AppMenuService {
+public class AppMenuServiceImpl extends BaseServiceImpl<AppMenu> implements AppMenuService {
 
 	@Autowired
 	private AppMenuMapper appMenuMapper;
