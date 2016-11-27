@@ -37,6 +37,8 @@ public class CustUserDetailServiceImpl implements CustUserDetailService {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		authorities.add(new SimpleGrantedAuthority("ROLE_MOBILE"));
+		authorities.add(new SimpleGrantedAuthority("ROLE_UNITY"));
 		if(String.valueOf(UserType.APP_USER.getValue()).equalsIgnoreCase(pos)){
 			AppUser appUser = new AppUser();
 			appUser.setLoginName(username);

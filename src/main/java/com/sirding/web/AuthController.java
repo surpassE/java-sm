@@ -28,8 +28,19 @@ public class AuthController {
 	
 	@RequestMapping("/")
 	public String index(){
-//		return "redirect:sysLogin";
+//		登录之前先过的access_token
+//		Map<String, Object>	map = new HashMap<String, Object>();
+//		map.put("grant_type", "password");
+//		map.put("client_id", "mobile-client");
+//		map.put("client_secret", "mobile");
+//		map.put("scope", "read write");
+//		map.put("username", "admin");
+//		map.put("password", "sirding");
+//		//获得access_token
+//		String msg = HttpClientUtil.reqAndResMsg("http://localhost:8080/oauth/token", map, "1");
+//		logger.info(msg);
 		return "redirect:login.jsp";
+		
 	}
 	
 	/**
@@ -135,7 +146,7 @@ public class AuthController {
 //		String msg = CustTokenManager.getString("sirding");
 //		logger.debug("从shiro的sesion中取值：" + msg);
 //		CustTokenManager.getSubject().logout();
-		return "redirect:/auth/login.jsp";
+		return "redirect:/login.jsp";
 	}
 	
 	@RequestMapping("authFail")
@@ -145,6 +156,6 @@ public class AuthController {
 	
 	@RequestMapping("oauth")
 	public String oauth(){
-		return "redirect:/oauth.jsp";
+		return "oauth";
 	}
 }

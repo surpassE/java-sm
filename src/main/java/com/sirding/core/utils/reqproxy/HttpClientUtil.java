@@ -86,16 +86,16 @@ public class HttpClientUtil {
 	/**
 	 * 通过Httpclient模拟http获得https(不需要加载证书相关信息)
 	 * @param url 请求的地址
-	 * @param data	请求数据，data的类型String|Map<String, String>|List<NameValuePair>
-	 * 					String:建议JSON格式的数据，接口中会对data进行DES加密，默认请求的属性名称reqProxyData  eg reqProxyData=data
-	 * 					Map<String, String> 请求的参数列表,接口中不会其进行加密操作
-	 * 					List<NameValuePair> 请求参数有调用者自行封装
+	 * @param data	请求数据，data的类型String|Map<String, String>|List<NameValuePair><br/>
+	 * 					String:建议JSON格式的数据，接口中会对data进行DES加密，默认请求的属性名称reqProxyData  eg reqProxyData=data<br/>
+	 * 					Map<String, String> 请求的参数列表,接口中不会其进行加密操作<br/>
+	 * 					List<NameValuePair> 请求参数有调用者自行封装<br/>
 	 * @param flag 0: 不接收响应信息，1：接收响应信息
 	 * @return
 	 * @author zc.ding
 	 * @date 2016年10月16日
 	 */
-	public static String reqAndResMsg(String url, String data, String flag){
+	public static String reqAndResMsg(String url, Object data, String flag){
 			HttpClient httpClient = HttpClients.createDefault();
 			return reqAndResMsg(url, data, flag, httpClient);
 	}
@@ -117,7 +117,7 @@ public class HttpClientUtil {
 			httpPost = new HttpPost(url);
 			logger.debug("====请求的地址:" + url);
 			//设置请求的连接配置
-			httpPost.setConfig(getRequestConfig(3000, false));
+			httpPost.setConfig(getRequestConfig(10000, true));
 			// 如果参数是中文，需要进行转码
 			httpPost.setEntity(new UrlEncodedFormEntity(getReqParams(data), Consts.UTF_8));  
 			//执行请求并获得请求的响应
@@ -276,7 +276,8 @@ public class HttpClientUtil {
 				content+=line;
 			}
 			//回来的数据格式是JSON格式的字符串，去掉首尾的双引号
-			content = DesUtil.decrypt(content.substring(1, content.length() - 1));
+			//返回的数据是否需要解密
+//			content = DesUtil.decrypt(content.substring(1, content.length() - 1));
 		}
 		return content;
 	}

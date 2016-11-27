@@ -67,18 +67,18 @@
 	    </li>
 	    <li>
 	        <p>
-	            <a href="${contextPath}/user/overview">User</a> <span class="text-muted">- 管理User</span>
+	            <a href="#">User</a> <span class="text-muted">- 管理User</span>
 	        </p>
 	    </li>
 	    <li>
 	        <p>
-	            <a href="${contextPath}/unity/dashboard">Unity</a> <span class="text-muted">- Unity 资源(resource), 需要具有 [ROLE_UNITY] 权限(resourceId:
+	            <a href="${contextPath}/unity/view">Unity</a> <span class="text-muted">- Unity 资源(resource), 需要具有 [ROLE_UNITY] 权限(resourceId:
 	                <mark>unity-resource</mark>才能访问</span>
 	        </p>
 	    </li>
 	    <li>
 	        <p>
-	            <a href="${contextPath}/m/dashboard">Mobile</a> <span class="text-muted">- Mobile资源(resource), 需要具有 [ROLE_MOBILE] 权限(resourceId:
+	            <a href="${contextPath}/mobileview">Mobile</a> <span class="text-muted">- Mobile资源(resource), 需要具有 [ROLE_MOBILE] 权限(resourceId:
 	                <mark>mobile-resource</mark>才能访问</span>
 	        </p>
 	    </li>

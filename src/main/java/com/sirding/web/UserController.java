@@ -67,6 +67,7 @@ public class UserController extends BaseController {
 	@RequestMapping("delUser")
 	public ModelAndView delUser(AppUser obj){
 		ModelAndView mav = new ModelAndView("user/userList");
+		this.appUserService.del(obj.getId());
 		return mav;
 	}
 	

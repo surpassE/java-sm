@@ -52,7 +52,7 @@ $(document).ready(function() {
 	        },
 	        { "data": "note" },
 	        { "data": function(obj){
-	         		return "<a href='#' id=" + obj.id + ">删除</a>";
+	         		return "<a href='/user/delUser?id=" + obj.id + "'>删除</a>";
 	         	} 
 	        }
       	],
