@@ -62,7 +62,7 @@
 	<ul>
 	    <li>
 	        <p>
-	            <a href="/oauthClient/toClientDetail">client_details</a> <span class="text-muted">- 管理ClientDetails</span>
+	            <a href="oauthClient/toClientDetail">client_details</a> <span class="text-muted">- 管理ClientDetails</span>
 	        </p>
 	    </li>
 	    <li>

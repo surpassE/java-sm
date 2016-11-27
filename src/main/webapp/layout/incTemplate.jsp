@@ -4,22 +4,22 @@
 <link rel="shortcut icon" href="<%=request.getContextPath() %>/img/favicon.ico" type="image/x-icon"/>
 
 <!-- Bootstrap Core CSS -->
-<link href="/template-bs/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/template-bs/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- MetisMenu CSS -->
-<link href="/template-bs/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/template-bs/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 <!-- DataTables CSS -->
-<link href="/template-bs/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/template-bs/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 <!-- DataTables Responsive CSS -->
-<link href="/template-bs/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/template-bs/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 <!-- Custom CSS -->
-<link href="/template-bs/dist/css/sb-admin-2.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/template-bs/dist/css/sb-admin-2.css" rel="stylesheet">
 <!-- Morris Charts CSS -->
-<link href="/template-bs/vendor/morrisjs/morris.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/template-bs/vendor/morrisjs/morris.css" rel="stylesheet">
 <!-- Custom Fonts -->
-<link href="/template-bs/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath() %>/template-bs/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
  <!-- jQuery -->
-<script src="/template-bs/vendor/jquery/jquery.min.js"></script>
+<script src="<%=request.getContextPath() %>/template-bs/vendor/jquery/jquery.min.js"></script>
 
 <!-- <script type="text/javascript"  src="/template-bs/vendor/datatables/js/jquery.js"></script> 
 <script type="text/javascript">
@@ -28,22 +28,22 @@
 
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/template-bs/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath() %>/template-bs/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
-<script src="/template-bs/vendor/metisMenu/metisMenu.min.js"></script>
+<script src="<%=request.getContextPath() %>/template-bs/vendor/metisMenu/metisMenu.min.js"></script>
 <!-- Morris Charts JavaScript -->
-<script src="/template-bs/vendor/raphael/raphael.min.js"></script>
-<script src="/template-bs/vendor/morrisjs/morris.min.js"></script>
-<script src="/template-bs/data/morris-data.js"></script>
+<script src="<%=request.getContextPath() %>/template-bs/vendor/raphael/raphael.min.js"></script>
+<script src="<%=request.getContextPath() %>/template-bs/vendor/morrisjs/morris.min.js"></script>
+<script src="<%=request.getContextPath() %>/template-bs/data/morris-data.js"></script>
 
 <!-- DataTables JavaScript -->
-<script src="/template-bs/vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="/template-bs/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="/template-bs/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<script src="<%=request.getContextPath() %>/template-bs/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="<%=request.getContextPath() %>/template-bs/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="<%=request.getContextPath() %>/template-bs/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
 
 <!-- Custom Theme JavaScript -->
-<script src="/template-bs/dist/js/sb-admin-2.js"></script>
+<script src="<%=request.getContextPath() %>/template-bs/dist/js/sb-admin-2.js"></script>
 
 <script src="<%=request.getContextPath() %>/js/custUtil.js"></script>
 
