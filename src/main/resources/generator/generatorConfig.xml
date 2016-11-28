@@ -77,7 +77,7 @@
 			此属性是必须的，如果context的targetRuntime="iBATIS2"那么此属性是必须的
 		 -->
 		<sqlMapGenerator targetPackage="com.sirding.mybatis.mapper"
-			targetProject="src/main/java">
+			targetProject="src/main/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		
