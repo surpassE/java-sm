@@ -13,7 +13,7 @@
     <div class="wrapper text-center">
       <strong>冒险，从这里开始......</strong>
     </div>
-    <form name="form" class="form-validation" action="adminLogin" action="" method="post">
+    <form name="form" class="form-validation" action="adminLogin" method="post">
       <div class="text-danger wrapper text-center">
           ${requestScope.errmsg }
       </div>

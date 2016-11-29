@@ -2,103 +2,168 @@ package com.sirding.core.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.Closeable;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.log4j.Logger;
+import org.nustaq.serialization.FSTConfiguration;
+
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 
 /**
- * Java版的 Serialize
- * @author zc.ding
- * @date 2016年10月18日
- *
+ * @Described	: 序列化、反序列化工具类
+ * @project		: com.sirding.core.utils.SerializeUtil
+ * @author 		: zc.ding
+ * @date 		: 2016年11月29日
  */
 public class SerializeUtil {
 
+	private static Logger logger = Logger.getLogger(SerializeUtil.class);
+
+	//**********************************************************
+	//				JDK原生序列化、反序列化操作
+	//**********************************************************
 	/**
-	 * <p>
-	 * 	将对象进行序列化操作
-	 * <p>
-	 * @param value
+	 * 
+	 * @Described			: java原生对对象进行序列化操作
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月29日
+	 * @param obj
 	 * @return
-	 * @author zc.ding
-	 * @date 2016年10月18日
 	 */
-    public static byte[] serialize(Object value) {
-        if (value == null) {
-            throw new NullPointerException("Can't serialize null");
-        }
-        byte[] rv = null;
-        ByteArrayOutputStream bos = null;
-        ObjectOutputStream os = null;
-        try {
-            bos = new ByteArrayOutputStream();
-            os = new ObjectOutputStream(bos);
-            os.writeObject(value);
-            os.close();
-            bos.close();
-            rv = bos.toByteArray();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("serialize error");
-        } finally {
-            close(os);
-            close(bos);
-        }
-        return rv;
-    }
+	public static byte[] serialize(Object obj) {
+		try (
+				ByteArrayOutputStream bos = new ByteArrayOutputStream();
+				ObjectOutputStream os = new ObjectOutputStream(bos);
+				){
+			os.writeObject(obj);
+			return bos.toByteArray();
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("serialize error");
+		}
+		return new byte[]{};
+	}
 
-    /**
-     * <p>
-     * 	对象的反序列化
-     * <p>
-     * @param in
-     * @param clazz
-     * @return
-     * @author zc.ding
-     * @date 2016年10月18日
-     */
-    public static <T> T deserialize(byte[] in, Class<T> clazz) {
+	/**
+	 * @Described			: java原生对对象的反序列化
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月29日
+	 * @param in
+	 * @param clazz
+	 * @return
+	 */
+	public static <T> T unSerialize(byte[] buf, Class<T> clazz) {
+		T result = null;
+		try (
+				ObjectInputStream is = new ObjectInputStream(new ByteArrayInputStream(buf));
+				){
+			if (buf != null) {
+				Object obj = is.readObject();
+				result = clazz.newInstance();
+				BeanUtils.copyProperties(result, obj);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("deserialize error");
+		}
+		return result;
+	}
+	//================== JDK原生 ===================== END =======================
+
+	
+	//**********************************************************
+	//				FST序列化、反序列化操作
+	//**********************************************************
+	private static FSTConfiguration FST = FSTConfiguration.createDefaultConfiguration();
+	
+	/**
+	 * @Described			: FST进行对象的序列化操作
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月29日
+	 * @param obj
+	 * @return
+	 */
+	public static byte[] serializeFst(Object obj){
+		return FST.asByteArray(obj);
+	}
+	
+	/**
+	 * @Described			: FST进行对象反序列化操作
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月29日
+	 * @param buf
+	 * @param clazz
+	 * @return
+	 */
+	public static <T> T unSerializeFst(byte[] buf, Class<T> clazz){
+		T result = null;
+		try {
+			Object obj = FST.asObject(buf);
+			result = clazz.newInstance();
+			BeanUtils.copyProperties(result, obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("FST方式反序列化失败");
+		}
+		return result;
+	}
+	//======================= FST ============== END ======================================
+	
+	
+	
+	//**********************************************************
+	//				Kryo序列化、反序列化操作
+	//**********************************************************
+	/**
+	 * @Described			: Kryo进行对象序列化操作
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月29日
+	 * @param obj
+	 * @return
+	 */
+	public static byte[] serializeKryo(Object obj) {  
+        Kryo kryo = new Kryo();  
+        byte[] buffer = new byte[2048];  
+        try(
+        		Output output = new Output(buffer);
+        		)
+        {
+        	kryo.writeClassAndObject(output, obj);  
+        	return output.toBytes();  
+        	
+        }catch (Exception e) {
+        	e.printStackTrace();
+        	logger.error("Kryo方式序列化操作失败");
+        }
+        return buffer;  
+    }  
+  
+	/**
+	 * @Described			: Kryo进行对象反序列化操作
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月29日
+	 * @param buf
+	 * @param clazz
+	 * @return
+	 */
+    public static <T> T unSerializeKryo(byte[] buf, Class<T> clazz) {  
+    	Kryo kryo = new Kryo();
     	T result = null;
-        Object rv = null;
-        ByteArrayInputStream bis = null;
-        ObjectInputStream is = null;
-        try {
-            if (in != null) {
-                bis = new ByteArrayInputStream(in);
-                is = new ObjectInputStream(bis);
-                rv = is.readObject();
-                result = clazz.newInstance();
-                BeanUtils.copyProperties(result, rv);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("deserialize error");
-        } finally {
-            close(is);
-            close(bis);
-        }
-        return result;
-    }
-
-    /**
-     * <p>
-     * 	关闭流
-     * <p>
-     * @param closeable
-     * @author zc.ding
-     * @date 2016年10月18日
-     */
-    private static void close(Closeable closeable) {
-        if (closeable != null)
-            try {
-                closeable.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("close stream error");
-            }
-    }
-
+        try(  
+        		Input input = new Input(buf);  
+        		) {  
+        	Object obj = kryo.readClassAndObject(input);  
+        	result = clazz.newInstance();
+        	BeanUtils.copyProperties(result, obj);
+        }catch (Exception e) {  
+        	e.printStackTrace();
+        	logger.error("Kryo方式反序列化失败");
+        }  
+        return result;  
+    }  
+    //======================= Kryo ============== END ======================================
 }
