@@ -26,6 +26,9 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- 初始化properties中属性 -->
+	<util:properties id="other" location="classpath:other.properties" ignore-resource-not-found="true"/>
 
 	<!-- 初始化ApplicationContext工具类 -->
 	<bean id="SpringContextUtils" class="com.sirding.core.utils.ACUtils"/>

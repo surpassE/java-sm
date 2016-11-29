@@ -12,7 +12,7 @@ public class UserMultiThread implements Runnable {
 	@Override
 	public void run() {
 		DataSourceTransactionManager transactionManager =
-				(DataSourceTransactionManager) ACUtils.getBeanById("transactionManager");
+				(DataSourceTransactionManager) ACUtils.getBean("transactionManager");
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition(); 
 		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_NESTED); //事物隔离级别
 		TransactionStatus status = transactionManager.getTransaction(def); //获得事务状态
