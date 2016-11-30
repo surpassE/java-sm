@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <jsp:include page="<%=request.getContextPath() %>/layout/incTemplate.jsp"></jsp:include>
+    <jsp:include page="/layout/incTemplate.jsp"></jsp:include>
 
 </head>
 

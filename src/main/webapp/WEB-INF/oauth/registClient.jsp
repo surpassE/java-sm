@@ -11,7 +11,7 @@
 <body>
 <div style="width: 76%;margin-left: 12%">
 <!-- 头部信息 -->
-<a href="/toHome">Home</a>
+<a href="${pageContext.request.contextPath}/toHome">Home</a>
 
 <h2 align="center">注册client</h2>
 
@@ -218,7 +218,7 @@
 	                  },
 	                  remote:{
 	                	  message: 'clientId已经存在',
-	                	  url: "/oauthClient/checkClientId"
+	                	  url: "${pageContext.request.contextPath}/oauthClient/checkClientId"
 	                  }
 	              }
 	          },

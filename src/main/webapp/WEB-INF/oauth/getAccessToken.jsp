@@ -9,7 +9,7 @@
 <body>
 <div ng-app="getAccessToken">
 <div style="width: 76%;margin-left: 12%">
-    <a href="/toHome">Home</a> | <a href="/oauthClient/toClientDetail">Back</a>
+    <a href="${pageContext.request.contextPath}/toHome">Home</a> | <a href="${pageContext.request.contextPath}/oauthClient/toClientDetail">Back</a>
     
     <h2>[${clientDetail.clientId}]</h2>
     

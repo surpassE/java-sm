@@ -16,7 +16,7 @@
 <body>
 <div style="width: 76%;margin-left: 12%">
 	<!-- 头部信息 -->
-	<a href="/toHome">Home</a>
+	<a href="${pageContext.request.contextPath}/toHome">Home</a>
 	<div class="row">
 	    <div class="col-md-10">
 	        <h3>client_details</h3>
@@ -34,12 +34,12 @@
 	            <li class="list-group-item">
 	                <div class="pull-right">
 	                    <c:if test="${not cli.archived}">
-	                        <a href="/oauthClient/toGetAccessToken?clientId=${cli.clientId}">test</a>
-	                        <a href="archive_client/${cli.clientId}" class="text-danger"
+	                        <a href="${pageContext.request.contextPath}/oauthClient/toGetAccessToken?clientId=${cli.clientId}">test</a>
+	                        <a href="${pageContext.request.contextPath}/archive_client/${cli.clientId}" class="text-danger"
 	                           onclick="return confirm('Are you sure archive \'${cli.clientId}\'?')">archive</a>
 	                    </c:if>
 	                    <c:if test="${cli.archived}"><strong class="text-muted">Archived</strong></c:if>
-	                    &nbsp;<strong class="text-muted"><a href="/oauthClient/delClient/${cli.clientId}">Delete</a></strong>
+	                    &nbsp;<strong class="text-muted"><a href="${pageContext.request.contextPath}/oauthClient/delClient/${cli.clientId}">Delete</a></strong>
 	                </div>
 	                <h3 class="list-group-item-heading">
 	                        ${cli.clientId}

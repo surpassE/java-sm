@@ -57,7 +57,8 @@ public class AuthController {
 	@RequestMapping("toHome")
 	public String toHome(HttpServletRequest request){
 		logger.debug("接收重定向前的属性:" + request.getParameter("test"));
-		return "home";
+//		return "home";
+		return "adminIndex";
 	}
 	
 	@RequestMapping("toAdminIndex")
