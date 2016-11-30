@@ -9,7 +9,10 @@ import java.math.BigInteger;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.security.SecureRandom;
+import java.security.Signature;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -31,8 +34,13 @@ public class RSAUtil {
 
 	//加密快的大小,值越大效率越低
 	static final int KEY_SIZE = 1024;
+	static final String KEY_ALGORTHM = "RSA";
+	static final String SIGNATURE_ALGORITHM = "MD5withRSA";
+
 	//用于存储公钥、私钥的文件
 	static final String KEY_STORE_PATH = "C:/pri_pub_key.gem";
+	
+	static final String DEFAULT_ENCODE = "UTF-8";
 
 	//私钥
 	static final String DEFAULT_PRI_KEY = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALKkyX47BqinI4qi6zjDKeCl0enva8WVQPenocNpWMxnE13oeAPD2biIyKjUhE/PCBZfETB/EvSaSSY5QWqd8YisFFpJBrDZOCUdgqeFZYwXdo8PXN4kDl+GPsCJKI5pZvLqs+Og3hwfxTgTh5ZjVNjLp0eGfsgMgX0wnFMFA84ZAgMBAAECgYB+0pnxMXpStQV4YJzZGURbpZzWlRBPntwWdT1T+y/9PJf1LRo2og2pAgJiSSz9c57sMuWDJlOQrw+LQU59oE9dZgz7OZ0SWzZFvFF+A69x3Q89ydxGKn8njwgV9LLEB/FMYCeEa4CqhhJMm5qqCOPWxjtxecwNFcDw53IPzROeuQJBANmbSJ90p9w8vEC0F2yZ/61brGNqcl1BdAt2WkBgx0Dlm1foNTb8FkUtCcmosGTKbIgBvT1J29CNfTzO8r4dPNsCQQDSKacc0eq++ovJsjaUNvSzySZMxJCPigL2YJ7o3w9HSe6i9kQU4J031Pdrj03bsJmGmPEHciLzPA3ncFNJBxkbAkBrk4/ofJRLlZ7/Yci+wLccbdigYUxee/AxhnYBo5Z9p8UPRVWhdChSVHylPAbQHR5gcnOqa+wGgxwpxqlMgUnHAkAHg3O1BRA2abCrslJfNCPFdbCH2BMu/okik8u6mZbrPopoixNeB7W3NEbwMnxfGU4z0K31TTBQr9nzZ0Gi/7z3AkEApWUJ3ofhJBazUJiVwyQZNZEfKUvPuLIGh0ht8A8IW3oY2O64CU7MQISaZkcOL7f8c/y6ESOssCBjk2bMdo71rQ==";
@@ -66,11 +74,11 @@ public class RSAUtil {
 		String result = null;
 		Cipher cipher= null;
 		try {
-			cipher= Cipher.getInstance("RSA", new BouncyCastleProvider());
+			cipher= Cipher.getInstance(KEY_ALGORTHM, new BouncyCastleProvider());
 			cipher.init(Cipher.ENCRYPT_MODE, getPublicKey(pubk));
 			byte[] buf = cipher.doFinal(data.getBytes());
 			byte[] buf2 = Base64.encodeBase64(buf);
-			result = new String(buf2, "UTF-8");
+			result = new String(buf2, DEFAULT_ENCODE);
 		} catch (Exception e) {
 			throw new Exception(e);
 		}
@@ -103,7 +111,7 @@ public class RSAUtil {
 		byte[] buf = data.getBytes();
 		int length = buf.length;
 		try {
-			Cipher cipher = Cipher.getInstance("RSA", new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			Cipher cipher = Cipher.getInstance(KEY_ALGORTHM, new org.bouncycastle.jce.provider.BouncyCastleProvider());
 			cipher.init(Cipher.ENCRYPT_MODE, getPublicKey(pubk));
 			//加密块大小，值为127
 			int blockSize = cipher.getBlockSize();
@@ -120,10 +128,10 @@ public class RSAUtil {
 					cipher.doFinal(buf, i * blockSize, length - i * blockSize, outputBuf, i * outputSize);
 				i++;
 			}
-			System.out.println("====加密后=Base64编码前===" + outputBuf.length);
+//			System.out.println("====加密后=Base64编码前===" + outputBuf.length);
 			byte[] buf2 = Base64.encodeBase64(outputBuf);
-			System.out.println("====加密后=Base64编码后====" + buf2.length);
-			result = new String(buf2, "UTF-8");
+//			System.out.println("====加密后=Base64编码后====" + buf2.length);
+			result = new String(buf2, DEFAULT_ENCODE);
 		} catch (Exception e) {
 			throw new Exception(e);
 		}
@@ -155,11 +163,11 @@ public class RSAUtil {
 		String result = null;
 		Cipher cipher= null;
 		try {
-			cipher= Cipher.getInstance("RSA", new BouncyCastleProvider());
+			cipher= Cipher.getInstance(KEY_ALGORTHM, new BouncyCastleProvider());
 			cipher.init(Cipher.DECRYPT_MODE, getPrivateKey(prik));
 			byte[] buf = Base64.decodeBase64(data);
 			byte[] buf2= cipher.doFinal(buf);
-			result = new String(buf2, "UTF-8");
+			result = new String(buf2, DEFAULT_ENCODE);
 		} catch (Exception e) {
 			throw new Exception(e);
 		}
@@ -189,12 +197,12 @@ public class RSAUtil {
 	 */
 	public static String decryptBlock(String data, String prik) throws Exception{
 		String result = null;
-		System.out.println("====解密前=Base64解码前====" + data.length());
-		byte[] buf = Base64.decodeBase64(data.getBytes("UTF-8"));
-		System.out.println("====解密前=Base64解码后====" + buf.length);
+//		System.out.println("====解密前=Base64解码前====" + data.length());
+		byte[] buf = Base64.decodeBase64(data.getBytes(DEFAULT_ENCODE));
+//		System.out.println("====解密前=Base64解码后====" + buf.length);
 		int length = buf.length;
 		try {
-			Cipher cipher = Cipher.getInstance("RSA", new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			Cipher cipher = Cipher.getInstance(KEY_ALGORTHM, new org.bouncycastle.jce.provider.BouncyCastleProvider());
 			cipher.init(Cipher.DECRYPT_MODE, getPrivateKey(prik));
 			int blockSize = cipher.getBlockSize();
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -204,7 +212,7 @@ public class RSAUtil {
 				i++;
 			}
 			byte[] buf2 = bos.toByteArray();
-			result = new String(buf2, "UTF-8");
+			result = new String(buf2, DEFAULT_ENCODE);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception(e.getMessage());
@@ -220,7 +228,7 @@ public class RSAUtil {
 	 */
 	private static KeyPair generateKeyPair() throws Exception {
 		try {
-			KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA", new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORTHM, new org.bouncycastle.jce.provider.BouncyCastleProvider());
 			keyPairGen.initialize(KEY_SIZE, new SecureRandom());
 			KeyPair keyPair = keyPairGen.generateKeyPair();
 			//将生成的密钥对保存的到文件中
@@ -285,7 +293,7 @@ public class RSAUtil {
 	public static String getPubk(byte[] modulus, byte[] publicExponent) throws Exception {
 		KeyFactory keyFac = null;
 		try {
-			keyFac = KeyFactory.getInstance("RSA", new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			keyFac = KeyFactory.getInstance(KEY_ALGORTHM, new org.bouncycastle.jce.provider.BouncyCastleProvider());
 			RSAPublicKeySpec pubKeySpec = new RSAPublicKeySpec(new BigInteger( modulus), new BigInteger(publicExponent));
 			RSAPublicKey pubk =  (RSAPublicKey) keyFac.generatePublic(pubKeySpec);
 			return Base64.encodeBase64String(pubk.getEncoded());
@@ -306,7 +314,7 @@ public class RSAUtil {
 	public static String getPrik(byte[] modulus, byte[] privateExponent) throws Exception {
 		KeyFactory keyFac = null;
 		try {
-			keyFac = KeyFactory.getInstance("RSA", new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			keyFac = KeyFactory.getInstance(KEY_ALGORTHM, new org.bouncycastle.jce.provider.BouncyCastleProvider());
 			RSAPrivateKeySpec priKeySpec = new RSAPrivateKeySpec(new BigInteger( modulus), new BigInteger(privateExponent));
 			RSAPrivateKey prik = (RSAPrivateKey) keyFac.generatePrivate(priKeySpec);
 			return Base64.encodeBase64String(prik.getEncoded());
@@ -327,7 +335,7 @@ public class RSAUtil {
 	public static RSAPublicKey getPublicKey(String pubk) throws Exception{
 		try {
 			byte[] buffer= Base64.decodeBase64(pubk);
-			KeyFactory keyFactory= KeyFactory.getInstance("RSA");
+			KeyFactory keyFactory= KeyFactory.getInstance(KEY_ALGORTHM);
 			X509EncodedKeySpec keySpec= new X509EncodedKeySpec(buffer);
 			return (RSAPublicKey) keyFactory.generatePublic(keySpec);
 		} catch (Exception e) {
@@ -347,7 +355,7 @@ public class RSAUtil {
 		try {
 			byte[] buffer= Base64.decodeBase64(prik);
 			PKCS8EncodedKeySpec keySpec= new PKCS8EncodedKeySpec(buffer);
-			KeyFactory keyFactory= KeyFactory.getInstance("RSA");
+			KeyFactory keyFactory= KeyFactory.getInstance(KEY_ALGORTHM);
 			return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
 		} catch (Exception e) {
 			throw new Exception("私钥数据为空");
@@ -397,13 +405,13 @@ public class RSAUtil {
 		System.out.println(keyPair.getPrivate());
 		System.out.println("======Base64编码后的私钥==");
 		byte[] buf = Base64.encodeBase64(keyPair.getPrivate().getEncoded());
-		System.out.println(new String(buf, "utf-8"));
+		System.out.println(new String(buf, DEFAULT_ENCODE));
 
 		System.out.println("======原始公钥=====");
 		System.out.println(keyPair.getPublic());
 		System.out.println("======Base64编码后的公钥==");
 		byte[] buf2 = Base64.encodeBase64(keyPair.getPublic().getEncoded());
-		System.out.println(new String(buf2,"UTF-8"));
+		System.out.println(new String(buf2,DEFAULT_ENCODE));
 	}
 	
 	/**
@@ -424,6 +432,110 @@ public class RSAUtil {
 		System.out.println("=====生成的私钥=========");
 		String prik = getPrik(modulus, exponent);
 		System.out.println(prik);
+	}
+	
+	/**
+	 * @Described			: 使用默认的公钥对数据进行签名算法
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月30日
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public static String sign(String data) throws Exception{
+		return sign(data, DEFAULT_PUB_KEY);
+	}
+	
+	/**
+	 * @Described			: 对数据进行签名算法
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月30日
+	 * @param data
+	 * @param publicKey
+	 * @return
+	 * @throws Exception
+	 */
+	public static String sign(String data, String publicKey) throws Exception{
+		return sign(data.getBytes(DEFAULT_ENCODE), publicKey);
+	}
+	
+	
+	/**
+	 * @Described			: 对数据进行签名算法
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月30日
+	 * @param data
+	 * @param publicKey
+	 * @return
+	 * @throws Exception
+	 */
+	public static String sign(byte[] data, String publicKey) throws Exception{
+		//解密公钥
+		byte[] keyBytes = Base64.decodeBase64(publicKey);
+		//构造X509EncodedKeySpec对象
+		X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(keyBytes);
+		//指定加密算法
+		KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORTHM);
+		//取公钥匙对象
+		PublicKey publicKey2 = keyFactory.generatePublic(x509EncodedKeySpec);
+		Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);
+		signature.initVerify(publicKey2);
+		signature.update(data);
+		return Base64.encodeBase64String(signature.sign());
+	}
+	
+	/**
+	 * @Described			: 使用默认私钥验证签名
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月30日
+	 * @param data
+	 * @param sign
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean verify(String data, String sign)throws Exception{
+		return verify(data, DEFAULT_PRI_KEY, sign);
+	}
+	
+	/**
+	 * @Described			: 验证数字签名
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月30日
+	 * @param data
+	 * @param privateKey
+	 * @param sign
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean verify(String data, String privateKey, String sign)throws Exception{
+		return verify(data.getBytes(DEFAULT_ENCODE), privateKey, sign);
+	}
+	
+	/**
+	 * @Described			: 验证数字签名
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月30日
+	 * @param data
+	 * @param privateKey
+	 * @param sign
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean verify(byte[] data, String privateKey, String sign)throws Exception{
+		//解密公钥
+		byte[] keyBytes = Base64.decodeBase64(privateKey);
+		//构造PKCS8EncodedKeySpec对象
+		PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(keyBytes);
+		//指定加密算法
+		KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORTHM);
+		//取私钥匙对象
+		PrivateKey privateKey2 = keyFactory.generatePrivate(pkcs8EncodedKeySpec);
+		//用私钥对信息生成数字签名
+		Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);
+		signature.initSign(privateKey2);
+		signature.update(data);
+		//验证签名是否正常
+		return signature.verify(Base64.decodeBase64(sign));
 	}
 
 
