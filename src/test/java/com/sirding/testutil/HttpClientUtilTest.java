@@ -16,14 +16,17 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class HttpClientUtilTest {
 
 	/**
 	 * POST方式发起http请求
 	 */
 	@Test
+	@Ignore
 	public void testTp(){
 		String tpId = "tp_002_ybej";
 //		String host1 = "http://101.201.152.200/openapi";
