@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>认证授权</title>
-    <jsp:include page="/layout/inc.jsp"></jsp:include>
+    <jsp:include page="/static/layout/inc.jsp"></jsp:include>
 </head>
 <body>
 <div style="width: 76%;margin-left: 12%">

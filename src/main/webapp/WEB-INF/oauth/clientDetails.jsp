@@ -11,7 +11,7 @@
         }
     </style>
     
-    <jsp:include page="/layout/inc.jsp" />
+    <jsp:include page="/static/layout/inc.jsp" />
 </head>
 <body>
 <div style="width: 76%;margin-left: 12%">

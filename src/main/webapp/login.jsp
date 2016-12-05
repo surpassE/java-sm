@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录</title>
-<jsp:include page="/layout/inc.jsp"></jsp:include>
+<jsp:include page="/static/layout/inc.jsp"></jsp:include>
 </head>
 <body>
 <div class="container w-xxl w-auto-xs">

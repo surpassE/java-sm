@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>获得access_token</title>
-    <jsp:include page="/layout/inc.jsp"></jsp:include>
+    <jsp:include page="/static/layout/inc.jsp"></jsp:include>
 </head>
 <body>
 <div ng-app="getAccessToken">

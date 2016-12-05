@@ -14,16 +14,17 @@
 
 
 	<http pattern="/auth/login.jsp" security="none" />  
-    <http pattern="/*.ico" security="none" />
+    <!-- <http pattern="/*.ico" security="none" />
     <http pattern="/template/**" security="none" />
     <http pattern="/template-bs/**" security="none" />
     <http pattern="/css/**" security="none" />
     <http pattern="/img/**" security="none" />
     <http pattern="/fonts/**" security="none" />
     <http pattern="/js/**" security="none" />
-    <http pattern="/layout/**" security="none" />
+    <http pattern="/layout/**" security="none" /> -->
     <http pattern="/oauth" security="none" />
     <http pattern="/webjars/**" security="none" />
+    <http pattern="/static/**" security="none" />
     
     <!-- *********************** 受保护的资源 ******************************************** -->
 	<oauth2:resource-server id="unityResourceServer" resource-id="unity-resource" token-services-ref="tokenServices" />

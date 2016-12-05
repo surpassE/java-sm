@@ -4,12 +4,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>系统用户管理</title>
-<jsp:include page="/layout/incTemplate.jsp"></jsp:include>
+<jsp:include page="/static/layout/incTemplate.jsp"></jsp:include>
 </head>
 <body>
 <div id="wrapper">
 	<!-- 引入菜单及头部信息 -->
-     <jsp:include page="/layout/incAdminMenu.jsp"></jsp:include>
+     <jsp:include page="/static/layout/incAdminMenu.jsp"></jsp:include>
 
 	<!-- 主面板 start -->
     <div id="page-wrapper">

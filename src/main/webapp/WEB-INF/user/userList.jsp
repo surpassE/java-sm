@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>系统用户</title>
-<jsp:include page="/layout/incTemplate.jsp"></jsp:include>
+<jsp:include page="/static/layout/incTemplate.jsp"></jsp:include>
 
 <script>
 $(document).ready(function() {
