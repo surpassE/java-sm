@@ -5,6 +5,7 @@
 	xmlns:p="http://www.springframework.org/schema/p" 
 	xmlns:context="http://www.springframework.org/schema/context" 
 	xmlns:cache="http://www.springframework.org/schema/cache" 
+	xmlns:task="http://www.springframework.org/schema/task"
 	
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd 
@@ -14,6 +15,8 @@
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd
 	http://www.springframework.org/schema/cache   
 	http://www.springframework.org/schema/cache/spring-cache.xsd
+	http://www.springframework.org/schema/task 
+	http://www.springframework.org/schema/task/spring-task.xsd
 ">
 
 	<!-- 配置1： 自动扫描controller包下的所有类，使其认为spring mvc的控制器 
@@ -25,19 +28,9 @@
 	  	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
   	</context:component-scan>
   	
-    <!-- ================406   去掉此部分模块可解决，请求406异常================== -->
 	<!-- 静态资源映射  不配置mvc:annotation只配置mvc:resources将导致SpringMVC无法拦截请求-->
 	<!-- <mvc:annotation-driven/> -->
     <mvc:resources mapping="/index.jsp" location="/index.jsp"/>
-   <!--  <mvc:resources mapping="/template/**" location="/template/"/> 
-    <mvc:resources mapping="/template-bs/**" location="/template-bs/"/> 
-    <mvc:resources mapping="/css/**" location="/css/"/> 
-    <mvc:resources mapping="/img/**" location="/img/"/> 
-    <mvc:resources mapping="/fonts/**" location="/fonts/"/> 
-    <mvc:resources mapping="/js/**" location="/js/"/> 
-    <mvc:resources mapping="/layout/**" location="/layout/"/> -->
-    
-    
     <mvc:resources mapping="/static/**" location="/static/"/>
     <!-- 配置解析webjars资源 -->
     <!-- <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"> -->
@@ -50,10 +43,12 @@
     	</mvc:resource-chain>
     </mvc:resources>
     
+    <!-- 扫描controller定时任务的@Scheduled注解 -->
+    <task:annotation-driven/>
+    
     <!-- <import resource="spring-websocket.xml"/> -->
     
-    <!-- ================406================== -->
-	  
+
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<description>启动Spring MVC的注解功能，完成请求和注解POJO的映射</description>
 		<property name="messageConverters">

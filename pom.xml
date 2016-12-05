@@ -34,6 +34,7 @@
 		<freemarker.version>2.3.25-incubating</freemarker.version>
 		<jackson.version>2.8.4</jackson.version>
 		<jetty.version>9.3.13.v20161014</jetty.version>
+		<tomcat.version>8.0.8</tomcat.version>
 	</properties>
 
 	<repositories>
@@ -446,14 +447,40 @@
 		</dependency>
 		
 		<!-- =====================华丽分割线================================= -->
-		<!-- 配置jetty支持websocket start -->
-		<!-- https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-server -->
-		<!-- <dependency>
+		<!-- 配置jetty和tomcat支持websocket start -->
+		
+		<dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <version>1.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-websocket</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-logging-log4j</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+		<dependency>
 		    <groupId>org.eclipse.jetty.websocket</groupId>
 		    <artifactId>websocket-server</artifactId>
 		    <version>${jetty.version}</version>
-		</dependency> -->
-		<!-- <dependency>
+		</dependency>
+		<dependency>
             <groupId>org.eclipse.jetty.websocket</groupId>
             <artifactId>websocket-client</artifactId>
             <version>${jetty.version}</version>
@@ -470,8 +497,8 @@
             <artifactId>jetty-client</artifactId>
             <version>${jetty.version}</version>
             <scope>test</scope>
-        </dependency> -->
-		<!-- 配置jetty支持websocket end -->
+        </dependency>
+		<!-- 配置jetty和tomcat支持websocket end -->
 		<!-- =====================华丽分割线================================= -->
 	</dependencies>
 

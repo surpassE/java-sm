@@ -16,7 +16,7 @@
 	<a href="javascript:void(0)" id="send">发送</a>
 	<a href="javascript:void(0)" id="connect">连接</a>
 	<a href="javascript:void(0)" id="disconnect">断开</a><br/>
-	获得随机数:<span id="random"></span>
+	当前时间(每10秒更新一次):<span id="time"></span>
 </form>
 
 
@@ -32,8 +32,8 @@ function connect() {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/getRandom', function (greeting) {
-            showRandom(JSON.parse(greeting.body).content);
+        stompClient.subscribe('/topic/getTime', function (time) {
+            showTime(JSON.parse(time.body).value);
         });
     });
 }
@@ -46,12 +46,11 @@ function disconnect() {
 }
 
 function sendName() {
-    stompClient.send("/app/random", {}, JSON.stringify({'name': $("#name").val()}));
+    stompClient.send("/app/time", {}, JSON.stringify({'name': $("#name").val()}));
 }
 
-function showRandom(message) {
-//    $("#random").append("<tr><td>" + message + "</td></tr>");
-    $("#random").text(message);
+function showTime(message) {
+    $("#time").text(message);
 }
 
 $(function () {
