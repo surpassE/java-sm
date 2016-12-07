@@ -28,7 +28,7 @@ var stompClient = null;
 
 
 function connect() {
-    var socket = new SockJS('/myws');
+    var socket = new SockJS('/java-sm/myws');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);

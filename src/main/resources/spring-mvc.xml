@@ -43,10 +43,7 @@
     	</mvc:resource-chain>
     </mvc:resources>
     
-    <!-- 扫描controller定时任务的@Scheduled注解 -->
-    <task:annotation-driven/>
-    
-    <!-- <import resource="spring-websocket.xml"/> -->
+    <import resource="spring-websocket.xml"/>
     
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">

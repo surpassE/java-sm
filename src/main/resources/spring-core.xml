@@ -17,6 +17,9 @@
 		<!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" /> --> 
 	</context:component-scan> 
 	
+	<!-- 扫描controller定时任务的@Scheduled注解 -->
+    <task:annotation-driven/>
+	
 	<!-- 引入项目配置文件 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">

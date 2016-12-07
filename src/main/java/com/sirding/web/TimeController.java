@@ -4,11 +4,13 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.simp.annotation.SendToUser;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sirding.core.utils.ACUtils;
 import com.sirding.core.utils.DateUtil;
 import com.sirding.domain.SimpleJson;
 /**
@@ -21,8 +23,9 @@ import com.sirding.domain.SimpleJson;
 public class TimeController {
 	private final Logger logger = Logger.getLogger(getClass());
 	
-	@Autowired
-	private MessageSendingOperations<String> messageSendingOperations;
+//	@Autowired
+//	private MessageSendingOperations<String> messageSendingOperations;
+	private SimpMessagingTemplate simpMessagingTemplate;
 
 	@RequestMapping("toTime")
 	public String toRandom(){
@@ -30,18 +33,24 @@ public class TimeController {
 	}
 	
 	@MessageMapping("/time")
-	@SendToUser(value = "/topic/getTime")
+	@SendTo(value = "/topic/getTime")
 	public SimpleJson getRandom(SimpleJson simpleJson){
 		logger.debug("接收到客户端的数据信息：" + simpleJson.getName());
-		SimpleJson json = new SimpleJson("zc.ding", new SimpleJson("time", DateUtil.getDate()));
+		SimpleJson json = new SimpleJson("zc.ding", DateUtil.getDate());
 		return json;
 	}
 	
-	@Scheduled(fixedDelay = 10000)
+//	@Scheduled(fixedDelay = 10000)
 	public void sendMsg(){
-		if(this.messageSendingOperations != null){
-			logger.debug(this.messageSendingOperations.getClass().toString());
-			this.messageSendingOperations.convertAndSend("/topic/getTime", new SimpleJson("time", DateUtil.getDate()));
+		logger.info("hello world");
+//		if(this.messageSendingOperations != null){
+//			logger.debug(this.messageSendingOperations.getClass().toString());
+//			this.messageSendingOperations.convertAndSend("/topic/getTime", new SimpleJson("time", DateUtil.getDate()));
+//		}
+		logger.debug(this.simpMessagingTemplate);
+		if(this.simpMessagingTemplate != null){
+			this.simpMessagingTemplate.convertAndSend("/topic/getTime", new SimpleJson("time", DateUtil.getDate()));
 		}
+
 	}
 }
