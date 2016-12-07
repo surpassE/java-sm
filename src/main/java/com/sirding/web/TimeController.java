@@ -21,11 +21,15 @@ import com.sirding.domain.SimpleJson;
  */
 @Controller
 public class TimeController {
+	
+	public TimeController(){
+		logger.info("hello");
+		
+	}
 	private final Logger logger = Logger.getLogger(getClass());
 	
-//	@Autowired
-//	private MessageSendingOperations<String> messageSendingOperations;
-	private SimpMessagingTemplate simpMessagingTemplate;
+	@Autowired
+	private MessageSendingOperations<String> messageSendingOperations;
 
 	@RequestMapping("toTime")
 	public String toRandom(){
@@ -40,17 +44,17 @@ public class TimeController {
 		return json;
 	}
 	
-//	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 10000)
 	public void sendMsg(){
 		logger.info("hello world");
-//		if(this.messageSendingOperations != null){
-//			logger.debug(this.messageSendingOperations.getClass().toString());
-//			this.messageSendingOperations.convertAndSend("/topic/getTime", new SimpleJson("time", DateUtil.getDate()));
-//		}
-		logger.debug(this.simpMessagingTemplate);
-		if(this.simpMessagingTemplate != null){
-			this.simpMessagingTemplate.convertAndSend("/topic/getTime", new SimpleJson("time", DateUtil.getDate()));
+		if(this.messageSendingOperations != null){
+			logger.debug(this.messageSendingOperations.getClass().toString());
+			this.messageSendingOperations.convertAndSend("/topic/getTime", new SimpleJson("time", DateUtil.getDate()));
 		}
+//		logger.debug(this.simpMessagingTemplate);
+//		if(this.simpMessagingTemplate != null){
+//			this.simpMessagingTemplate.convertAndSend("/topic/getTime", new SimpleJson("time", DateUtil.getDate()));
+//		}
 
 	}
 }

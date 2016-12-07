@@ -43,7 +43,7 @@
     	</mvc:resource-chain>
     </mvc:resources>
     
-    <import resource="spring-websocket.xml"/>
+    <!-- <import resource="spring-websocket.xml"/> -->
     
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
