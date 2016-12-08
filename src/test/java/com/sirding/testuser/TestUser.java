@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sirding.Base;
-import com.sirding.commons.OtherInstance;
+import com.sirding.commons.RedisInstance;
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.service.AppSysUserService;
 
@@ -32,7 +32,8 @@ public class TestUser extends Base{
 	
 	@Test
 	public void test3(){
-		System.out.println(OtherInstance.newInstance().REDIS_IP);
+		System.out.println(RedisInstance.newInstance().REDIS_IP);
+//		System.out.println(RedisInstance.REDIS_IP);
 	}
 
 }

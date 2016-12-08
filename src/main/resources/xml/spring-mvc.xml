@@ -29,11 +29,9 @@
   	</context:component-scan>
   	
 	<!-- 静态资源映射  不配置mvc:annotation只配置mvc:resources将导致SpringMVC无法拦截请求-->
-	<!-- <mvc:annotation-driven/> -->
     <mvc:resources mapping="/index.jsp" location="/index.jsp"/>
     <mvc:resources mapping="/static/**" location="/static/"/>
     <!-- 配置解析webjars资源 -->
-    <!-- <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"> -->
     <mvc:resources mapping="/webjars/**" location="/webjars/">
     	<mvc:resource-chain resource-cache="false" auto-registration="false">
     		<mvc:resolvers>
@@ -42,9 +40,6 @@
     		</mvc:resolvers>
     	</mvc:resource-chain>
     </mvc:resources>
-    
-    <!-- <import resource="spring-websocket.xml"/> -->
-    
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<description>启动Spring MVC的注解功能，完成请求和注解POJO的映射</description>

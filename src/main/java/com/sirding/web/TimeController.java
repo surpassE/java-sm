@@ -5,12 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sirding.core.utils.ACUtils;
 import com.sirding.core.utils.DateUtil;
 import com.sirding.domain.SimpleJson;
 /**
@@ -21,11 +19,6 @@ import com.sirding.domain.SimpleJson;
  */
 @Controller
 public class TimeController {
-	
-	public TimeController(){
-		logger.info("hello");
-		
-	}
 	private final Logger logger = Logger.getLogger(getClass());
 	
 	@Autowired
@@ -44,17 +37,13 @@ public class TimeController {
 		return json;
 	}
 	
-	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 60000)
 	public void sendMsg(){
-		logger.info("hello world");
+		logger.info("开始对外发送广播消息");
 		if(this.messageSendingOperations != null){
 			logger.debug(this.messageSendingOperations.getClass().toString());
 			this.messageSendingOperations.convertAndSend("/topic/getTime", new SimpleJson("time", DateUtil.getDate()));
 		}
-//		logger.debug(this.simpMessagingTemplate);
-//		if(this.simpMessagingTemplate != null){
-//			this.simpMessagingTemplate.convertAndSend("/topic/getTime", new SimpleJson("time", DateUtil.getDate()));
-//		}
 
 	}
 }
