@@ -44,9 +44,24 @@ public class RedisInstance {
 		return redisInstance;
 	}
 	
-	@Value("${redis_ip}")
-	public String REDIS_IP;
-	@Value("${redis_port}")
-	public String REDIS_PORT;
+	@Value("${redis.host}")
+	public String REDIS_HOST;
+	@Value("${redis.port}")
+	public int REDIS_PORT;
+	@Value("${redis.pass}")
+	public String REDIS_PASS;
+	@Value("${redis.dbIndex}")
+	public int REDIS_DB_INDEX;
+	@Value("${redis.expiration}")
+	public int REDIS_EXPIRATION;
+	
+	@Value("${redis.maxIdle}")
+	public int REDIS_MAXIDLE;
+	@Value("${redis.maxActive}")
+	public int REDIS_MAXACTIVE;
+	@Value("${redis.maxWait}")
+	public int REDIS_MAXWAIT;
+	@Value("${redis.testOnBorrow}")
+	public boolean REDIS_TESTONBORROW;
 	
 }

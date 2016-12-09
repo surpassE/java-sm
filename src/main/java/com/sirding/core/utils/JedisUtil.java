@@ -1,5 +1,7 @@
 package com.sirding.core.utils;
 
+import com.sirding.commons.RedisInstance;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -12,10 +14,9 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 public class JedisUtil {
 
-	private static String host = "127.0.0.1";
-	private static Integer port = 2185;
 	//redis连接池
-	private static JedisPool pool ;
+	private static JedisPool pool;
+//	private static Jedis pool;
 	private JedisUtil(){}
 
 	/**
@@ -27,14 +28,15 @@ public class JedisUtil {
 		if (pool == null) {  
             JedisPoolConfig config = new JedisPoolConfig();  
             //控制一个pool最多有多少个状态为idle(空闲的)的jedis实例。  
-            config.setMaxIdle(5);  
+            config.setMaxIdle(RedisInstance.newInstance().REDIS_MAXIDLE);  
             //表示当borrow(引入)一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException；  
-            config.setMaxWaitMillis(100 * 1000);;
+            config.setMaxWaitMillis(RedisInstance.newInstance().REDIS_MAXWAIT);
             //在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的；  
-            config.setTestOnBorrow(true); 
-            pool = new JedisPool(config, host, port);
-//            pool = new JedisPool(config, OtherInstance.newInstance().REDIS_IP,  Integer.parseInt(OtherInstance.newInstance().REDIS_PORT));
-        }  
+            config.setTestOnBorrow(RedisInstance.newInstance().REDIS_TESTONBORROW); 
+            pool = new JedisPool(config, RedisInstance.newInstance().REDIS_HOST, RedisInstance.newInstance().REDIS_PORT);
+//            JedisConnectionFactory jedisConnectionFactory =  ACUtils.getBean("jedisConnectionFactory", JedisConnectionFactory.class);;
+//            pool = jedisConnectionFactory.getShardInfo().createResource();
+		}  
 	}
 	
 	/**
@@ -62,7 +64,8 @@ public class JedisUtil {
 	}
 	
 	/**
-	 * @Described	: 将使用完的jedis实例换回到jedis连接池中
+	 * @Described	:将使用完的jedis实例换回到jedis连接池中<br/>
+	 * 					returnBrokenResource和returnResource在3.0+已经被废弃，通过close代替
 	 * @author		: zc.ding
 	 * @date 		: 2016年11月29日
 	 * @param jedis	: jedis实例
@@ -70,11 +73,12 @@ public class JedisUtil {
 	 */
 	private static void returnResource(Jedis jedis, boolean broken){
 		if(jedis != null){
-			if(broken){
-				pool.returnBrokenResource(jedis);
-			}else{
-				pool.returnResource(jedis);
-			}
+//			if(broken){
+//				pool.returnBrokenResource(jedis);
+//			}else{
+//				pool.returnResource(jedis);
+//			}
+			pool.close();
 		}
 	}
 	

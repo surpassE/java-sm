@@ -289,6 +289,12 @@
 		    <groupId>org.crazycake</groupId>
 		    <artifactId>shiro-redis</artifactId>
 		    <version>2.4.2.1-RELEASE</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>redis.clients</groupId>
+		    		<artifactId>jedis</artifactId>
+		    	</exclusion>
+		    </exclusions>
 		</dependency>
 		<!-- shiro security end -->
 
@@ -300,6 +306,20 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 		<!-- hibernate end -->
+		
+		<!-- =====================华丽分割线================================= -->
+		<!-- cache start -->
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-redis</artifactId>
+		    <version>1.7.5.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>2.9.0</version>
+		</dependency>
+		<!-- cache end -->
 		
 		<!-- =====================华丽分割线================================= -->
 		<!-- mybatis start ORM-->
