@@ -25,6 +25,38 @@ import com.sirding.mybatis.model.AppUser;
  */
 public abstract class BaseController {
 	private final Logger logger = Logger.getLogger(getClass());
+	/**
+	 * 视图前缀
+	 */
+	protected String prefix = "";
+	/**
+	 * 重定向视图前缀
+	 */
+	protected String prefixRedirect;
+	
+	/**
+	 * @Described			: 获得视图的前缀名称
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月10日
+	 * @return				: String
+	 * @param name
+	 * @return
+	 */
+	protected String getPrefix(String name){
+		return this.prefix + name;
+	}
+	
+	/**
+	 * @Described			: 获得重定向的视图前缀
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月10日
+	 * @return				: String
+	 * @param name
+	 * @return
+	 */
+	protected String getPrefixRedirect(String name){
+		return this.prefixRedirect + name;
+	}
 
 	/**
 	 * @Described	: 获得含有token的视图对象

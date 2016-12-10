@@ -3,7 +3,7 @@ package com.sirding.service;
 import java.util.List;
 
 import com.sirding.base.CurdService;
-import com.sirding.domain.dtpage.Page;
+import com.sirding.domain.PageAdapter;
 import com.sirding.mybatis.model.AppUser;
 
 public interface AppUserService extends CurdService<AppUser>{
@@ -27,6 +27,6 @@ public interface AppUserService extends CurdService<AppUser>{
 	 * @param record
 	 * @return
 	 */
-	List<AppUser> findUser(Page page, AppUser record);
+	List<AppUser> findUser(PageAdapter page, AppUser record);
 
 }

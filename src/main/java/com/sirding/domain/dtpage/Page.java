@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSONArray;
+import com.sirding.domain.PageAdapter;
 import com.sirding.domain.SimpleJson;
 
 /**
@@ -19,7 +20,7 @@ import com.sirding.domain.SimpleJson;
  * @author 		: zc.ding
  * @date 		: 2016年11月21日
  */
-public class Page implements Serializable{
+public class Page extends PageAdapter implements Serializable{
 	/**
 	 * 
 	 */
@@ -32,7 +33,6 @@ public class Page implements Serializable{
 	private int start = 0;
 	//每页条数
 	private int length = 10;
-	private long total = 0;
 	//
 	private String data;
 	//进行排序的列
@@ -63,12 +63,7 @@ public class Page implements Serializable{
 	public void setSortList(List<SimpleJson> sortList) {
 		this.sortList = sortList;
 	}
-	public long getTotal() {
-		return total;
-	}
-	public void setTotal(long total) {
-		this.total = total;
-	}
+	
 	public String getData() {
 		return data;
 	}
@@ -92,7 +87,7 @@ public class Page implements Serializable{
 	 * @return		: String
 	 * @return
 	 */
-	public String getSort(){
+	public String initSort(){
 		StringBuffer sb = new StringBuffer();
 		for(SimpleJson obj : this.sortList){
 			String sort = String.valueOf(obj.getValue());
@@ -128,8 +123,11 @@ public class Page implements Serializable{
 		this.draw = (Integer)map.get("sEcho");
 		this.start = (Integer)map.get("iDisplayStart");
 		this.length = (Integer)map.get("iDisplayLength");
+		super.setPageNum(this.start);
+		super.setPageSize(this.length);
 		//解析排序列接升降序
 		initSortCols(map);
+		super.setSort(this.initSort());
 		
 	}
 	

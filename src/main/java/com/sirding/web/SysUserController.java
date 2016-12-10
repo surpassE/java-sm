@@ -27,25 +27,30 @@ import com.sirding.service.AppSysUserService;
 public class SysUserController extends BaseController{
 	
 	private final Logger logger = Logger.getLogger(getClass());
+	public SysUserController(){
+		super.prefix = "uiAdmin/user/";
+		super.prefixRedirect = "redirect:uiAdmin/user/";
+	}
+	
 	@Autowired
 	private AppSysUserService appSysUserService;
 
 	@RequestMapping("toSysUser")
 	public String toSysUser(){
 		logger.debug("系统用户管理页面");
-		return "user/sysUserList";
+		return getPrefix("sysUserList");
 	}
 
 	@RequestMapping("addSysUser")
 	public ModelAndView addSysUser(AppSysUser obj){
-		ModelAndView mav = new ModelAndView("user/sysUserList");
+		ModelAndView mav = new ModelAndView(super.getPrefix("sysUserList"));
 		this.appSysUserService.add(obj);
 		return mav;
 	}
 
 	@RequestMapping("delSysUser")
 	public ModelAndView delSysUser(AppSysUser obj){
-		ModelAndView mav = new ModelAndView("user/sysUserList");
+		ModelAndView mav = new ModelAndView(super.getPrefix("sysUserList"));
 		this.appSysUserService.del(obj.getId());
 		return mav;
 	}

@@ -3,10 +3,11 @@ package com.sirding.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.sirding.base.BaseServiceImpl;
-import com.sirding.domain.dtpage.Page;
+import com.sirding.domain.PageAdapter;
 import com.sirding.mybatis.mapper.AppSysUserMapper;
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.mybatis.model.AppSysUserExample;
@@ -54,8 +55,9 @@ public class AppSysUserServiceImpl extends BaseServiceImpl<AppSysUser> implement
 //		return this.appSysUserMapper.countByExample(example);
 //	}
 
+	@Cacheable(value = "findSysUser")
 	@Override
-	public List<AppSysUser> findSysUser(Page page, AppSysUser record) {
+	public List<AppSysUser> findSysUser(PageAdapter page, AppSysUser record) {
 		return super.findByPage(page, this.initExample(record));
 	}
 	

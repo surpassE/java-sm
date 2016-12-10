@@ -8,7 +8,7 @@
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="/toAdminIndex">One Piece</a>
+         <a class="navbar-brand" href="${pageContext.request.contextPath }/toAdminIndex">One Piece</a>
      </div>
 
 	 <!-- 头部信息开始 -->
@@ -85,10 +85,10 @@
                      <a href="#"><i class="fa fa-user fa-fw"></i> 用户管理</a>
                      <ul class="nav nav-second-level">
                          <li>
-                             <a href="/sysUser/toSysUser">系统用户</a>
+                             <a href="${pageContext.request.contextPath}/sysUser/toSysUser">系统用户</a>
                          </li>
                          <li>
-                             <a href="/user/toUser">应用用户</a>
+                             <a href="${pageContext.request.contextPath}/user/toUser">应用用户</a>
                          </li>
                      </ul>
                  </li>

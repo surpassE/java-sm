@@ -28,6 +28,11 @@ import com.sirding.service.AppUserService;
 @RequestMapping("/user/")
 public class UserController extends BaseController {
 	private final static Logger logger = Logger.getLogger(UserController.class);
+	public UserController(){
+		super.prefix = "uiAdmin/user/";
+		super.prefixRedirect = "redirect:uiAdmin/user/";
+	}
+	
 	
 	@Autowired
 	private AppUserService appUserService;
@@ -40,7 +45,7 @@ public class UserController extends BaseController {
 	@RequestMapping("toUser")
 	public String toUser(AppUser obj){
 		logger.debug("进入应用管理用户界面");
-		return "user/userList";
+		return super.getPrefix("userList");
 	}
 	
 	/**
@@ -53,7 +58,7 @@ public class UserController extends BaseController {
 	@RequestMapping("addUser")
 	public String addUser(AppUser obj){
 		this.appUserService.add(obj);
-		return "redirect:uert/toUser.htm";
+		return super.getPrefix("toUser");
 	}
 
 	/**
@@ -66,7 +71,7 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping("delUser")
 	public ModelAndView delUser(AppUser obj){
-		ModelAndView mav = new ModelAndView("user/userList");
+		ModelAndView mav = new ModelAndView(super.getPrefix("userList"));
 		this.appUserService.del(obj.getId());
 		return mav;
 	}
@@ -80,7 +85,7 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	public ModelAndView toUpdateUser(AppUser obj){
-		ModelAndView view = super.getTokenView("user/user");
+		ModelAndView view = super.getTokenView(this.prefix + "user");
 		AppUser user = this.appUserService.findById(obj.getId());
 		view.addObject("user", user);
 		return view;
@@ -96,9 +101,9 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	public ModelAndView updateUser(HttpServletRequest request, AppUser obj){
-		ModelAndView view = new ModelAndView("redirect:/user/toUser");
+		ModelAndView view = new ModelAndView(super.getPrefixRedirect("toUser"));
 		if(super.validateToken(request)){
-			return super.backView("redirect:/user/toUpdateUser", "user", obj);
+			return super.backView(super.getPrefixRedirect("toUpdateUser"), "user", obj);
 		}
 		return view;
 	}

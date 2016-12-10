@@ -23,6 +23,7 @@ public class TimeController {
 	
 	@Autowired
 	private MessageSendingOperations<String> messageSendingOperations;
+	private boolean  broadcast = false;
 
 	@RequestMapping("toTime")
 	public String toRandom(){
@@ -39,11 +40,12 @@ public class TimeController {
 	
 	@Scheduled(fixedDelay = 60000)
 	public void sendMsg(){
-		logger.info("开始对外发送广播消息");
-		if(this.messageSendingOperations != null){
-			logger.debug(this.messageSendingOperations.getClass().toString());
-			this.messageSendingOperations.convertAndSend("/topic/getTime", new SimpleJson("time", DateUtil.getDate()));
+		if(broadcast){
+			logger.info("开始对外发送广播消息");
+			if(this.messageSendingOperations != null){
+				logger.debug(this.messageSendingOperations.getClass().toString());
+				this.messageSendingOperations.convertAndSend("/topic/getTime", new SimpleJson("time", DateUtil.getDate()));
+			}
 		}
-
 	}
 }

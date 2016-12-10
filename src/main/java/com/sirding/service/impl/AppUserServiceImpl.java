@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sirding.base.BaseServiceImpl;
-import com.sirding.domain.dtpage.Page;
+import com.sirding.domain.PageAdapter;
 import com.sirding.mybatis.mapper.AppUserMapper;
 import com.sirding.mybatis.model.AppUser;
 import com.sirding.mybatis.model.AppUserExample;
@@ -61,7 +61,7 @@ public class AppUserServiceImpl extends BaseServiceImpl<AppUser> implements AppU
 //	}
 
 	@Override
-	public List<AppUser> findUser(Page page, AppUser record) {
+	public List<AppUser> findUser(PageAdapter page, AppUser record) {
 		return super.findByPage(page, this.initExample(record));
 	}
 	

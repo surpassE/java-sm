@@ -519,9 +519,18 @@
             <scope>test</scope>
         </dependency>
 		<!-- 配置jetty和tomcat支持websocket end -->
+		
+		<!-- =====================华丽分割线================================= -->
+		<!-- 模板装饰器 start -->
+		<!-- <dependency>
+		    <groupId>opensymphony</groupId>
+		    <artifactId>sitemesh</artifactId>
+		    <version>2.4</version> 
+		</dependency> -->
+		<!-- 模板装饰器  end -->
 		<!-- =====================华丽分割线================================= -->
 	</dependencies>
-
+	
 	
 	<build>
 		<finalName>java-sm</finalName>
