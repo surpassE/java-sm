@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.sirding.aop.PageTotal;
 import com.sirding.base.BaseServiceImpl;
 import com.sirding.domain.PageAdapter;
 import com.sirding.mybatis.mapper.AppSysUserMapper;
@@ -55,7 +56,8 @@ public class AppSysUserServiceImpl extends BaseServiceImpl<AppSysUser> implement
 //		return this.appSysUserMapper.countByExample(example);
 //	}
 
-	@Cacheable(value = "findSysUser")
+	@PageTotal
+	@Cacheable(value = "sysUser")
 	@Override
 	public List<AppSysUser> findSysUser(PageAdapter page, AppSysUser record) {
 		return super.findByPage(page, this.initExample(record));

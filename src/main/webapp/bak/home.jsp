@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<jsp:include page="/layout/inc.jsp"></jsp:include>
+<jsp:include page="/static/layout/inc.jsp"></jsp:include>
 <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/comjs/angular-1.5.8/angular.min.js"></script> --%>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/ngtest.js"></script>
 </head>
@@ -50,6 +50,6 @@ Sort by:
   </li>
 </ul>
 
-<jsp:include page="/layout/footer.jsp"/>
+<jsp:include page="/static/layout/footer.jsp"/>
 </body>
 </html>
