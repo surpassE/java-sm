@@ -50,7 +50,7 @@ public class BaseServiceImpl<T> implements CurdService<T>{
 	 * @param example
 	 * @return
 	 */
-	public List<T> findByPage(PageAdapter page, Object example){
+	public List<T> findByPage(PageAdapter<T> page, Object example){
 		//设置排序
 		if(page.getSort() != null && page.getSort().length() > 0){
 			ReflectUtil.callForEntity(example, "setOrderByClause", page.getSort());
@@ -62,6 +62,31 @@ public class BaseServiceImpl<T> implements CurdService<T>{
 		//保存分页总条数
 		page.setTotal(p.getTotal());
 		return list;
+	}
+	
+	/**
+	 * @Described			: 条件分页检索数据
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月10日
+	 * @return				: PageAdapter<T>
+	 * @param page
+	 * @param example
+	 * @return
+	 */
+	public PageAdapter<T> findByPages(PageAdapter<T> page, Object example){
+		//设置排序
+		if(page.getSort() != null && page.getSort().length() > 0){
+			ReflectUtil.callForEntity(example, "setOrderByClause", page.getSort());
+		}
+		//含有同条数的分页
+		com.github.pagehelper.Page<T> p = PageHelper.startPage(page.getPageNum(), page.getPageSize(), true);
+		//执行数据查询操作
+		List<T> list = ReflectUtil.callForEntity(mapper, "selectByExample", example);
+		//保存分页总条数
+		page.setTotal(p.getTotal());
+		//保存检索的结果
+		page.setResultList(list);
+		return page;
 	}
 
 }

@@ -61,8 +61,8 @@ public class AppUserServiceImpl extends BaseServiceImpl<AppUser> implements AppU
 //	}
 
 	@Override
-	public List<AppUser> findUser(PageAdapter page, AppUser record) {
-		return super.findByPage(page, this.initExample(record));
+	public PageAdapter<AppUser> findUser(PageAdapter<AppUser> page, AppUser record) {
+		return super.findByPages(page, this.initExample(record));
 	}
 	
 	/**

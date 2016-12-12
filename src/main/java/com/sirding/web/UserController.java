@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sirding.base.BaseController;
+import com.sirding.domain.PageAdapter;
 import com.sirding.domain.dtpage.Page;
 import com.sirding.mybatis.model.AppUser;
 import com.sirding.service.AppUserService;
@@ -124,8 +125,8 @@ public class UserController extends BaseController {
 	
 	@RequestMapping("findUser")
 	@ResponseBody
-	public Map<String, Object> findUser(Page page, AppUser obj){
-		List<AppUser> list = this.appUserService.findUser(page, obj);
-		return super.getPageMap(page, list);
+	public Map<String, Object> findUser(Page<AppUser> page, AppUser obj){
+		PageAdapter<AppUser> pageAdapter = this.appUserService.findUser(page, obj);
+		return super.getPageMap(page, pageAdapter);
 	}
 }

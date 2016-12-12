@@ -20,12 +20,12 @@ import com.sirding.domain.SimpleJson;
  * @author 		: zc.ding
  * @date 		: 2016年11月21日
  */
-public class Page extends PageAdapter implements Serializable{
+public class Page<T> extends PageAdapter<T> implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Logger logger = Logger.getLogger(getClass());
+	private static final Logger logger = Logger.getLogger(Page.class);
 	
 	//数据索引
 	private int draw = 0;

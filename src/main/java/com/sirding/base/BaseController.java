@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sirding.commons.Cons;
 import com.sirding.core.utils.TokenUtil;
+import com.sirding.domain.PageAdapter;
 import com.sirding.domain.dtpage.Page;
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.mybatis.model.AppUser;
@@ -227,7 +228,7 @@ public abstract class BaseController {
 	 * @param list
 	 * @return
 	 */
-	protected Map<String, Object> getPageMap(Page page, long total, Object list){
+	protected Map<String, Object> getPageMap(Page<?> page, long total, Object list){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("draw", page.getDraw());
 		map.put("recordsTotal", total);
@@ -245,13 +246,32 @@ public abstract class BaseController {
 	 * @param list
 	 * @return
 	 */
-	protected Map<String, Object> getPageMap(Page page, Object list){
+	protected Map<String, Object> getPageMap(Page<?> page, Object list){
 		Map<String, Object> map = new HashMap<String, Object>();
 		long total = page.getTotal();
 		map.put("draw", page.getDraw());
 		map.put("recordsTotal", total);
 		map.put("recordsFiltered", total);
 		map.put("data", list);
+		return map;
+	}
+	
+	/**
+	 * @Described	: 获得分页的返回结构信息
+	 * @author		: zc.ding
+	 * @date 		: 2016年11月23日
+	 * @return		: Map<String,Object>
+	 * @param page
+	 * @param list
+	 * @return
+	 */
+	protected Map<String, Object> getPageMap(Page<?> page, PageAdapter<?> pageAdapter){
+		Map<String, Object> map = new HashMap<String, Object>();
+		long total = pageAdapter.getTotal();
+		map.put("draw", page.getDraw());
+		map.put("recordsTotal", total);
+		map.put("recordsFiltered", total);
+		map.put("data", pageAdapter.getResultList());
 		return map;
 	}
 }

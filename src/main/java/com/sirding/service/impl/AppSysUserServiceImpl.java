@@ -59,8 +59,8 @@ public class AppSysUserServiceImpl extends BaseServiceImpl<AppSysUser> implement
 	@PageTotal
 	@Cacheable(value = "sysUser")
 	@Override
-	public List<AppSysUser> findSysUser(PageAdapter page, AppSysUser record) {
-		return super.findByPage(page, this.initExample(record));
+	public PageAdapter<AppSysUser> findSysUser(PageAdapter<AppSysUser> page, AppSysUser record) {
+		return super.findByPages(page, this.initExample(record));
 	}
 	
 	/**

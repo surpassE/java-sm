@@ -1,12 +1,20 @@
 package com.sirding.domain;
+
+import java.io.Serializable;
+
 /**
  * @Described	: simple json
  * @project		: com.sirding.domain.dtpage.Dt
  * @author 		: zc.ding
  * @date 		: 2016年11月21日
  */
-public class SimpleJson{
+public class SimpleJson implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public SimpleJson(){}
 	
 	public SimpleJson(String name, Object value){

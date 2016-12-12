@@ -119,7 +119,7 @@ public class RedisKeyGenerator implements KeyGenerator{
 	public static void main(String[] args) {
 		RedisKeyGenerator kg = new RedisKeyGenerator();
 		long start = System.currentTimeMillis();
-		System.out.println(kg.getType(new Page()));
+		System.out.println(kg.getType(new Page<Object>()));
 		System.out.println("耗时 + " + (System.currentTimeMillis() - start));
 	}
 }

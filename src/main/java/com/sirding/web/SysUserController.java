@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sirding.base.BaseController;
+import com.sirding.domain.PageAdapter;
 import com.sirding.domain.dtpage.Page;
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.service.AppSysUserService;
@@ -76,8 +77,8 @@ public class SysUserController extends BaseController{
 	
 	@RequestMapping(value = "findUser", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> findUser(Page page, AppSysUser obj){
-		List<AppSysUser> list = this.appSysUserService.findSysUser(page, obj);
-		return super.getPageMap(page, list);
+	public Map<String, Object> findUser(Page<AppSysUser> page, AppSysUser obj){
+		PageAdapter<AppSysUser> pageAdapter = this.appSysUserService.findSysUser(page, obj);
+		return super.getPageMap(page, pageAdapter);
 	}
 }

@@ -1,7 +1,5 @@
 package com.sirding.service;
 
-import java.util.List;
-
 import com.sirding.base.CurdService;
 import com.sirding.domain.PageAdapter;
 import com.sirding.mybatis.model.AppSysUser;
@@ -28,11 +26,11 @@ public interface AppSysUserService extends CurdService<AppSysUser> {
 	 * @Described	: 分页条件检索系统管理员信息
 	 * @author		: zc.ding
 	 * @date 		: 2016年11月23日
-	 * @return		: List<AppSysUser>
+	 * @return		: PageAdapter<AppSysUser>
 	 * @param page
 	 * @param record
 	 * @return
 	 */
-	List<AppSysUser> findSysUser(PageAdapter page, AppSysUser record);
+	PageAdapter<AppSysUser> findSysUser(PageAdapter<AppSysUser> page, AppSysUser record);
 	
 }
