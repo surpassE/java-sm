@@ -19,14 +19,14 @@ import org.apache.http.util.EntityUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 
-@Ignore
+//@Ignore
 public class HttpClientUtilTest {
 
 	/**
 	 * POST方式发起http请求
 	 */
 	@Test
-	@Ignore
+//	@Ignore
 	public void testTp(){
 		String tpId = "tp_002_ybej";
 //		String host1 = "http://101.201.152.200/openapi";
@@ -40,18 +40,18 @@ public class HttpClientUtilTest {
 		String uri2 = "/tpi/realValidate";
 		String uri3 = "/tpi/bindBankCard";
 		
-		String zhuce = "jiI2I7cP58PG1LVXWXnYDsE8Jwo46uAk/6Nu5+56cC/gNaU+NqKEUlm05UZBB32kW4UuCzuZKY49SCwNIeR8XmTnvaSB9ks5Dw9tG0TEfN72929WPwzLFREFA00tnHWIESRvRZpDopcrW0c1MVEI6zU+6TtvF298NCEKIQyD9b4f6pyqPFA1byNFUYqBjCutuEysV616/EXPjoO5nfvz8wOfJgYMJg/LSXDNPHRb3ZZOnViF32fb9oz5f9S54Tt79gfj78Aitw39JiQ3/CQzxp3+EJlTKGArrvmkAGCxM3M7Se9AnJZlVw/TdmYyke0eiA+chppcQPE/YNwSvZvWv75AYeexoNTT";
+		String zhuce = "jiI2I7cP58PG1LVXWXnYDsE8Jwo46uAkgPVrRtPRZ3wb1qHS4oyx/U78DM6UuXFyz4KbaVo03V/0o3i8uj3k4AvuuFgEvSZpJ+9o/JB4or3VSZgm7pC7/wZeLWsqxsnbjcENQ6GeJS3zDShBRw0UrkNvK081TCSCi4o/TFteGuu2fV4vd2ycd6FHmtK7DY4gfm9CO3bPVE+r9QTCvtanFQbm9cqyLkBH6LxJULshC+NsqosFXQ3nOAspfT1EGx3Jh9fgKJmEGwDck6A2xaiHOOY9l5tawxA707vlEQFIstWCN6mAy6u8HlC9X5Nhmuy+UJ5UdQ7xGHZIBYi/Bu0BkyXuNAR1s+Ew";
 		String shiming = "jiI2I7cP58PG1LVXWXnYDsE8Jwo46uAk/6Nu5+56cC/gNaU+NqKEUlm05UZBB32kW4UuCzuZKY49SCwNIeR8XmTnvaSB9ks5Dw9tG0TEfN5gWBB+NYJTRxvUGc1kQq7KZgdQagkIaS8RHi6O1JAFzKL2M/vdHzi7CsIT5XEotA2VXDc70pog4WV5ZqXa//8CE48ninhQTirpJJllyZ88ywmXljCXfGcGCCiAQzKjj2RranPw/pSCiSvjXTAl4JBjiOs50dKGgJ7Tb6XEACnfiaOQPpB0K15iRh08dY/l+KUMtehxMr2HvjH5okYXl8oHxFeaotxIgN9HK+JQ2J/HMf0Fi4D2niSQ";
 		String bindCard = "jiI2I7cP58PG1LVXWXnYDsE8Jwo46uAk/6Nu5+56cC/+7i7Qc9Vq+oqIED2Ty3+aikxlii7FVZxhdr1aPc5ev8/VgUMMB9crmXUagdnzaRDnlM94aNTmqaXqQ4GGerMQug+hlhol2qZ11YK5zqMIBHsGOEibJSK6aVZ+okTZ9D9oM3u0uGLm0OPy6YpbKgBACEtuRLMVLDlst3m3lIIa3pQ8hB8wpRq5mtCnd4MZibJ84G5ls8LDakhoKkea6YANfltG/yztdNmdg9nXkVQZwuCURgZ9tRa61DWYKwPhjiWxUE9vgxY0gEZVpvMKRmYDqWd2zizSZFKslaISkbxbn/DkrMUagXVd";
 		
 		//测试注册
-//		this.requestByPost(host1 + uri1, tpId, zhuce);
+		this.requestByPost(host1 + uri1, tpId, zhuce);
 //		this.requestByPost(host2 + uri1, tpId, zhuce);
 //		this.requestByPost(host3 + uri1, tpId, zhuce);
 //		this.requestByPost(host4 + uri1, tpId, zhuce);
 		//测试实名
 //		this.requestByPost(host1 + uri2, tpId, shiming);
-		this.requestByPost(host2 + uri2, tpId, shiming);
+//		this.requestByPost(host2 + uri2, tpId, shiming);
 //		this.requestByPost(host3 + uri2, tpId, shiming);
 //		this.requestByPost(host4 + uri2, tpId, shiming);
 		//测试绑卡
