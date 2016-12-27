@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.sirding.aop.PageTotal;
 import com.sirding.base.BaseServiceImpl;
+import com.sirding.core.aop.PageTotal;
 import com.sirding.domain.PageAdapter;
 import com.sirding.mybatis.mapper.AppSysUserMapper;
 import com.sirding.mybatis.model.AppSysUser;

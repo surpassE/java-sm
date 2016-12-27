@@ -10,21 +10,29 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sirding.base.BaseController;
 import com.sirding.commons.Cons;
 import com.sirding.commons.Cons.UserType;
 import com.sirding.core.shiro.CustTokenManager;
+import com.sirding.core.utils.HttpSessionUtil;
 import com.sirding.core.utils.LoggerUtils;
 import com.sirding.core.utils.secure.PwdUtil;
+import com.sirding.mybatis.model.AppSysUser;
+import com.sirding.service.AppSysUserService;
 
 @Controller
 @RequestMapping("/")
-public class AuthController {
+public class AuthController extends BaseController{
 	
 	Logger logger = Logger.getLogger(AuthController.class);
+	
+	@Autowired
+	private AppSysUserService appSysUserService;
 	
 	@RequestMapping("/")
 	public String index(){
@@ -98,6 +106,10 @@ public class AuthController {
 		ModelAndView view = new ModelAndView("redirect:toAdminIndex");
 		LoggerUtils.debugForTest(getClass(), "执行controller中的方法...");
 		view.addObject("test", "test");
+		AppSysUser sysUser = new AppSysUser();
+		sysUser.setLoginName(userName);
+		AppSysUser currUser = this.appSysUserService.findList(sysUser).get(0);
+		HttpSessionUtil.saveAppSysUser(currUser);
 		return view;
 	}
 	

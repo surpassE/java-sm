@@ -7,16 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sirding.commons.Cons;
+import com.sirding.core.utils.HttpSessionUtil;
 import com.sirding.core.utils.TokenUtil;
 import com.sirding.domain.PageAdapter;
 import com.sirding.domain.dtpage.Page;
-import com.sirding.mybatis.model.AppSysUser;
-import com.sirding.mybatis.model.AppUser;
 
 /**
  * @Described	: controller基类
@@ -67,7 +64,7 @@ public abstract class BaseController {
 	 * @param uri
 	 */
 	protected ModelAndView getTokenView(String uri){
-		return this.getTokenView(this.getSession(), uri);
+		return this.getTokenView(HttpSessionUtil.getSession(), uri);
 	}
 	
 	/**
@@ -98,7 +95,7 @@ public abstract class BaseController {
 	 */
 	protected boolean validateToken(HttpServletRequest request){
 		boolean flag = false;
-		HttpSession session = this.getSession();
+		HttpSession session = HttpSessionUtil.getSession();
 		String token = request.getParameter(Cons.RESUBMIT_TOKEN);
 		String cmpToken = (String)session.getAttribute(Cons.RESUBMIT_TOKEN);
 		if(token != null && token.equals(cmpToken)){
@@ -148,61 +145,7 @@ public abstract class BaseController {
 		return view;
 	}
 	
-	/**
-	 * @Described	: 获得请求的session
-	 * @author		: zc.ding
-	 * @date 		: 2016年11月18日
-	 * @return		: HttpSession
-	 * @return
-	 */
-	protected HttpSession getSession(){
-		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
-	}
 	
-	/**
-	 * @Described	: 从session中获得AppUser对象
-	 * @author		: zc.ding
-	 * @date 		: 2016年11月18日
-	 * @return		: AppUser
-	 * @return
-	 */
-	protected AppUser getAppUser(){
-		return (AppUser)this.getSession().getAttribute(Cons.UserType.APP_USER.name());
-	}
-	
-	/**
-	 * 
-	 * @Described	: 从session获得AppSysUser对象
-	 * @author		: zc.ding
-	 * @date 		: 2016年11月18日
-	 * @return		: AppSysUser
-	 * @return
-	 */
-	protected AppSysUser getAppSysUser(){
-		return (AppSysUser)this.getSession().getAttribute(Cons.UserType.APP_SYS_USER.name());
-	}
-	
-	/**
-	 * @Described	: 保存AppUser信息到seesion中
-	 * @author		: zc.ding
-	 * @date 		: 2016年11月18日
-	 * @return		: void
-	 * @param appUser
-	 */
-	protected void saveAppUser(AppUser appUser){
-		this.getSession().setAttribute(Cons.UserType.APP_USER.name(), appUser);
-	}
-
-	/**
-	 * @Described	: 存AppSysUser信息到seesion中
-	 * @author		: zc.ding
-	 * @date 		: 2016年11月18日
-	 * @return		: void
-	 * @param appSysUser
-	 */
-	protected void saveAppSysUser(AppSysUser appSysUser){
-		this.getSession().setAttribute(Cons.UserType.APP_SYS_USER.name(), appSysUser);
-	}
 	
 	/**
 	 * @Described	: 异步验证数据唯一值得响应结果

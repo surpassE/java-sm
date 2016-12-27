@@ -217,8 +217,9 @@
             />
             
         <logout 
-        	logout-success-url="/auth/login.jsp"
-        	logout-url="/auth/logout.htm"
+        	logout-success-url="/login.jsp"
+        	logout-url="/logout"
+        	
         	/>
         
         <access-denied-handler error-page="/auth/login.jsp?authorization_error=2"/>

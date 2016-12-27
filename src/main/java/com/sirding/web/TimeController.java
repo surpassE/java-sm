@@ -21,7 +21,7 @@ import com.sirding.domain.SimpleJson;
 public class TimeController {
 	private final Logger logger = Logger.getLogger(getClass());
 	
-	@Autowired
+//	@Autowired
 	private MessageSendingOperations<String> messageSendingOperations;
 	private boolean  broadcast = false;
 

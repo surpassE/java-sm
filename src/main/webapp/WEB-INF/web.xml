@@ -23,7 +23,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath:xml/spring-core.xml;
-			classpath:xml/spring-websocket.xml;
+			<!-- classpath:xml/spring-websocket.xml; -->
 			classpath:xml/spring-mybatis.xml;
 			<!-- classpath:xml/spring-shiro.xml; -->
 			classpath:xml/spring-security.xml;

@@ -91,7 +91,7 @@
 		                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> 系统设置</a>
 		                 </li>
 		                 <li class="divider"></li>
-		                 <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 安全退出</a>
+		                 <li><a href="${pageContext.request.contextPath}/logout"><i class="fa fa-sign-out fa-fw"></i> 安全退出</a>
 		                 </li>
 		             </ul>
 		             <!-- /.dropdown-user -->

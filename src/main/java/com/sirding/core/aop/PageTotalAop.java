@@ -1,4 +1,4 @@
-package com.sirding.aop;
+package com.sirding.core.aop;
 
 import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;

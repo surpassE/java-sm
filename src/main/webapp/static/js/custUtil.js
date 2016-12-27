@@ -9,7 +9,7 @@ var _custUtil = $.extend({}, _custUtil);/* 全局对象 */
  * 获得请求的URl地址
  * @params type 地址中是否包含项目名称
  * 			无：http(https)://ip:port/
- * 			1 : http()://ip:port/xxx/		
+ * 			1 : http(https)://ip:port/xxx/		
  * @author zc.ding
  * @date 2016年11月12日
  */
@@ -40,6 +40,27 @@ _custUtil.getIpPort = function(type){
 		return ip.split(":")[0];
 	return ip.split(":")[1];
 };
+
+/**
+ * 递归获得页面的parent对象
+ */
+_custUtil.getParent = function(window){
+	if(window != null && window != undefined){
+		var parent = window.parent;
+		if(parent != null){
+			return parent;
+		}
+		return _custUtil.getParent(parent);
+	}
+}
+
+/**
+ * 进入登录页面
+ */
+_custUtil.toLogin = function(window){
+	var win = _custUtil.getParent(window);
+	win.location = "login.jsp";
+}
 
 
 
