@@ -108,7 +108,7 @@ public class SessionInterceptor implements HandlerInterceptor{
 			}
 		}
 		if(!flag){
-			response.sendRedirect(noSession);
+			response.sendRedirect("~/" + noSession);
 		}
 		return flag;
 	}
