@@ -2,6 +2,7 @@ package com.sirding.core.utils;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -11,6 +12,7 @@ import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.mybatis.model.AppUser;
 
 public class HttpSessionUtil {
+	private static Logger logger = Logger.getLogger(HttpSessionUtil.class);
 	/**
 	 * @Described	: 获得请求的session
 	 * @author		: zc.ding
@@ -142,7 +144,9 @@ public class HttpSessionUtil {
 	 * @return
 	 */
 	public static AppSysUser getAppSysUserFromRedis(){
-		return JedisUtil.getObject(getSession().getId() + "_" + Cons.UserType.APP_SYS_USER.name(), AppSysUser.class);
+		String sessionId = getSession().getId();
+		logger.debug("获得管理用户的sessionId:【" + sessionId + "】");
+		return JedisUtil.getObject(sessionId + "_" + Cons.UserType.APP_SYS_USER.name(), AppSysUser.class);
 	}
 	
 	/**
@@ -152,7 +156,9 @@ public class HttpSessionUtil {
 	 * @return
 	 */
 	public static AppUser getAppUserFromRedis(){
-		return JedisUtil.getObject(getSession().getId() + "_" + Cons.UserType.APP_USER.name(), AppUser.class);
+		String sessionId = getSession().getId();
+		logger.debug("获得应用用户的sessionId:【" + sessionId + "】");
+		return JedisUtil.getObject(sessionId + "_" + Cons.UserType.APP_USER.name(), AppUser.class);
 	}
 	
 	/**
@@ -162,7 +168,9 @@ public class HttpSessionUtil {
 	 * @return
 	 */
 	public static UserType getUserTypeFromRedis(){
-		String userType = JedisUtil.getValue(getSession().getId());
+		String sessionId = getSession().getId();
+		logger.debug("获得用户类型的sessionId:【" + sessionId + "】");
+		String userType = JedisUtil.getValue(sessionId);
 		if(userType == null){
 			return null;
 		}
