@@ -12,7 +12,7 @@ import redis.clients.jedis.JedisPoolConfig;
  * @author 		: zc.ding
  * @date 		: 2016年11月29日
  */
-public class JedisUtil {
+public class JedisUtil<T> {
 
 	//redis连接池
 	private static JedisPool pool;
@@ -78,7 +78,8 @@ public class JedisUtil {
 //			}else{
 //				pool.returnResource(jedis);
 //			}
-			pool.close();
+//			pool.close();
+			jedis.close();
 		}
 	}
 	
@@ -90,7 +91,7 @@ public class JedisUtil {
 	 * @param key			:
 	 * @param value			:
 	 */
-	public static void addKey(String key, String value){
+	public static void addValue(String key, String value){
 		Jedis jedis = null;
 		boolean broken = false;
 		try {
@@ -143,7 +144,7 @@ public class JedisUtil {
 	 * @param key
 	 * @return
 	 */
-	public static String getKey(String key){
+	public static String getValue(String key){
 		Jedis jedis = null;
 		String value = null;
 		boolean broken = false;
@@ -158,4 +159,43 @@ public class JedisUtil {
 		}
 		return value;
 	}
+	
+	/**
+	 * @Described			: 
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @param key
+	 * @param obj
+	 */
+	public static void addObject(String key, Object obj){
+		Jedis jedis = null;
+		boolean broken = false;
+		try {
+			jedis = getJedis();
+			jedis.set(key.getBytes(), SerializeUtil.serializeKryo(obj));
+		} catch (Exception e) {
+			e.printStackTrace();
+			broken = true;
+		}finally {
+			returnResource(jedis, broken);
+		}
+	}
+	
+	public static <T> T getObject(String key, Class<T> clazz){
+		Jedis jedis = null;
+		byte[] buff = null;
+		boolean broken = false;
+		try {
+			jedis = getJedis();
+			buff = jedis.get(key.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+			broken = true;
+		}finally{
+			returnResource(jedis, broken);
+		}
+		return SerializeUtil.unSerializeKryo(buff, clazz);
+	}
+	
+	
 }

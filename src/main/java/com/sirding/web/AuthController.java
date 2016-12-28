@@ -110,6 +110,8 @@ public class AuthController extends BaseController{
 		sysUser.setLoginName(userName);
 		AppSysUser currUser = this.appSysUserService.findList(sysUser).get(0);
 		HttpSessionUtil.saveAppSysUser(currUser);
+		//将session信息保存到redis中
+		HttpSessionUtil.saveAppSysUserToRedis(currUser);
 		return view;
 	}
 	

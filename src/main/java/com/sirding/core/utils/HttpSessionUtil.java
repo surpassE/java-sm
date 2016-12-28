@@ -27,10 +27,20 @@ public class HttpSessionUtil {
 	 * @author		: zc.ding
 	 * @date 		: 2016年11月18日
 	 * @return		: AppUser
-	 * @return
 	 */
 	public static AppUser getAppUser(){
 		return (AppUser)getSession().getAttribute(Cons.UserType.APP_USER.name());
+	}
+	
+	/**
+	 * @Described			: 从session中获得AppUser对象
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @param session		: 指定session
+	 * @return				: AppUser
+	 */
+	public static AppUser getAppUser(HttpSession session){
+		return (AppUser)session.getAttribute(Cons.UserType.APP_USER.name());
 	}
 	
 	/**
@@ -39,10 +49,20 @@ public class HttpSessionUtil {
 	 * @author		: zc.ding
 	 * @date 		: 2016年11月18日
 	 * @return		: AppSysUser
-	 * @return
 	 */
 	public static AppSysUser getAppSysUser(){
 		return (AppSysUser)getSession().getAttribute(Cons.UserType.APP_SYS_USER.name());
+	}
+	
+	/**
+	 * @Described			: 从session获得AppSysUser对象
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @param session		: 指定session
+	 * @return				: AppSysUser
+	 */
+	public static AppSysUser getAppSysUser(HttpSession session){
+		return (AppSysUser)session.getAttribute(Cons.UserType.APP_SYS_USER.name());
 	}
 	
 	/**
@@ -78,5 +98,74 @@ public class HttpSessionUtil {
 	 */
 	public static UserType getUserType(){
 		return (UserType)getSession().getAttribute(Cons.USER_TYPE);
+	}
+	
+	/**
+	 * @Described			: 获得当前用户的类型
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @param session
+	 * @return
+	 */
+	public static UserType getUserType(HttpSession session){
+		return (UserType)session.getAttribute(Cons.USER_TYPE);
+	}
+	
+	/**
+	 * @Described			: 保存应用用户信息到redis中
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @param appUser
+	 */
+	public static void saveAppUserToRedis(AppUser appUser){
+		String sessionId = getSession().getId();
+		JedisUtil.addValue(sessionId, Cons.UserType.APP_USER.name());
+		JedisUtil.addObject(sessionId + "_" + Cons.UserType.APP_USER.name(), appUser);
+	}
+	
+	/**
+	 * @Described			: 保存管理员用户信息到redis中
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @param appUser
+	 */
+	public static void saveAppSysUserToRedis(AppSysUser appSysUser){
+		String sessionId = getSession().getId();
+		JedisUtil.addValue(sessionId, Cons.UserType.APP_SYS_USER.name());
+		JedisUtil.addObject(sessionId + "_" + Cons.UserType.APP_SYS_USER.name(), appSysUser);
+	}
+	
+	/**
+	 * @Described			: 从redis中获得管理用户信息
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @return
+	 */
+	public static AppSysUser getAppSysUserFromRedis(){
+		return JedisUtil.getObject(getSession().getId() + "_" + Cons.UserType.APP_SYS_USER.name(), AppSysUser.class);
+	}
+	
+	/**
+	 * @Described			: 从redis中获得应用用户信息
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @return
+	 */
+	public static AppUser getAppUserFromRedis(){
+		return JedisUtil.getObject(getSession().getId() + "_" + Cons.UserType.APP_USER.name(), AppUser.class);
+	}
+	
+	/**
+	 * @Described			: 从redis中获得用户类型
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @return
+	 */
+	public static UserType getUserTypeFromRedis(){
+		String userType = JedisUtil.getValue(getSession().getId());
+		if(userType == null){
+			return null;
+		}
+		return Cons.UserType.valueOf(userType);
 	}
 }

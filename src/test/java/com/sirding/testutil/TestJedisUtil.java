@@ -1,10 +1,12 @@
 package com.sirding.testutil;
 
+
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.Test;
 
 import com.sirding.Base;
+import com.sirding.Msg;
 import com.sirding.commons.RedisInstance;
 import com.sirding.core.utils.JedisUtil;
 /**
@@ -25,18 +27,18 @@ public class TestJedisUtil extends Base{
 	@Test
 	public void test1(){
 		String key = "zcding";
-		JedisUtil.addKey("zcding", "hello world");
-		String msg = JedisUtil.getKey(key);
+		JedisUtil.addValue("zcding", "hello world");
+		String msg = JedisUtil.getValue(key);
 		logger.debug(msg);
 	}
 	
 	@Test
 	public void test2(){
 		String key = "zcding";
-		String msg = JedisUtil.getKey(key);
+		String msg = JedisUtil.getValue(key);
 		logger.debug(msg);
 		JedisUtil.delKey(key);
-		msg = JedisUtil.getKey(key);
+		msg = JedisUtil.getValue(key);
 		logger.debug(msg);
 	}
 	
@@ -45,6 +47,14 @@ public class TestJedisUtil extends Base{
 		System.out.println(RedisInstance.newInstance().REDIS_PORT);
 		System.out.println(RedisInstance.newInstance().REDIS_TESTONBORROW);
 //		System.out.println(RedisInstance.REDIS_IP);
+	}
+	
+	@Test
+	public void test4(){
+		Msg msg = new Msg("zc.ding", 11);
+		JedisUtil.addObject("msg", msg);
+		Msg obj = JedisUtil.getObject("msg", Msg.class);
+		logger.debug(obj.getName());
 	}
 	
 	

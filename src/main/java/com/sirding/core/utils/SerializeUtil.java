@@ -57,6 +57,9 @@ public class SerializeUtil {
 	 * @return
 	 */
 	public static <T> T unSerialize(byte[] buf, Class<T> clazz) {
+		if(buf == null){
+			return null;
+		}
 		T result = null;
 		try (
 				ObjectInputStream is = new ObjectInputStream(new ByteArrayInputStream(buf));
@@ -81,7 +84,7 @@ public class SerializeUtil {
 	private static FSTConfiguration FST = FSTConfiguration.createDefaultConfiguration();
 	
 	/**
-	 * @Described			: FST进行对象的序列化操作
+	 * @Described			: FST进行对象的序列化操作;注：obj一定要实现Serializable接口
 	 * @author				: zc.ding
 	 * @date 				: 2016年11月29日
 	 * @param obj
@@ -92,7 +95,7 @@ public class SerializeUtil {
 	}
 	
 	/**
-	 * @Described			: FST进行对象反序列化操作
+	 * @Described			: FST进行对象反序列化操作;注：obj一定要实现Serializable接口
 	 * @author				: zc.ding
 	 * @date 				: 2016年11月29日
 	 * @param buf
@@ -100,6 +103,9 @@ public class SerializeUtil {
 	 * @return
 	 */
 	public static <T> T unSerializeFst(byte[] buf, Class<T> clazz){
+		if(buf == null){
+			return null;
+		}
 		T result = null;
 		try {
 			Object obj = FST.asObject(buf);
@@ -127,7 +133,7 @@ public class SerializeUtil {
 	 */
 	public static byte[] serializeKryo(Object obj) {  
         Kryo kryo = new Kryo();  
-        byte[] buffer = new byte[2048];  
+        byte[] buffer = new byte[20480];		//20K
         try(
         		Output output = new Output(buffer);
         		)
@@ -150,7 +156,10 @@ public class SerializeUtil {
 	 * @param clazz
 	 * @return
 	 */
-    public static <T> T unSerializeKryo(byte[] buf, Class<T> clazz) {  
+    public static <T> T unSerializeKryo(byte[] buf, Class<T> clazz) {
+    	if(buf == null){
+    		return null;
+    	}
     	Kryo kryo = new Kryo();
     	T result = null;
         try(  

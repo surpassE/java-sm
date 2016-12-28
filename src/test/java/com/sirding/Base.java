@@ -7,8 +7,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations = {
 		"classpath:xml/spring-core.xml",
-		"classpath:xml/spring-websocket.xml",
-		"classpath:xml/spring-mybatis.xml"
+		"classpath:xml/spring-mybatis.xml",
+		"classpath:xml/spring-security.xml",
+		"classpath:xml/spring-redis.xml"
 		}
 )
 public class Base {

@@ -17,8 +17,71 @@ public class SessionInterceptor implements HandlerInterceptor{
 	Logger logger = Logger.getLogger(getClass());
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		return checkSessionByRedis(request, response, handler);
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+		logger.debug("interceptor请求之后...");
+	}
+
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+		logger.debug("interceptor请求之后(已完结)...");
+		
+	}
+	
+	/**
+	 * @Described			: 直接从request中获得HttpSession进而判断是否存在有效的session，此种连接超时的判断适用于如下情况<br/>
+	 * 						  	1、单应用，
+	 * 							2、分布式，nginx做为最外端代理服务器，且负载均衡中采用ip_hash的分流方式
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @param request
+	 * @param response
+	 * @param handler
+	 * @return
+	 */
+	boolean checkSession(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		AppSysUser sysUser = HttpSessionUtil.getAppSysUser();
 		AppUser user = HttpSessionUtil.getAppUser();
+		UserType userType = HttpSessionUtil.getUserType();
+		boolean flag = checkCurrUser(userType, sysUser, user, response); 
+		return flag;
+	}
+	
+	/**
+	 * @Described			: 通过redis判断session
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @param request
+	 * @param response
+	 * @param handler
+	 * @return
+	 * @throws Exception
+	 */
+	boolean checkSessionByRedis(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
+		UserType userType = null;
+		AppSysUser sysUser = null;
+		AppUser user = null;
+		userType = HttpSessionUtil.getUserTypeFromRedis();
+		sysUser = HttpSessionUtil.getAppSysUserFromRedis();
+		user = HttpSessionUtil.getAppUserFromRedis();
+		return this.checkCurrUser(userType, sysUser, user, response);
+	}
+	
+	/**
+	 * @Described			: 检查是否存有效的用户信息
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @param userType
+	 * @param sysUser
+	 * @param user
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	private boolean checkCurrUser(UserType userType, AppSysUser sysUser, AppUser user, HttpServletResponse response) throws Exception {
 		logger.debug("当前用户：[" + sysUser + "]==[" + user + "]");
 		boolean flag = true;
 		String noSession = "nosession.jsp";
@@ -26,8 +89,6 @@ public class SessionInterceptor implements HandlerInterceptor{
 		if(sysUser == null && user == null){
 			flag = false;
 		}
-//		判断当前用户的类型
-		UserType userType = HttpSessionUtil.getUserType();
 		if(userType != null){
 			switch (userType) {
 			case APP_SYS_USER:
@@ -51,16 +112,20 @@ public class SessionInterceptor implements HandlerInterceptor{
 		}
 		return flag;
 	}
-
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		logger.debug("interceptor请求之后...");
-	}
-
-	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		logger.debug("interceptor请求之后(已完结)...");
-		
+	
+	/**
+	 * @Described			: 判断请求是不是ajax请求
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月28日
+	 * @param request
+	 * @return
+	 */
+	boolean isAjaxRequest(HttpServletRequest request){
+		String requestType = request.getHeader("X-Requested-With");
+		if(requestType == null || requestType.length() <= 0){
+			return false;
+		}
+		return true;
 	}
 
 }
