@@ -33,4 +33,15 @@ public interface AppSysUserService extends CurdService<AppSysUser> {
 	 */
 	PageAdapter<AppSysUser> findSysUser(PageAdapter<AppSysUser> page, AppSysUser record);
 	
+	/**
+	 * @Described			: 通过用户名、密码查询用户信息
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月29日
+	 * @param userName
+	 * @param pwd
+	 * @return
+	 */
+	AppSysUser findSysUserByNamePwd(String userName, String pwd);
+	
+	
 }

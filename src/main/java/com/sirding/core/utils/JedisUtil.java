@@ -145,6 +145,9 @@ public class JedisUtil<T> {
 	 * @return
 	 */
 	public static String getValue(String key){
+		if(key == null){
+			return null;
+		}
 		Jedis jedis = null;
 		String value = null;
 		boolean broken = false;
@@ -184,6 +187,9 @@ public class JedisUtil<T> {
 	public static <T> T getObject(String key, Class<T> clazz){
 		Jedis jedis = null;
 		byte[] buff = null;
+		if(key == null){
+			return null;
+		}
 		boolean broken = false;
 		try {
 			jedis = getJedis();

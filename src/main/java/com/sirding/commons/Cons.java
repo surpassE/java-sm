@@ -7,6 +7,9 @@ public class Cons {
 	//防重复提交的token
 	public static final String RESUBMIT_TOKEN = "resubmitToken";
 	public static final String CSRF_TOKEN = "csrfToken";
+	
+	public static final String COOKIE_USER = "COOKIE_USER";
+	
 	//错误提示信息
 	public static final String ERROR_MSG = "errMsg";
 

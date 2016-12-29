@@ -82,4 +82,16 @@ public class AppSysUserServiceImpl extends BaseServiceImpl<AppSysUser> implement
 		return example;
 	}
 
+	@Override
+	public AppSysUser findSysUserByNamePwd(String userName, String pwd) {
+		AppSysUser record = new AppSysUser();
+		record.setLoginName(userName);
+		record.setLoginPwd(pwd);
+		List<AppSysUser> list = this.findList(record);
+		if(list != null && list.size() > 0){
+			return list.get(0);
+		}
+		return null;
+	}
+
 }

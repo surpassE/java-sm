@@ -1,5 +1,7 @@
 package com.sirding.core.utils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -11,8 +13,35 @@ import com.sirding.commons.Cons.UserType;
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.mybatis.model.AppUser;
 
+/**
+ * @Described	: HttpSession工具类
+ * @project		: com.sirding.core.utils.HttpSessionUtil
+ * @author 		: zc.ding
+ * @date 		: 2016年12月29日
+ */
 public class HttpSessionUtil {
 	private static Logger logger = Logger.getLogger(HttpSessionUtil.class);
+	
+	/**
+	 * @Described			: 获得HttpServletResponse
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月29日
+	 * @return
+	 */
+	public static HttpServletResponse getResponse(){
+		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
+	}
+	
+	/**
+	 * @Described			: 获得HttpServletRequest
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月29日
+	 * @return
+	 */
+	public static HttpServletRequest getRequest(){
+		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+	}
+	
 	/**
 	 * @Described	: 获得请求的session
 	 * @author		: zc.ding
@@ -116,64 +145,84 @@ public class HttpSessionUtil {
 	/**
 	 * @Described			: 保存应用用户信息到redis中
 	 * @author				: zc.ding
-	 * @date 				: 2016年12月28日
+	 * @date 				: 2016年12月29日
 	 * @param appUser
+	 * @param keys
 	 */
-	public static void saveAppUserToRedis(AppUser appUser){
-		String sessionId = getSession().getId();
-		JedisUtil.addValue(sessionId, Cons.UserType.APP_USER.name());
-		JedisUtil.addObject(sessionId + "_" + Cons.UserType.APP_USER.name(), appUser);
+	public static void saveAppUserToRedis(AppUser appUser, String...keys){
+		String key = getCustkey(keys);
+		JedisUtil.addValue(key, Cons.UserType.APP_USER.name());
+		JedisUtil.addObject(key + "_" + Cons.UserType.APP_USER.name(), appUser);
 	}
 	
 	/**
 	 * @Described			: 保存管理员用户信息到redis中
 	 * @author				: zc.ding
-	 * @date 				: 2016年12月28日
-	 * @param appUser
+	 * @date 				: 2016年12月29日
+	 * @param appSysUser
+	 * @param keys
 	 */
-	public static void saveAppSysUserToRedis(AppSysUser appSysUser){
-		String sessionId = getSession().getId();
-		JedisUtil.addValue(sessionId, Cons.UserType.APP_SYS_USER.name());
-		JedisUtil.addObject(sessionId + "_" + Cons.UserType.APP_SYS_USER.name(), appSysUser);
+	public static void saveAppSysUserToRedis(AppSysUser appSysUser, String...keys){
+		String key = getCustkey(keys);
+		JedisUtil.addValue(key, Cons.UserType.APP_SYS_USER.name());
+		JedisUtil.addObject(key + "_" + Cons.UserType.APP_SYS_USER.name(), appSysUser);
 	}
 	
 	/**
 	 * @Described			: 从redis中获得管理用户信息
 	 * @author				: zc.ding
-	 * @date 				: 2016年12月28日
+	 * @date 				: 2016年12月29日
+	 * @param keys
 	 * @return
 	 */
-	public static AppSysUser getAppSysUserFromRedis(){
-		String sessionId = getSession().getId();
-		logger.debug("获得管理用户的sessionId:【" + sessionId + "】");
-		return JedisUtil.getObject(sessionId + "_" + Cons.UserType.APP_SYS_USER.name(), AppSysUser.class);
+	public static AppSysUser getAppSysUserFromRedis(String...keys){
+		String key = getCustkey(keys);
+		logger.debug("获得管理用户的key:【" + key + "】");
+		return JedisUtil.getObject(key + "_" + Cons.UserType.APP_SYS_USER.name(), AppSysUser.class);
 	}
 	
 	/**
 	 * @Described			: 从redis中获得应用用户信息
 	 * @author				: zc.ding
-	 * @date 				: 2016年12月28日
+	 * @date 				: 2016年12月29日
+	 * @param keys
 	 * @return
 	 */
-	public static AppUser getAppUserFromRedis(){
-		String sessionId = getSession().getId();
-		logger.debug("获得应用用户的sessionId:【" + sessionId + "】");
-		return JedisUtil.getObject(sessionId + "_" + Cons.UserType.APP_USER.name(), AppUser.class);
+	public static AppUser getAppUserFromRedis(String...keys){
+		String key = getCustkey(keys);
+		logger.debug("获得应用用户的key:【" + key + "】");
+		return JedisUtil.getObject(key + "_" + Cons.UserType.APP_USER.name(), AppUser.class);
 	}
 	
 	/**
 	 * @Described			: 从redis中获得用户类型
 	 * @author				: zc.ding
-	 * @date 				: 2016年12月28日
+	 * @date 				: 2016年12月29日
+	 * @param keys
 	 * @return
 	 */
-	public static UserType getUserTypeFromRedis(){
-		String sessionId = getSession().getId();
-		logger.debug("获得用户类型的sessionId:【" + sessionId + "】");
-		String userType = JedisUtil.getValue(sessionId);
+	public static UserType getUserTypeFromRedis(String...keys){
+		String key = getCustkey(keys);
+		logger.debug("获得用户类型的key:【" + key + "】");
+		String userType = JedisUtil.getValue(key);
 		if(userType == null){
 			return null;
 		}
 		return Cons.UserType.valueOf(userType);
+	}
+	
+	/**
+	 * @Described			: 获得自定义的key
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月29日
+	 * @param keys
+	 * @return
+	 */
+	private static String getCustkey(String...keys) {
+		String key = getSession().getId();
+		if(keys != null && keys.length > 0){
+			key = keys[0];
+		}
+		return key;
 	}
 }

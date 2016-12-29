@@ -1,5 +1,6 @@
 package com.sirding.core.interceptors;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,7 +8,9 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sirding.commons.Cons;
 import com.sirding.commons.Cons.UserType;
+import com.sirding.core.utils.CookieUtil;
 import com.sirding.core.utils.HttpSessionUtil;
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.mybatis.model.AppUser;
@@ -17,7 +20,7 @@ public class SessionInterceptor implements HandlerInterceptor{
 	Logger logger = Logger.getLogger(getClass());
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		return checkSessionByRedis(request, response, handler);
+		return checkSessionFromCookie(request, response, handler);
 	}
 
 	@Override
@@ -42,7 +45,7 @@ public class SessionInterceptor implements HandlerInterceptor{
 	 * @param handler
 	 * @return
 	 */
-	boolean checkSession(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+	boolean checkSessionFromRequest(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		AppSysUser sysUser = HttpSessionUtil.getAppSysUser();
 		AppUser user = HttpSessionUtil.getAppUser();
 		UserType userType = HttpSessionUtil.getUserType();
@@ -60,13 +63,22 @@ public class SessionInterceptor implements HandlerInterceptor{
 	 * @return
 	 * @throws Exception
 	 */
-	boolean checkSessionByRedis(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
-		UserType userType = null;
-		AppSysUser sysUser = null;
-		AppUser user = null;
-		userType = HttpSessionUtil.getUserTypeFromRedis();
-		sysUser = HttpSessionUtil.getAppSysUserFromRedis();
-		user = HttpSessionUtil.getAppUserFromRedis();
+	boolean checkSessionFromRedis(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
+		UserType userType = HttpSessionUtil.getUserTypeFromRedis();
+		AppSysUser sysUser = HttpSessionUtil.getAppSysUserFromRedis();
+		AppUser user = HttpSessionUtil.getAppUserFromRedis();
+		return this.checkCurrUser(userType, sysUser, user, response);
+	}
+	
+	boolean checkSessionFromCookie(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
+		Cookie cookie = CookieUtil.getCookie(request, Cons.COOKIE_USER);
+		String token = null;
+		if(cookie != null){
+			token = cookie.getValue();
+		}
+		UserType userType = HttpSessionUtil.getUserTypeFromRedis(token);
+		AppSysUser sysUser = HttpSessionUtil.getAppSysUserFromRedis(token);
+		AppUser user = HttpSessionUtil.getAppUserFromRedis(token);
 		return this.checkCurrUser(userType, sysUser, user, response);
 	}
 	

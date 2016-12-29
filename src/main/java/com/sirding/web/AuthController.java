@@ -1,5 +1,6 @@
 package com.sirding.web;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -19,8 +20,10 @@ import com.sirding.base.BaseController;
 import com.sirding.commons.Cons;
 import com.sirding.commons.Cons.UserType;
 import com.sirding.core.shiro.CustTokenManager;
+import com.sirding.core.utils.CookieUtil;
 import com.sirding.core.utils.HttpSessionUtil;
 import com.sirding.core.utils.LoggerUtils;
+import com.sirding.core.utils.TokenUtil;
 import com.sirding.core.utils.secure.PwdUtil;
 import com.sirding.mybatis.model.AppSysUser;
 import com.sirding.service.AppSysUserService;
@@ -105,13 +108,19 @@ public class AuthController extends BaseController{
 //		}
 		ModelAndView view = new ModelAndView("redirect:toAdminIndex");
 		LoggerUtils.debugForTest(getClass(), "执行controller中的方法...");
-		view.addObject("test", "test");
+//		view.addObject("test", "test");
 		AppSysUser sysUser = new AppSysUser();
 		sysUser.setLoginName(userName);
 		AppSysUser currUser = this.appSysUserService.findList(sysUser).get(0);
+		//将用户信息保存到session中
 		HttpSessionUtil.saveAppSysUser(currUser);
-		//将session信息保存到redis中
-		HttpSessionUtil.saveAppSysUserToRedis(currUser);
+		
+		//生成用于存储cookie的唯一标示
+		String token = TokenUtil.getToken();
+		Cookie cookie = CookieUtil.getCookie(Cons.COOKIE_USER, token);
+		HttpSessionUtil.getResponse().addCookie(cookie);
+		//将用户信息保存到redis中
+		HttpSessionUtil.saveAppSysUserToRedis(currUser, token);
 		return view;
 	}
 	
