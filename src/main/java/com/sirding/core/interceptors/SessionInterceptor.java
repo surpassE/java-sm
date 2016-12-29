@@ -54,7 +54,9 @@ public class SessionInterceptor implements HandlerInterceptor{
 	}
 	
 	/**
-	 * @Described			: 通过redis判断session
+	 * @Described			: 通过sessionId和redis判断session<br/>
+	 * 							1、单应用
+	 * 							2、分布式(存在sessionId不一致问题，需要扩展tomcat源码，有待更新)
 	 * @author				: zc.ding
 	 * @date 				: 2016年12月28日
 	 * @param request
@@ -70,6 +72,18 @@ public class SessionInterceptor implements HandlerInterceptor{
 		return this.checkCurrUser(userType, sysUser, user, response);
 	}
 	
+	/**
+	 * @Described			: 通过cookie和redis验证session状态，应用于分布式系统
+	 * 							1、单应用
+	 * 							2、分布式(在用户禁用的cookie的情况下，存在问题，需扩展tomcat源码)
+	 * @author				: zc.ding
+	 * @date 				: 2016年12月29日
+	 * @param request
+	 * @param response
+	 * @param handler
+	 * @return
+	 * @throws Exception
+	 */
 	boolean checkSessionFromCookie(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 		Cookie cookie = CookieUtil.getCookie(request, Cons.COOKIE_USER);
 		String token = null;
