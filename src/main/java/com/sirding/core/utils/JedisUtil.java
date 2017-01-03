@@ -84,25 +84,13 @@ public class JedisUtil<T> {
 	}
 	
 	/**
-	 * 
-	 * @Described			: 向redis中添加属性值
+	 * @Described			: 将使用完的redis还给连接池
 	 * @author				: zc.ding
-	 * @date 				: 2016年11月29日
-	 * @param key			:
-	 * @param value			:
+	 * @date 				: 2017年1月3日
+	 * @param jedis
 	 */
-	public static void addValue(String key, String value){
-		Jedis jedis = null;
-		boolean broken = false;
-		try {
-			jedis = getJedis();
-			jedis.set(key, value);
-		} catch (Exception e) {
-			e.printStackTrace();
-			broken = true;
-		}finally {
-			returnResource(jedis, broken);
-		}
+	private static void returnResource(Jedis jedis) {
+		jedis.close();
 	}
 	
 	/**
@@ -136,6 +124,49 @@ public class JedisUtil<T> {
 		}
 	}
 	
+	/**
+	 * 
+	 * @Described			: 向redis中添加属性值
+	 * @author				: zc.ding
+	 * @date 				: 2016年11月29日
+	 * @param key			:
+	 * @param value			:
+	 */
+	public static void addValue(String key, String value){
+		Jedis jedis = null;
+		boolean broken = false;
+		try {
+			jedis = getJedis();
+			jedis.set(key, value);
+		} catch (Exception e) {
+			e.printStackTrace();
+			broken = true;
+		}finally {
+			returnResource(jedis, broken);
+		}
+	}
+
+	/**
+	 * @Described			: 向redis中添加指定有效期的属性值
+	 * @author				: zc.ding
+	 * @date 				: 2017年1月3日
+	 * @param key
+	 * @param value
+	 * @param seconds
+	 */
+	public static void addValue(String key, String value, int seconds){
+		Jedis jedis = null;
+		boolean broken = false;
+		try {
+			jedis = getJedis();
+			jedis.setex(key, seconds, value);
+		} catch (Exception e) {
+			e.printStackTrace();
+			broken = true;
+		}finally {
+			returnResource(jedis, broken);
+		}
+	}
 	
 	/**
 	 * @Described			: 从redis中获得指定key对应的数据信息
@@ -164,7 +195,7 @@ public class JedisUtil<T> {
 	}
 	
 	/**
-	 * @Described			: 
+	 * @Described			: 向redis中添加对象的属性值
 	 * @author				: zc.ding
 	 * @date 				: 2016年12月28日
 	 * @param key
@@ -176,6 +207,28 @@ public class JedisUtil<T> {
 		try {
 			jedis = getJedis();
 			jedis.set(key.getBytes(), SerializeUtil.serializeKryo(obj));
+		} catch (Exception e) {
+			e.printStackTrace();
+			broken = true;
+		}finally {
+			returnResource(jedis, broken);
+		}
+	}
+	
+	/**
+	 * @Described			: 向redis添加指定有效期的对象属性值
+	 * @author				: zc.ding
+	 * @date 				: 2017年1月3日
+	 * @param key
+	 * @param obj
+	 * @param seconds
+	 */
+	public static void addObject(String key, Object obj, int seconds){
+		Jedis jedis = null;
+		boolean broken = false;
+		try {
+			jedis = getJedis();
+			jedis.setex(key.getBytes(), seconds, SerializeUtil.serializeKryo(obj));
 		} catch (Exception e) {
 			e.printStackTrace();
 			broken = true;
@@ -203,5 +256,60 @@ public class JedisUtil<T> {
 		return SerializeUtil.unSerializeKryo(buff, clazz);
 	}
 	
+	/**
+	 * @Described			: 清空redis库
+	 * @author				: zc.ding
+	 * @date 				: 2017年1月3日
+	 * @return
+	 */
+	public String flushAll() {
+		Jedis jedis = getJedis();
+		String stata = jedis.flushAll();
+		returnResource(jedis);
+		return stata;
+	}
 	
+	/**
+	 * @Described			: 设置key的有效时间
+	 * @author				: zc.ding
+	 * @date 				: 2017年1月3日
+	 * @param key
+	 * @param seconds
+	 * @return
+	 */
+	public static long expired(String key, int seconds) {
+		Jedis jedis = getJedis();
+		long count = jedis.expire(key, seconds);
+		returnResource(jedis);
+		return count;
+	}
+	
+	/**
+	 * @Described			: 设置key有效截止时间
+	 * @author				: zc.ding
+	 * @date 				: 2017年1月3日
+	 * @param key
+	 * @param timestamp
+	 * @return
+	 */
+	public long expireAt(String key, long timestamp) {
+		Jedis jedis = getJedis();
+		long count = jedis.expireAt(key, timestamp);
+		returnResource(jedis);
+		return count;
+	}
+	
+	/**
+	 * @Described			: 取消key的有效时间配置
+	 * @author				: zc.ding
+	 * @date 				: 2017年1月3日
+	 * @param key
+	 * @return
+	 */
+	public long persist(String key) {
+		Jedis jedis = getJedis();
+		long count = jedis.persist(key);
+		returnResource(jedis);
+		return count;
+	}
 }
