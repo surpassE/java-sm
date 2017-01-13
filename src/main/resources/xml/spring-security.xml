@@ -75,8 +75,8 @@
 	 <!-- *********************** 受保护的资源 ******************************************** -->
     
     <!-- *********************** Spring Oauth2 ****************************************** -->
-	<mvc:annotation-driven/>
-    <mvc:default-servlet-handler/>
+	<!-- <mvc:annotation-driven/>
+    <mvc:default-servlet-handler/> -->
     
     <!-- 获得token的入口地址 -->
 	<http pattern="/oauth/token" create-session="stateless"

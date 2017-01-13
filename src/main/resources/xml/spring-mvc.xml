@@ -28,6 +28,10 @@
 	  	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
   	</context:component-scan>
   	
+  	<!-- 如下两个属性最初配置在spring-security.xml文件中，由于interceptor依赖annotation-driven配置，故移动至此 -->
+  	<mvc:annotation-driven/>
+    <mvc:default-servlet-handler/>
+    
 	<!-- 静态资源映射  不配置mvc:annotation只配置mvc:resources将导致SpringMVC无法拦截请求-->
     <mvc:resources mapping="/index.jsp" location="/index.jsp"/>
     <mvc:resources mapping="/static/**" location="/static/"/>
@@ -107,14 +111,16 @@
 	-->
 	
 	<!-- 拦截器 -->
-	<!-- <mvc:interceptors>
+	<!-- <mvc:annotation-driven/> -->
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<bean class="com.surpass.system.interceptors.EncodingInterceptor" />
+			<mvc:exclude-mapping path="/static/**"/>
+			<mvc:exclude-mapping path="/login.jsp"/>
+			<mvc:exclude-mapping path="/nosession.jsp"/>
+			<mvc:exclude-mapping path="/adminLogin"/>
+			<mvc:exclude-mapping path="/regist.jsp"/>
+			<bean class="com.sirding.core.interceptors.SessionInterceptor" />
 		</mvc:interceptor>
-		<mvc:interceptor>
-			<mvc:mapping path="/*.do" />
-			<bean class="com.surpass.system.interceptors.LogInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 </beans>
