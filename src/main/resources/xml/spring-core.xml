@@ -137,4 +137,19 @@
 	<!-- 扫描切面注解 -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<bean id="pageTotalAop" class="com.sirding.core.aop.PageTotalAop"></bean>
+	
+	<!-- jms 连接池 -->
+	<bean id="jmsPool" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
+		<property name="connectionFactory" ref="jmsFactory" />
+	</bean>
+	
+	<!-- jms 连接工厂 -->
+	<bean id="jmsFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="tcp://127.0.0.1:61616" />
+	</bean>
+
+	<!-- Spring JMS Template -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jmsPool"/>
+	</bean>
 </beans>
