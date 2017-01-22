@@ -1,6 +1,6 @@
 package com.sirding.core.utils;
 
-import com.sirding.commons.RedisInstance;
+import com.sirding.commons.MsInstance;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -28,12 +28,12 @@ public class JedisUtil<T> {
 		if (pool == null) {  
             JedisPoolConfig config = new JedisPoolConfig();  
             //控制一个pool最多有多少个状态为idle(空闲的)的jedis实例。  
-            config.setMaxIdle(RedisInstance.newInstance().REDIS_MAXIDLE);  
+            config.setMaxIdle(MsInstance.newInstance().REDIS_MAXIDLE);  
             //表示当borrow(引入)一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException；  
-            config.setMaxWaitMillis(RedisInstance.newInstance().REDIS_MAXWAIT);
+            config.setMaxWaitMillis(MsInstance.newInstance().REDIS_MAXWAIT);
             //在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的；  
-            config.setTestOnBorrow(RedisInstance.newInstance().REDIS_TESTONBORROW); 
-            pool = new JedisPool(config, RedisInstance.newInstance().REDIS_HOST, RedisInstance.newInstance().REDIS_PORT);
+            config.setTestOnBorrow(MsInstance.newInstance().REDIS_TESTONBORROW); 
+            pool = new JedisPool(config, MsInstance.newInstance().REDIS_HOST, MsInstance.newInstance().REDIS_PORT);
 //            JedisConnectionFactory jedisConnectionFactory =  ACUtils.getBean("jedisConnectionFactory", JedisConnectionFactory.class);;
 //            pool = jedisConnectionFactory.getShardInfo().createResource();
 		}  

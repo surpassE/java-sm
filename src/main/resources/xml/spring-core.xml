@@ -41,7 +41,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath:properties/db.properties</value>
-				<value>classpath:properties/redis.properties</value>
+				<value>classpath:properties/ms.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -140,14 +140,10 @@
 	
 	<!-- jms 连接池 -->
 	<bean id="jmsPool" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
-		<property name="connectionFactory" ref="jmsFactory" />
+		<!-- <property name="connectionFactory" ref="jmsFactory" /> -->
+		<constructor-arg name="brokerURL" value="tcp://127.0.0.1:61616"/>
 	</bean>
 	
-	<!-- jms 连接工厂 -->
-	<bean id="jmsFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-		<property name="brokerURL" value="tcp://127.0.0.1:61616" />
-	</bean>
-
 	<!-- Spring JMS Template -->
 	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
 		<property name="connectionFactory" ref="jmsPool"/>

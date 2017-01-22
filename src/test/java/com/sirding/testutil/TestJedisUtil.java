@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.sirding.Base;
 import com.sirding.Msg;
-import com.sirding.commons.RedisInstance;
+import com.sirding.commons.MsInstance;
 import com.sirding.core.utils.JedisUtil;
 /**
  * @Described	: 测试jedisUtil工具类
@@ -44,9 +44,11 @@ public class TestJedisUtil extends Base{
 	
 	@Test
 	public void test3(){
-		System.out.println(RedisInstance.newInstance().REDIS_PORT);
-		System.out.println(RedisInstance.newInstance().REDIS_TESTONBORROW);
-//		System.out.println(RedisInstance.REDIS_IP);
+		System.out.println(MsInstance.newInstance().REDIS_PORT);
+		System.out.println(MsInstance.newInstance().REDIS_TESTONBORROW);
+//		System.out.println(MsInstance.REDIS_IP);
+		System.out.println(MsInstance.newInstance().JDBC_DRIVER);
+		System.out.println(MsInstance.newInstance().ACTIVEMQ_URL);
 	}
 	
 	@Test
