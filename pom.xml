@@ -489,6 +489,12 @@
 		    <artifactId>kryo</artifactId>
 		    <version>4.0.0</version>
 		</dependency>
+
+		<dependency>
+		    <groupId>com.github.davidmoten</groupId>
+		    <artifactId>flatbuffers-java</artifactId>
+		    <version>1.6.0.1</version>
+		</dependency>
 		
 		<!-- =====================华丽分割线================================= -->
 		<!-- 配置jetty和tomcat支持websocket start -->
@@ -578,7 +584,46 @@
 		    <version>5.14.3</version>
 		</dependency>
 		<!-- MQ  end -->
-		<!-- =====================华丽分割线================================= -->
+		<!-- =====================工具包-华丽分割线================================= -->
+		<!-- 高级时间工具类 -->
+		<dependency>
+		    <groupId>net.time4j</groupId>
+		    <artifactId>time4j-core</artifactId>
+		    <version>4.24</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.time4j</groupId>
+		    <artifactId>time4j-range</artifactId>
+		    <version>4.24</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.time4j</groupId>
+		    <artifactId>time4j-i18n</artifactId>
+		    <version>4.24</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.time4j</groupId>
+		    <artifactId>time4j-olson</artifactId>
+		    <version>4.24</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.time4j</groupId>
+		    <artifactId>time4j-misc</artifactId>
+		    <version>4.24</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.time4j</groupId>
+		    <artifactId>time4j-calendar</artifactId>
+		    <version>4.24</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.time4j</groupId>
+		    <artifactId>time4j-calendar</artifactId>
+		    <version>4.24</version>
+		</dependency>
+		
+		<!-- =====================工具包-华丽分割线================================= -->
+		
 	</dependencies>
 	
 	

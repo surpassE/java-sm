@@ -35,9 +35,14 @@ public class ActiveMqUtil {
 	static Logger log = Logger.getLogger(ActiveMqUtil.class);
 
 	static {
+//		connectionFactory = new ActiveMQConnectionFactory(
+//				ActiveMQConnection.DEFAULT_USER, 
+//				ActiveMQConnection.DEFAULT_PASSWORD, 
+//				"tcp://127.0.0.1:61616?wireFormat.maxInactivityDuration=0");
+		
 		connectionFactory = new ActiveMQConnectionFactory(
-				ActiveMQConnection.DEFAULT_USER, 
-				ActiveMQConnection.DEFAULT_PASSWORD, 
+				"develop", 
+				"develop", 
 				"tcp://127.0.0.1:61616?wireFormat.maxInactivityDuration=0");
 		try{
 			connection = connectionFactory.createConnection();

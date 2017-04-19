@@ -63,7 +63,7 @@
                     <br/>
                     password: <input type="text" required="required" ng-model="password"/>
                     <br/>
-                    <form id="passwordForm" action="{{'/oauth/token?client_id=' + clientId + '&client_secret=' + clientSecret +'&grant_type=password&scope=' + scope + '&username=' + username + '&password=' + password}}"
+                    <form id="passwordForm" action="{{'${contextPath}/oauth/token?client_id=' + clientId + '&client_secret=' + clientSecret +'&grant_type=password&scope=' + scope + '&username=' + username + '&password=' + password}}"
                           method="post" target="_blank">
                         <a href="javascript:$('#passwordForm').submit()">
                             /oauth/token?client_id={{clientId}}&client_secret={{clientSecret}}&grant_type=password&scope={{scope}}&username={{username}}&password={{password}}

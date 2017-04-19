@@ -148,4 +148,6 @@
 	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
 		<property name="connectionFactory" ref="jmsPool"/>
 	</bean>
+	
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer"/>
 </beans>

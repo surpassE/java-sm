@@ -13,17 +13,20 @@ import com.sirding.domain.PageAdapter;
 @Aspect
 public class PageTotalAop {
 
-	private final Logger logger = Logger.getLogger(getClass());
+	private final Logger LOG = Logger.getLogger(getClass());
 	
 //	@Pointcut("@annotation(com.sirding.aop.PageTotal)")
 	@Pointcut("@annotation(org.springframework.cache.annotation.Cacheable)")
-	public void pointCut(){}
+	public void pointCut(){
+//		
+	}
 
 
 	@Before("pointCut()")
 	public void before(JoinPoint point){
-		logger.debug("执行Before===" + point.getTarget() + "==" + point.getSignature().getName());
+		LOG.debug("执行Before===" + point.getTarget() + "==" + point.getSignature().getName());
 		if("preHandle".equals(point.getSignature().getName())){
+//			
 		}
 	}
 
@@ -47,7 +50,7 @@ public class PageTotalAop {
 		try {
 			object = joinPoint.proceed();
 		} catch (Throwable e) {
-			e.printStackTrace();
+			LOG.error(e);
 		} 
 		return object;
 	}

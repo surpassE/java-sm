@@ -12,7 +12,7 @@ import com.sirding.Base;
 import com.sirding.core.utils.ACUtils;
 import com.sirding.core.utils.ActiveMqUtil;
 
-public class TestMq extends Base{
+public class TestMq {
 	
 	JmsTemplate jmsTemplate;
 	
@@ -47,7 +47,7 @@ public class TestMq extends Base{
 	
 	@Test
 	public void test1(){
-		String msg = ActiveMqUtil.getMessage("queue2");
+		String msg = ActiveMqUtil.getMessage("YRTZ-TEST");
 		System.out.println(msg);
 		System.out.println("okok......");
 	}

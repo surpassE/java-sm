@@ -65,7 +65,7 @@
 	<!-- SpringMVC支持多视图配置  通过order属性决策优先级决定视图解析器的由优先级 -->
 	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 		<description>freemarker视图配置</description>
-		<!-- 指定FreeMarker模板文件目录 -->
+		<!-- 指定FreeMarker模板文件目录，与freeMarkerViewResolver中prefix有追加效果 -->
 		<property name="templateLoaderPath" value="/WEB-INF/ftl/" />
 		<!-- 编码设置 -->
 		<property name="freemarkerSettings">
@@ -75,6 +75,7 @@
 		</property>
 	</bean>
 	<bean id="freeMarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"></property>
 		<description>初始化ftl视图解析器</description>
 		<property name="prefix" value="" />
 		<property name="suffix" value=".jsp" />
