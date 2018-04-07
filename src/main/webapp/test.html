@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="static/js/jsencrypt.min.js"></script>
+<script type="text/javascript" src="static/js/jquery-2.2.4.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+		//获取服务器端传来的公钥  
+		var MattsPublicKeyString="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQChL6GJmmrKhiYuJTwW8fVX+75GIGaGA2EosBdlQJhrW4T9xTVNi4x/rwg+JMnnXOEX3k/qhBoAsgWxWJTPtcdptJNLOebGYG79mUfgziB+MouIYR+BF4h8XpMvfosKgvADkRjh2I9yg5HhYG6rT9B4LwXvfm/YwLnJvJCqQxXaRQIDAQAB";  
+		//实例化加密对象  
+		var encrypt = new JSEncrypt();  
+		//设置加密公钥  
+		encrypt.setPublicKey(MattsPublicKeyString);  
+        //进行加密操作  
+		var enAccount = encrypt.encrypt("a12345"); 
+        console.info(enAccount);
+	});
+
+</script>
+</head>
+<body>
+	Hello
+</body>
+</html>

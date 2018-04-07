@@ -96,7 +96,7 @@
 	</beans:bean>
     
     <!-- 用于管理oauth_client_detail信息 -->
-<!-- 	<beans:bean id="clientDetailsService" class="org.springframework.security.oauth2.provider.client.JdbcClientDetailsService"> -->
+	<!-- <beans:bean id="clientDetailsService" class="org.springframework.security.oauth2.provider.client.JdbcClientDetailsService"> -->
 	<beans:bean id="clientDetailsService" class="com.sirding.core.oauth2.CustJdbcClientDetailsService">
 		<beans:constructor-arg index="0" ref="dataSource" />
 	</beans:bean>
@@ -153,8 +153,9 @@
 	</beans:bean>
 
 	<!-- oauth2身份认证??? -->
-	<authentication-manager id="oauth2AuthenticationManager">
+	<authentication-manager id="oauth2AuthenticationManager" alias="authenticationManager">
 		<authentication-provider user-service-ref="oauth2ClientDetailsUserService" />
+		<authentication-provider ref="authenticationProvider" />
 	</authentication-manager>
 
 	<!-- 投票决策器 -->
@@ -247,9 +248,9 @@
     </beans:bean>
     
     <!-- 验证 与授权的核心配置，几乎穿梭于整个请求过程 -->
-	<authentication-manager alias="authenticationManager">
+	<!-- <authentication-manager alias="authenticationManager">
 		<authentication-provider ref="authenticationProvider" />
-	</authentication-manager>
+	</authentication-manager> -->
 
 	<!-- 通过custUserDetailService验证用户并执行授权操作 -->
 	<beans:bean id="authenticationProvider"	class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">

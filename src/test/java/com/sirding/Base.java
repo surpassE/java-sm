@@ -1,6 +1,7 @@
 package com.sirding;
 
 import org.junit.runner.RunWith;
+import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -21,5 +22,10 @@ public class Base {
 	 */
 	public static void printLine(){
 		System.out.println("========================华丽分割线====================================");
+	}
+	
+	public void test2() {
+//		AbstractOAuth2SecurityExceptionHandler
+		
 	}
 }

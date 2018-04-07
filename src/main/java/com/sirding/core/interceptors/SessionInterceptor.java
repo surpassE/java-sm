@@ -25,12 +25,12 @@ public class SessionInterceptor implements HandlerInterceptor{
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		logger.debug("interceptor请求之后...");
+//		logger.debug("interceptor请求之后...");
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		logger.debug("interceptor请求之后(已完结)...");
+//		logger.debug("interceptor请求之后(已完结)...");
 		
 	}
 	
@@ -85,7 +85,11 @@ public class SessionInterceptor implements HandlerInterceptor{
 	 * @throws Exception
 	 */
 	boolean checkSessionFromCookie(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
+		boolean flag = true;
 		Cookie cookie = CookieUtil.getCookie(request, Cons.COOKIE_USER);
+		if(flag) {
+			return flag;
+		}
 		String token = null;
 		if(cookie != null){
 			token = cookie.getValue();
